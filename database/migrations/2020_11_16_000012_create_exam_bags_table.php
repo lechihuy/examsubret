@@ -15,7 +15,17 @@ class CreateExamBagsTable extends Migration
     {
         Schema::create('exam_bags', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('class', 20);
+            $table->string('exam_room', 20);
+            $table->unsignedInteger('exam_quantity');
+            $table->unsignedInteger('paper_quantity');
+        });
+
+        Schema::table('exam_bags', function (Blueprint $table) {
+            $table->unsignedBigInteger('return_exam_request_id');
+            $table->foreign('return_exam_request_id')
+                ->references('id')->on('return_exam_requests')
+                ->onDelete('cascade');
         });
     }
 

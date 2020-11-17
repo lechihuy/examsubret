@@ -15,7 +15,17 @@ class CreateMajorsTable extends Migration
     {
         Schema::create('majors', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name', 100);
+            $table->string('code', 100);
+
+            $table->unique(['name', 'code']);
+        });
+
+        Schema::table('majors', function(Blueprint $table) {
+            $table->unsignedBigInteger('department_id');
+            $table->foreign('department_id')
+                ->references('id')->on('departments')
+                ->onDelete('cascade');
         });
     }
 

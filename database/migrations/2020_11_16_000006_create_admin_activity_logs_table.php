@@ -15,7 +15,15 @@ class CreateAdminActivityLogsTable extends Migration
     {
         Schema::create('admin_activity_logs', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->text('message');
+            $table->timestamp('logged_at');
+        });
+
+        Schema::table('admin_activity_logs', function(Blueprint $table) {
+            $table->unsignedBigInteger('admin_id');
+            $table->foreign('admin_id')
+                ->references('id')->on('admins')
+                ->onDelete('cascade');
         });
     }
 

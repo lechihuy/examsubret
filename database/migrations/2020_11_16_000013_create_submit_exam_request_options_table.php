@@ -14,8 +14,16 @@ class CreateSubmitExamRequestOptionsTable extends Migration
     public function up()
     {
         Schema::create('submit_exam_request_options', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->string('key', 100);
+            $table->string('label', 100);
+            $table->longText('value')->nullable();  
+        });
+
+        Schema::table('submit_exam_request_options', function (Blueprint $table) {
+            $table->unsignedBigInteger('submit_exam_request_id');
+            $table->foreign('submit_exam_request_id')
+                ->references('id')->on('submit_exam_requests')
+                ->onDelete('cascade');
         });
     }
 

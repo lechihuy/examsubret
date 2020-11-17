@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/login', 'AdminController@login');
+Route::get('/logout', 'AdminController@logout');
+Route::get('/refresh', 'AdminController@refresh');
+Route::get('/me', 'AdminController@me');
+
+Route::get('/login_outlook', function () {
+    return view('login');
+});
+
+

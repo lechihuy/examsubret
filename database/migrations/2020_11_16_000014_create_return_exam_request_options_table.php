@@ -14,8 +14,16 @@ class CreateReturnExamRequestOptionsTable extends Migration
     public function up()
     {
         Schema::create('return_exam_request_options', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->string('key', 100);
+            $table->string('label', 100);
+            $table->longText('value')->nullable();  
+        });
+
+        Schema::table('return_exam_request_options', function (Blueprint $table) {
+            $table->unsignedBigInteger('return_exam_request_id');
+            $table->foreign('return_exam_request_id')
+                ->references('id')->on('return_exam_requests')
+                ->onDelete('cascade');
         });
     }
 

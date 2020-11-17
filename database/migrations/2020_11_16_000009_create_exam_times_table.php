@@ -15,7 +15,9 @@ class CreateExamTimesTable extends Migration
     {
         Schema::create('exam_times', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('times', 50);
+            $table->unsignedInteger('test_quantity');
+            $table->unsignedInteger('time')->comment('minutes');
         });
     }
 

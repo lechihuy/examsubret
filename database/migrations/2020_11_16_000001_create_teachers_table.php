@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReturnExamRequestsTable extends Migration
+class CreateTeachersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class CreateReturnExamRequestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('return_exam_requests', function (Blueprint $table) {
+        Schema::create('teachers', function (Blueprint $table) {
             $table->id();
+            $table->string('email');
+            $table->string('phone_number', 11);
+            $table->boolean('is_locked')->default(false);
+            $table->timestamp('last_login_at');
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreateReturnExamRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('return_exam_requests');
+        Schema::dropIfExists('teachers');
     }
 }

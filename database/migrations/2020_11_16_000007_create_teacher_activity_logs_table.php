@@ -15,7 +15,15 @@ class CreateTeacherActivityLogsTable extends Migration
     {
         Schema::create('teacher_activity_logs', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->text('message');
+            $table->timestamp('logged_at');
+        });
+
+        Schema::table('teacher_activity_logs', function(Blueprint $table) {
+            $table->unsignedBigInteger('teacher_id');
+            $table->foreign('teacher_id')
+                ->references('id')->on('teachers')
+                ->onDelete('cascade');
         });
     }
 
