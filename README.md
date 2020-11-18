@@ -1,4 +1,4 @@
-# Install
+# After clone repository
 - Install JWT
 
 > COMPOSER_MEMORY_LIMIT=-1 composer require tymon/jwt-auth
