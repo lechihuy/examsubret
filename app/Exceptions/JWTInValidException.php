@@ -11,8 +11,8 @@ class JWTInValidException extends Exception
         return response()->json([
             'error' => [
                 'message' => 'Access token is invalid.',
-                'code' => 403,
+                'code' => 401,
             ]
-        ], 403);
+        ], 401);
     }
 }

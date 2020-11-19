@@ -21,7 +21,7 @@ class VerifyJWT
     protected function isOldToken()
     {
         return isset($this->user->last_change_password_at) 
-            && $exp->lte($this->user->last_change_password_at);
+            && $this->exp->lte($this->user->last_change_password_at);
     }
 
     /**
