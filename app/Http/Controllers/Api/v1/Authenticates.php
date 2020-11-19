@@ -31,6 +31,11 @@ trait Authenticates
     public function logout()
     {
         auth()->logout();
+
+        return response()->json([
+            'message' => 'Logout successfuly.',
+            'code' => 200,
+        ]);
     }
 
     public function refresh()

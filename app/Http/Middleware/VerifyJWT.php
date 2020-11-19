@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Exceptions\JWTInvalidException;
+use App\Exceptions\JWTInValidException;
 use App\Exceptions\JWTExpiredException;
 use Carbon\Carbon;
 
