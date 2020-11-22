@@ -39,5 +39,9 @@ class Handler extends ExceptionHandler
         $this->renderable(function (\Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException $e, $request) {
             throw new \App\Exceptions\MethodNotAllowedHttpException;
         });
+
+        $this->renderable(function (\Symfony\Component\HttpKernel\Exception\HttpException $e, $request) {
+            throw new \App\Exceptions\HttpException;
+        });
     }
 }
