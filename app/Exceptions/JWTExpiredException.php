@@ -10,7 +10,7 @@ class JWTExpiredException extends Exception
     {
         return response()->json([
             'error' => [
-                'message' => 'Access token is expired.',
+                'message' => 'The access token is expired.',
                 'code' => 419,
                 'type' => class_basename($this)
             ]

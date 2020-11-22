@@ -43,9 +43,18 @@ trait Authenticates
         auth()->refresh();
     }
 
-    public function me($fields)
+    public function me(Request $request)
     {
-        return auth()->user()->select($fields)->get();
+        $fields = $request->query('fields') ?? '*';
+        $fields = explode(',', $fields);
+
+        $me = auth()->user()->select($fields)->get();
+
+        return response()->json([
+            'message' => 'Get user data successfuly.',
+            'code' => 200,
+            'data' => $me
+        ]);
     }
 
     protected function respondFailedLogin()
@@ -64,7 +73,7 @@ trait Authenticates
             'message' => 'Login successfuly.',
             'code' => 200,
             'access_token' => $token,
-            'data' => $this->me(['id', 'username'])
+            'data' => auth()->user()->get()
         ]);
     }
 }

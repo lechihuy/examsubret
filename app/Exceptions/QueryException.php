@@ -4,15 +4,15 @@ namespace App\Exceptions;
 
 use Exception;
 
-class JWTInValidException extends Exception
+class QueryException extends Exception
 {
     public function render($request)
     {
         return response()->json([
             'error' => [
-                'message' => 'The access token is invalid.',
-                'code' => 401,
+                'message' => 'The query is invalid.',
+                'code' => 500,
             ]
-        ], 401);
+        ], 500);
     }
 }

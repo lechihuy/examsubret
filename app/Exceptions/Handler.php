@@ -32,6 +32,12 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-       
+        $this->renderable(function (\Illuminate\Database\QueryException $e, $request) {
+            throw new \App\Exceptions\QueryException;
+        });
+
+        $this->renderable(function (\Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException $e, $request) {
+            throw new \App\Exceptions\MethodNotAllowedHttpException;
+        });
     }
 }

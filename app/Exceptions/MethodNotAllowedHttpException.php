@@ -4,15 +4,15 @@ namespace App\Exceptions;
 
 use Exception;
 
-class JWTInValidException extends Exception
+class MethodNotAllowedHttpException extends Exception
 {
     public function render($request)
     {
         return response()->json([
             'error' => [
-                'message' => 'The access token is invalid.',
-                'code' => 401,
+                'message' => 'The method is not suported.',
+                'code' => 405,
             ]
-        ], 401);
+        ], 405);
     }
 }
