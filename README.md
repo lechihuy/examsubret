@@ -9,3 +9,7 @@
 > php artisan jwt:secret
 
 - Install 
+
+> composer remove guzzlehttp/guzzle
+
+> composer require league/oauth2-client microsoft/microsoft-graph
