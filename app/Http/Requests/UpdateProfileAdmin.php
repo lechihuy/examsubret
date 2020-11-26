@@ -28,16 +28,22 @@ class UpdateProfileAdmin extends FormRequest
     public function rules()
     {
         return [
-            'fullname' => 'required|string|min:2|max:50',
-            'phone_number' => 'required|numeric|min:10|max:11',
-            'email' => 'required|string|email',
+            'fullname' => 'bail|required|string|min:2|max:50',
+            'phone_number' => 'bail|required|string|min:10|max:11',
+            'email' => 'bail|required|string|email',
+            'old_password' => 'bail|somtimes|nullable|string|password:admin',
         ];
     }
 
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(
-            response()->json(['message' => $validator->errors()->first()], 422)
+            response()->json([
+                'error' => [
+                    'code' => 422,
+                    'message' => $validator->errors()->first()
+                ]
+            ], 422)
         );
     }
 }

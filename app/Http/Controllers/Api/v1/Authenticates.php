@@ -98,6 +98,7 @@ trait Authenticates
             'message' => 'Login successfuly.',
             'code' => 200,
             'access_token' => $token,
+            'expires_in' => $this->getTTL(),
             'data' => auth()->user()->get()
         ]);
     }

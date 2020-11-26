@@ -25,6 +25,7 @@ Route::prefix('auth')->group(function() {
     Route::prefix('teacher')->group(function() {
         Route::get('/logout', 'TeacherController@logout');
         Route::get('/refresh', 'TeacherController@refresh');
+        Route::get('/is_authenticated', 'TeacherController@isAuthenticated');
     });
 });
 
