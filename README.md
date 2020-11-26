@@ -13,3 +13,5 @@
 > composer remove guzzlehttp/guzzle
 
 > composer require league/oauth2-client microsoft/microsoft-graph
+
+Config the Oauth information in .env file.

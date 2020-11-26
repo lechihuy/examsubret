@@ -32,6 +32,9 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
+        // The exception when the app is only released
+        if (config('app.debug')) return false;
+
         $this->renderable(function (\Illuminate\Database\QueryException $e, $request) {
             throw new \App\Exceptions\QueryException;
         });

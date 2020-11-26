@@ -41,4 +41,14 @@ class Admin extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function logout()
+    {
+        AdminActivityLog::create([
+            'message' => "Quản trị viên {$this->username} vừa đăng xuất.",
+            'admin_id' => $this->id,
+        ]);
+        
+        auth()->logout();
+    }
 }

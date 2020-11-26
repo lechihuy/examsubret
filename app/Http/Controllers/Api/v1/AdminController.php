@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\UpdateProfileAdmin;
+
 class AdminController extends Controller
 {
     use Authenticates;
@@ -16,5 +18,10 @@ class AdminController extends Controller
         auth()->shouldUse($this->guard());
         
         $this->middleware('jwt', ['except' => 'login']);
+    }
+
+    public function updateProfile(UpdateProfileAdmin $request)
+    {
+
     }
 }

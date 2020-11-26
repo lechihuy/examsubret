@@ -15,6 +15,6 @@ class TeacherController extends Controller
     {
         auth()->shouldUse($this->guard());
         
-        $this->middleware('jwt', ['except' => ['loginOutlook', 'callback']]);
+        $this->middleware('jwt', ['except' => ['loginOutlook', 'callbackOutlook']]);
     }
 }

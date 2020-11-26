@@ -14,16 +14,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('auth')->group(function() {
+    Route::prefix('admin')->group(function() {
+        Route::post('/login', 'AdminController@login');
+        Route::get('/logout', 'AdminController@logout');
+        Route::get('/refresh', 'AdminController@refresh');
+        Route::get('/is_authenticated', 'AdminController@isAuthenticated');
+    });
+
+    Route::prefix('teacher')->group(function() {
+        Route::get('/logout', 'TeacherController@logout');
+        Route::get('/refresh', 'TeacherController@refresh');
+    });
 });
 
-
-
-
-Route::post('/login', 'AdminController@login');
-Route::get('/logout', 'AdminController@logout');
-Route::get('/refresh', 'AdminController@refresh');
-Route::get('/me', 'AdminController@me');
+Route::prefix('admin')->group(function() {
+    Route::prefix('profile')->group(function() {
+        Route::get('', 'AdminController@me');
+        Route::put('', 'AdminController@updateProfile');
+    });
+});
 
 

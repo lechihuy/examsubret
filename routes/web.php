@@ -13,5 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/outlook/login', 'TeacherController@loginOutlook');
-Route::get('/outlook/callback', 'TeacherController@callback');
+Route::prefix('auth')->group(function() {
+    Route::get('/outlook/login', 'TeacherController@loginOutlook');
+    Route::get('/outlook/callback', 'TeacherController@callbackOutlook');
+});
