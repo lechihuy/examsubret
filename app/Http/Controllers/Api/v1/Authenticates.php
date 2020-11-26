@@ -92,6 +92,12 @@ trait Authenticates
         ], 401);
     }
 
+    public function getTTL()
+    {
+        return config('jwt.ttl') * 60;
+    }
+
+
     protected function respondSuccessLogin($token)
     {
         return response()->json([
