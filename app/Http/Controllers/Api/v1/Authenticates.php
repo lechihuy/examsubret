@@ -63,9 +63,17 @@ trait Authenticates
         ]);
     }
 
-    public function refresh()
+    public function refresh($message)
     {
-        auth()->refresh();
+        $token = auth()->refresh();
+
+        return response()->json([
+            'message' => $message,
+            'code' => 200,
+            'access_token' => $token,
+            'expires_in' => $this->getTTL(),
+            'data' => auth()->user()
+        ]);
     }
 
     public function me(Request $request)
@@ -105,7 +113,8 @@ trait Authenticates
             'code' => 200,
             'access_token' => $token,
             'expires_in' => $this->getTTL(),
-            'data' => auth()->user()->get()
+            'data' => auth()->user(),
+            'role' => $this->guard(),
         ]);
     }
 

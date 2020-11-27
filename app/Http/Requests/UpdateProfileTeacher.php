@@ -8,7 +8,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UpdateProfileAdmin extends FormRequest
+class UpdateProfileTeacher extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,15 +27,14 @@ class UpdateProfileAdmin extends FormRequest
      */
     public function rules()
     {
-        $admin = auth()->user()->id;
-        
-        return [
+        $teacher = auth()->user()->id;
+
+        $rules = [
             'fullname' => 'bail|required|string|min:2|max:50',
-            'phone_number' => "bail|required|string|min:10|max:11|unique:admins,phone_number,{$admin}",
-            'email' => "bail|required|string|email|unique:admins,email,{$admin}",
-            'old_password' => 'sometimes|nullable|string|password:admin',
-            'new_password' => 'sometimes|nullable|required_with:old_password|string|confirmed',
-        ];
+            'phone_number' => "bail|required|string|min:10|max:11|unique:teachers,phone_number,{$teacher}",
+        ];   
+
+        return $rules;
     }
 
     public function failedValidation(Validator $validator)

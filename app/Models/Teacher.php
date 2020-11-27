@@ -59,9 +59,9 @@ class Teacher extends Authenticatable implements JWTSubject
 
     public function updateLastLogin()
     {
+        $this->log("Giảng viên {$this->identification()} vừa đăng nhập.");
         $this->last_login_at = now();
         $this->save();
-        $this->log("Giảng viên {$this->identification()} vừa đăng nhập.");
     }
 
     public function log($message)
@@ -79,11 +79,13 @@ class Teacher extends Authenticatable implements JWTSubject
 
     public function logout()
     {
-        TeacherActivityLog::create([
-            'message' => "Giảng viên {$this->identification()} vừa đăng xuất.",
-            'teacher_id' => $this->id,
-        ]);
-
+        $this->log("Giảng viên {$this->identification()} vừa đăng xuất.");
         auth()->logout();
+    }
+
+    public function updateProfile($data)
+    {
+        $this->log("Giảng viên {$this->identification()} vừa cập nhật hồ sơ.");
+        return $this->update($data->toArray());
     }
 }

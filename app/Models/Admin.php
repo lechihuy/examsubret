@@ -14,6 +14,18 @@ class Admin extends Authenticatable implements JWTSubject
     use HasFactory, Notifiable;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'fullname',
+        'email',
+        'phone_number',
+        'password',
+    ];
+
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
@@ -42,13 +54,33 @@ class Admin extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function logout()
+    public function log($message)
     {
-        AdminActivityLog::create([
-            'message' => "Quản trị viên {$this->username} vừa đăng xuất.",
+        return AdminActivityLog::create([
+            'message' => $message,
             'admin_id' => $this->id,
         ]);
-        
+    }
+
+    public function identification()
+    {
+        return $this->fullname ?? $this->username;
+    }
+
+    public function logout()
+    {
+        $this->log("Quản trị viên {$this->identification()} vừa đăng xuất.");
         auth()->logout();
+    }
+
+    public function updateProfile($data)
+    {
+        if ($data->has('password')) {
+            $this->log("Quản trị viên {$this->identification()} vừa đổi mật khẩu.");
+            $data->put('last_change_password_at', now());
+        }
+
+        $this->log("Quản trị viên {$this->identification()} vừa cập nhật hồ sơ.");
+        return $this->update($data->toArray());
     }
 }

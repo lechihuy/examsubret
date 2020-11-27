@@ -29,8 +29,8 @@ return [
         'string' => 'The :attribute must be between :min and :max characters.',
         'array' => 'The :attribute must have between :min and :max items.',
     ],
-    'boolean' => 'The :attribute field must be true or false.',
-    'confirmed' => 'The :attribute confirmation does not match.',
+    'boolean' => ':Attribute phải ở dạng boolean.',
+    'confirmed' => 'Xác nhận lại :attribute không khớp.',
     'date' => 'The :attribute is not a valid date.',
     'date_equals' => 'The :attribute must be a date equal to :date.',
     'date_format' => 'The :attribute does not match the format :format.',
@@ -94,13 +94,13 @@ return [
     'not_in' => 'The selected :attribute is invalid.',
     'not_regex' => 'The :attribute format is invalid.',
     'numeric' => 'The :attribute must be a number.',
-    'password' => 'The password is incorrect.',
+    'password' => ':Attribute không chính xác.',
     'present' => 'The :attribute field must be present.',
     'regex' => 'The :attribute format is invalid.',
     'required' => ':Attribute là bắt buộc.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
-    'required_with' => 'The :attribute field is required when :values is present.',
+    'required_with' => ':Attribute là bắt buộc khi :values được nhập.',
     'required_with_all' => 'The :attribute field is required when :values are present.',
     'required_without' => 'The :attribute field is required when :values is not present.',
     'required_without_all' => 'The :attribute field is required when none of :values are present.',
@@ -114,7 +114,7 @@ return [
     'starts_with' => 'The :attribute must start with one of the following: :values.',
     'string' => ':Attribute phải là chuỗi.',
     'timezone' => 'The :attribute must be a valid zone.',
-    'unique' => 'The :attribute has already been taken.',
+    'unique' => ':Attribute đã được sử dụng.',
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
@@ -150,7 +150,10 @@ return [
     'attributes' => [
         'fullname' => 'tên đầy đủ',
         'phone_number' => 'số điện thoại',
-        'email' => 'địa chỉ email'
+        'email' => 'địa chỉ email',
+        'old_password' => 'mật khẩu cũ',
+        'new_password' => 'mật khẩu mới',
+        'is_locked' => 'khoá tài khoản'
     ],
 
 ];

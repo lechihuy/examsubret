@@ -36,4 +36,12 @@ Route::prefix('admin')->group(function() {
     });
 });
 
+Route::prefix('teacher')->group(function() {
+    Route::prefix('profile')->group(function() {
+        Route::get('', 'TeacherController@me');
+        Route::put('', 'TeacherController@updateProfile');
+    });
+});
+
+
 

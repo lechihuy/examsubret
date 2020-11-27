@@ -20,13 +20,6 @@ class CreateMajorsTable extends Migration
 
             $table->unique(['name', 'code']);
         });
-
-        Schema::table('majors', function(Blueprint $table) {
-            $table->unsignedBigInteger('department_id');
-            $table->foreign('department_id')
-                ->references('id')->on('departments')
-                ->onDelete('cascade');
-        });
     }
 
     /**

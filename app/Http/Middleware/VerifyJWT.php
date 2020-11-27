@@ -31,9 +31,9 @@ class VerifyJWT
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $guard = null)
     {
-        $auth = auth();
+        $auth = $guard ? auth($guard) : auth();
 
         if (! $request->bearerToken()) {
             throw new JWTInvalidException;
