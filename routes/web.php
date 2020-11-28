@@ -18,9 +18,4 @@ Route::prefix('auth')->group(function() {
     Route::get('/outlook/callback', 'TeacherController@callbackOutlook');
 });
 
-Route::get('/', function() {
-    $department = App\Models\Department::find(1);
-    $major = App\Models\Major::find(1);
-
-    dump($major->departments);
-});
+Route::get('/login', 'AuthController@showLoginForm');

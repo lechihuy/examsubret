@@ -1,0 +1,181 @@
+@import '~bootstrap/scss/bootstrap';
+
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
+@font-face {
+    font-family: "Open Sans";
+    src: url(../fonts/OpenSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Open Sans Light";
+    src: url(../fonts/OpenSans-Light.ttf);
+}
+
+@font-face {
+    font-family: "Open Sans Bold";
+    src: url(../fonts/OpenSans-Bold.ttf);
+}
+
+@font-face {
+    font-family: "Lobster";
+    src: url(../fonts/Lobster-Regular.ttf);
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.9rem;
+    background-color: #f0f2f5;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.text-logo {
+    font-family: "Lobster";
+}
+
+.alert-danger {
+    border-left: 5px solid #dc3545;
+}
+
+.alert-info {
+    border-left: 5px solid #17a2b8;
+}
+
+.alert-success {
+    border-left: 5px solid #28a745;
+}
+
+.alert-warning {
+    border-left: 5px solid #ffc107;
+}
+
+.table-bordered thead td, .table-bordered thead th, .table thead th, .table thead td {
+    border-bottom-width: 1px;
+}
+
+.text-truncate-2 {
+    display: -webkit-box;
+    max-width: 100%;
+    height: 3rem;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.input-group-sm>.custom-select, .input-group-sm>.form-control, .input-group-sm>.input-group-append>.btn, .input-group-sm>.input-group-append>.input-group-text, .input-group-sm>.input-group-prepend>.btn, .input-group-sm>.input-group-prepend>.input-group-text {
+    font-size: 100%;
+}
+
+*[data-toggle="collapse"], .single-choose-img {
+    cursor: pointer;
+}
+
+.btn:focus,.btn:active:focus,.btn.active:focus,
+.btn.focus,.btn:active.focus,.btn.active.focus {
+    box-shadow: none;
+}
+
+.form-control:focus,.form-control:active:focus,.form-control.active:focus,
+.form-control.focus,.form-control:active.focus,.form-control.active.focus {
+    box-shadow: none;
+}
+
+.container-narrow {
+    padding-left: calc(220px + 20px);
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 50px;
+}
+
+#sidebar {
+    width: 220px;
+    min-height: calc(100vh - 50px);
+    top: 50px;
+    overflow: auto;
+    max-height: calc(100vh - 50px);
+}
+
+#sidebar nav a {
+    color: rgba(255,255,255,.5);
+    display: block;
+}
+
+#sidebar nav li.active > a {
+    color: #fff;
+}
+
+#sidebar nav a > i {
+    margin-right: 0.25rem;
+}
+
+#sidebar nav a:hover {
+    color: #ffffff;
+}
+
+.dropdown-menu {
+    font-size: 0.9rem !important;
+}
+
+.box-single-choose-img {
+    background-color: #999;
+}
+
+.my-table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f8f9fa !important;
+}
+
+.col-checkbox {
+    width: 40px;
+}
+
+@media screen and (max-width: 992px) {
+    .container-narrow {
+        padding-left: 20px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container-narrow {
+        padding: 15px;
+    }
+}
+
+.select2-container--default .select2-selection--single,
+.select2-selection--multiple {
+    border: 1px solid #e5e5e5 !important;
+    padding: 1px 0;
+    height: auto !important;
+    outline: 0;
+    border-radius: 5px !important;
+    width: calc(100%) !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 5px !important;
+}
+
+.text-divider{
+    margin: 2em 0; 
+    line-height: 0; 
+    text-align: center;
+
+}
+.text-divider span{
+    background-color: #fff; 
+    padding: 1em;
+}
+
+.text-divider:before { 
+    content: " "; 
+    display: block; 
+    border-top: 1px solid #e3e3e3; 
+    border-bottom: 1px solid #f7f7f7;
+}
