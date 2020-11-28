@@ -48,12 +48,12 @@ return [
         ],
 
         'teacher' => [
-            'driver' => 'jwt',
+            'driver' => 'session',
             'provider' => 'teachers',
         ],
 
         'admin' => [
-            'driver' => 'jwt',
+            'driver' => 'session',
             'provider' => 'admins',
         ]
     ],

@@ -6,12 +6,16 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Traits\Log;
 
-use Tymon\JWTAuth\Contracts\JWTSubject;
-
-class Teacher extends Authenticatable implements JWTSubject
+class Teacher extends Authenticatable 
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Log;
+
+    const NAME = 'Giảng viên';
+
+    protected $logTable = 'teacher_activity_logs';
+    protected $foreignKeyLogTable = 'teacher_id';
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +25,8 @@ class Teacher extends Authenticatable implements JWTSubject
     protected $fillable = [
         'fullname',
         'email',
+        'username',
+        'password'
     ];
 
     /**
@@ -32,55 +38,14 @@ class Teacher extends Authenticatable implements JWTSubject
         'password',
     ];
 
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
-
     public static function canCreate($email)
     {
         return static::where('email', $email)->doesntExist();
     }
 
-    public function updateLastLogin()
-    {
-        $this->log("Giảng viên {$this->identification()} vừa đăng nhập.");
-        $this->last_login_at = now();
-        $this->save();
-    }
-
-    public function log($message)
-    {
-        return TeacherActivityLog::create([
-            'message' => $message,
-            'teacher_id' => $this->id,
-        ]);
-    }
-
     public function identification()
     {
-        return $this->fullname ?? $this->email;
-    }
-
-    public function logout()
-    {
-        $this->log("Giảng viên {$this->identification()} vừa đăng xuất.");
-        auth()->logout();
+        return $this->username;
     }
 
     public function updateProfile($data)

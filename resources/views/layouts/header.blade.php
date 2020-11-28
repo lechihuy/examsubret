@@ -1,17 +1,12 @@
 <nav id="navbar" class="navbar navbar-lg-expand bg-white border-bottom fixed-top py-1 px-2">
     {{-- Logo --}}
-    <a class="navbar-brand text-dark" href="{{ route('admin.home') }}">
-        <img src="{{ $admin_logo_url }}" width="30" alt=""> <span class="text-logo">Flipper</span>
+    <a class="navbar-brand text-dark" href="{{ route('dashboard') }}">
+        <img src="{{ asset('images/vlu-icon.png') }}" width="25" alt="" class="d-inline-block">
+        <span class="text-dark text-uppercase pt-2 mb-0" style="font-size: 1rem;">Exam SubRet</span>
     </a>
     {{-- /Logo --}}
 
     <div class="ml-auto">
-        {{-- <button type="button" class="btn btn-light btn-clear-cache" action="https://flipper.vn/admin/cache/clear">
-            <i class="fas fa-sync-alt"></i>
-        </button>
-        <a class="btn btn-outline-primary" href="https://flipper.vn" target="_blank">
-            <i class="fas fa-eye"></i>
-        </a> --}}
 
         {{-- Dropdown quick action --}}
         <div class="dropdown show d-inline-block">
@@ -20,15 +15,9 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-quick-acition">
-                <a class="dropdown-item" href="{{ route('admin.products.create') }}">Sản phẩm</a>
-                <a class="dropdown-item" href="{{ route('admin.posts.create') }}">Bài viết</a>
-                <a class="dropdown-item" href="{{ route('admin.pages.create') }}">Trang</a>
-                <a class="dropdown-item" href="{{ route('admin.categories.create') }}">Chuyên mục</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{ route('admin.orders.create') }}">Đơn hàng</a>
-                <a class="dropdown-item" href="{{ route('admin.vouchers.create') }}">Mã giảm giá</a>
-                <a class="dropdown-item" href="{{ route('admin.users.create') }}">Khách hàng</a>
-                <a class="dropdown-item" href="{{ route('admin.admins.create') }}">Thành viên</a>    
+                <a class="dropdown-item" href="">Yêu cầu nộp đề thi</a>
+                <a class="dropdown-item" href="">Yêu cầu trả túi đề thi</a>
+          
             </div>
         </div>
         {{-- /Dropdown quick action --}}

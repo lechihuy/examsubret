@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title') | VLU</title>
+    <title>@yield('title') | VLU EXAM SUBRET</title>
     
     <link rel="shortcut icon" href="{{ asset('images/vlu-icon.png') }}" type="image/x-icon">
 
@@ -15,16 +15,16 @@
     @stack('styles')
 </head>
 <body>
-    @auth('admin')
+    @isauth
         @include('layouts.header')
         @include('layouts.sidebar')
-    @endauth
+    @endisauth
 
     @yield('content')
 
-    @auth('admin')
+    @isauth('admin', 'teacher')
         @include('layouts.footer')
-    @endauth
+    @endisauth
 
     <script src="{{ asset('js/core/bootstrap.js') }}"></script>
     @stack('scripts')
