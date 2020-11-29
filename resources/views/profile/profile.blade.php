@@ -177,6 +177,7 @@
         <button class="btn btn-success btn-sm btn-update-profile float-right">
             <i class="fas fa-check"></i> Lưu
         </button>
+        <div class="clearfix"></div>
     </div>
     {{-- /Button group --}}
 
