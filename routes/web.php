@@ -17,7 +17,7 @@ Route::get('/', 'DashboardController')->name('dashboard');
 
 Route::prefix('profile')->name('profile.')->group(function() {
     Route::get('/', 'ProfileController@showProfileForm')->name('form');
-    Route::post('/', 'ProfileController@update')->name('update');
+    Route::put('/', 'ProfileController@update')->name('update');
 });
 
 Route::name('auth.')->group(function() {
@@ -33,4 +33,11 @@ Route::name('auth.')->group(function() {
 
     Route::get('/logout', 'AuthController@logout')->name('logout');
 });
+
+Route::prefix('components')->name('components.')->group(function() {
+    Route::get('load/view/{view}/handle/{handle}', 'ComponentController@load')->name('load');
+});
+
+Route::get('majors', 'TeacherJobController@getMajors')->name('majors');
+Route::get('subjects', 'TeacherJobController@getSubjects')->name('subjects');
 

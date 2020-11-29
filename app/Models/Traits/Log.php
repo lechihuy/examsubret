@@ -26,6 +26,13 @@ trait Log
         $this->save();
     }
 
+    public function updateLastChangePassword()
+    {
+        $this->log('change_password');
+        $this->last_change_password_at = now();
+        $this->save();
+    }
+
     public function hasChangedPassword()
     {
         return (bool) $this->last_change_password_at;

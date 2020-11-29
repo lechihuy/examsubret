@@ -14,10 +14,6 @@ class CreateTeacherJobsTable extends Migration
     public function up()
     {
         Schema::create('teacher_jobs', function (Blueprint $table) {
-            $table->id();
-        });
-
-        Schema::table('teacher_jobs', function (Blueprint $table) {
             $table->unsignedBigInteger('teacher_id');
             $table->foreign('teacher_id')
                 ->references('id')->on('teachers')

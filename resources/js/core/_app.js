@@ -1,3 +1,5 @@
+require('../components/_alertModal')
+
 $(document).ready(function() {
     // Tooltip
     $(document).find('*[data-toggle=tooltip]').tooltip();
@@ -69,17 +71,6 @@ $(document).ready(function() {
         }
     });
 
-    // Confirm modal
-    $(document).on('click', '.btn-modal-confirm', function() {
-        if (typeof selectedItems != 'undefined' && selectedItems.length == 0 && $(this).attr('selector') != 'false') {
-            return;
-        }
-
-        $('#modal-confirm').modal();
-        $('#modal-confirm .btn-submit').attr('id', $(this).attr('btn-confirm-id'))
-            .attr($(this).data());
-    });
-
     // Pagination
     $(document).on('click', '.btn-go-to-page', function() {
         let page = $(this).parent().find('input[name=page]').val();
@@ -90,12 +81,35 @@ $(document).ready(function() {
 
     // Open modal
     $(document).on('click', '.btn-open-modal-form', function() {
-        let modal = $(this).attr('modal');
+        let modal = $($(this).attr('modal'));
 
-        $(this).find('data ')
-
-        $(modal).modal();
-
-
+        modal.modal();
     });
+
+    // Add new component
+    $(document).on('click', '.btn-add-modal-form', function() {
+        let modal = $(this).parents('.modal')
+        let action = modal.attr('action')
+        let list = $(modal.attr('list'))
+        let al = new AlertModal;
+
+        $.ajax({
+            url: action,
+            type: 'GET',
+            success: function(res) {
+                modal.modal('hide')
+
+                list.append(res)
+            }, error: function(err) {
+                modal.modal('hide')
+
+                al.show({
+                    'icon': 'fas fa-exclamation-circle text-danger',
+                    'title': 'Oops!',
+                    'message': 'Đã có lỗi xảy ra, vui lòng tải lại trang hoặc thực hiện lại.'
+                })
+            }
+        })
+    });
+
 });

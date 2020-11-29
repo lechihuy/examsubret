@@ -48,9 +48,8 @@ class Teacher extends Authenticatable
         return $this->username;
     }
 
-    public function updateProfile($data)
+    public function jobs()
     {
-        $this->log("Giảng viên {$this->identification()} vừa cập nhật hồ sơ.");
-        return $this->update($data->toArray());
+        return $this->hasMany('App\Models\TeacherJob');
     }
 }

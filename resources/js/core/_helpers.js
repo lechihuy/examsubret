@@ -37,3 +37,7 @@ window.query_url = (uri, key, value) => {
     
     return uri + separator + key + "=" + value;
 }
+
+window.route = (name) => {
+    return $(`meta[name=${name}]`).attr('content');
+}

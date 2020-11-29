@@ -49,7 +49,6 @@ class AuthController extends Controller
             'urlAccessToken'          => env('OAUTH_AUTHORITY').env('OAUTH_TOKEN_ENDPOINT'),
             'urlResourceOwnerDetails' => '',
             'scopes'                  => env('OAUTH_SCOPES'),
-            'approval_prompt'                  => ''
         ]);
         
         $authUrl = $oauthClient->getAuthorizationUrl();

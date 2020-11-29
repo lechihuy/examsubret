@@ -1,12 +1,16 @@
 @extends('layouts.master')
 
 @push('metas')
+    <meta name="majors" content="{{ route('majors') }}">
+    <meta name="subjects" content="{{ route('subjects') }}">
 @endpush
 
 @push('styles')
+    <link href="{{ asset('plugins/select2/select2.min.css') }}" rel="stylesheet" />
 @endpush
 
 @push('scripts')
+    <script src="{{ asset('plugins/select2/select2.min.js') }}"></script>
     <script src="{{ asset('js/profile.js') }}"></script>
 @endpush
 
@@ -81,27 +85,28 @@
                         {{-- /Phone number --}}
 
                         {{-- Jobs --}}
-                        <div class="form-group input-group-sm">
-                            <label class="font-weight-bold">Công việc <span class="text-danger">*</span></label>
-                            <div class="list-components list-group">
-                                <a role="button" class="list-group-item list-group-item-action btn-open-modal-form" modal="#modal-edit-job">
-                                    <data>
-                                        <item class="department" type="value"></item>
-                                        <item class="major" type="value"></item>
-                                        <item class="subject" type="value"></item>
-                                    </data>
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-1 text-primary">Gv. môn Kỹ thuật phần mềm</h6>
-                                    </div>
-                                    <p class="mb-0">
-                                        Khoa Công nghệ thông tin - Ngành Công nghệ thông tin
-                                    </p>
-                                </a>
+                        @auth('teacher')
+                            <div class="form-group input-group-sm">
+                                <label class="font-weight-bold">Công việc <span class="text-danger">*</span></label>
+                                <div class="list-components list-group" id="list-jobs">
+                                    @foreach ($jobs as $job)
+                                        @include('profile.components.job', [
+                                            'department_id' => $job->department_id,
+                                            'major_id' => $job->major_id,
+                                            'subject_id' => $job->subject_id,
+                                            'department' => $job->department->name,
+                                            'major' => $job->major->name,
+                                            'subject' => $job->subject->name,
+                                        ])
+                                    @endforeach
+                                </div>
+                                <button type="button" 
+                                    class="btn btn-light btn-sm mt-2 btn-open-modal-form" 
+                                    modal="#modal-add-job">
+                                    <i class="fas fa-plus"></i> Thêm công việc
+                                </button>
                             </div>
-                            <button type="button" class="btn btn-light btn-sm mt-2">
-                                <i class="fas fa-plus"></i> Thêm công việc
-                            </button>
-                        </div>
+                        @endauth
                         {{-- /Jobs --}}
 
                     </div>
@@ -176,6 +181,8 @@
     {{-- /Button group --}}
 
     {{-- Modals --}}
+    @include('components.modals.alert')
+    @include('profile.components.modals.add-job')
     @include('profile.components.modals.edit-job')
     {{-- /Modals --}}
 </main>
