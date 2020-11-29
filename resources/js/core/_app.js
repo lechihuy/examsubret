@@ -87,4 +87,15 @@ $(document).ready(function() {
 
         location.href = query_url(url, 'page', page);
     });
+
+    // Open modal
+    $(document).on('click', '.btn-open-modal-form', function() {
+        let modal = $(this).attr('modal');
+
+        $(this).find('data ')
+
+        $(modal).modal();
+
+
+    });
 });

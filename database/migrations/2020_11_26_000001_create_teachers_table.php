@@ -21,6 +21,7 @@ class CreateTeachersTable extends Migration
             $table->string('email');
             $table->string('phone_number', 11)->nullable();
             $table->boolean('is_locked')->default(false);
+            $table->timestamp('last_change_password_at')->nullable();
             $table->timestamp('last_login_at')->nullable();
             $table->timestamps();
 

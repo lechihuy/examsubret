@@ -24,7 +24,7 @@
                 </a>
             </li>
             <li class="py-2">
-                <a href="">
+                <a href="{{ route('profile.form') }}">
                     <i class="fas fa-user"></i> Hồ sơ
                 </a>
             </li>

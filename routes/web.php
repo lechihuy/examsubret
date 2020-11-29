@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('auth')->group(function() {
-    Route::get('/outlook/login', 'TeacherController@loginOutlook');
-    Route::get('/outlook/callback', 'TeacherController@callbackOutlook');
-});
-
 Route::get('/', 'DashboardController')->name('dashboard');
+
+Route::prefix('profile')->name('profile.')->group(function() {
+    Route::get('/', 'ProfileController@showProfileForm')->name('form');
+    Route::post('/', 'ProfileController@update')->name('update');
+});
 
 Route::name('auth.')->group(function() {
     Route::prefix('login')->name('login.')->group(function() {

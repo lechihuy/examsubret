@@ -25,4 +25,14 @@ trait Log
         $this->last_login_at = now();
         $this->save();
     }
+
+    public function hasChangedPassword()
+    {
+        return (bool) $this->last_change_password_at;
+    }
+
+    public function logs()
+    {
+        return DB::table($this->logTable)->where($this->foreignKeyLogTable, $this->id)->get();
+    }
 }

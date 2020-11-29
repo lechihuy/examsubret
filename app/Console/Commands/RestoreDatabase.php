@@ -40,6 +40,7 @@ class RestoreDatabase extends Command
         $this->call('config:cache');
         $this->call('db:wipe');
         $this->call('migrate', ['--seed' => true]);
+        $this->call('optimize:clear');
 
         $this->info('Database was restored.');
     }
