@@ -12,19 +12,23 @@ class TeacherJobController extends Controller
         $this->middleware('auth:admin,teacher');
     }
 
+    /**
+     * Get the major list of the specify department 
+     */
     public function getMajors(Request $request)
     {
-        $deparmentId = $request->query('department_id');
-        $department = Department::find($deparmentId);
+        $department = Department::find($request->query('department_id'));
         $majors = optional($department)->majors ?? [];
 
         return $majors;
     }
 
+    /**
+     * Get the subject list of the specify department 
+     */
     public function getSubjects(Request $request)
     {
-        $deparmentId = $request->query('department_id');
-        $department = Department::find($deparmentId);
+        $department = Department::find($$request->query('department_id'));
         $subjects = optional($department)->subjects ?? [];
         
         return $subjects;

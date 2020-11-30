@@ -33,6 +33,11 @@ class CreateSubmitExamRequestsTable extends Migration
                 ->references('id')->on('teachers')
                 ->onDelete('cascade');
 
+            $table->unsignedBigInteger('exam_times_id')->nullable();
+            $table->foreign('exam_times_id')
+                ->references('id')->on('exam_times')
+                ->onDelete('set null');
+
             $table->unsignedBigInteger('department_id')->nullable();
             $table->foreign('department_id')
                 ->references('id')->on('departments')

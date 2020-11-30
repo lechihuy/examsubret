@@ -17,28 +17,36 @@ class ProfileController extends Controller
         $this->middleware('auth:admin,teacher');
     }
 
+    /**
+     * Show profile page admin or teacher
+     */
     public function showProfileForm()
     {
         $data = [
-            'user' => auth(current_guard())->user(),
+            'user' => current_user(),
             'departments' => Department::all(),
         ];
 
         if (auth('teacher')->check()) {
-            $data['jobs'] = auth('teacher')->user()->jobs()->with('department', 'major', 'subject')->get();
+            $data['jobs'] = current_user()->detailOfJobs();
         }
 
         return view('profile.profile', $data);
     }
 
+    /**
+     * Update admin or teacher profile
+     */
     public function update(UpdateProfile $request)
     {
         $data = $request->validated();
 
-        $user = auth(current_guard())->user();
+        // Save common data
+        $user = current_user();
         $user->fullname = $data['fullname'];
         $user->phone_number = $data['phone_number'];   
         
+        // If the user change password, save new password and update last change password time
         if (isset($data['old_password'])) {
             $user->password = bcrypt($data['new_password']);
             $user->updateLastChangePassword();
@@ -47,13 +55,12 @@ class ProfileController extends Controller
         $user->log('update_profile');
         $user->save();
 
+        // If the user is a teacher, save that teacher'jobs
         if (auth('teacher')->check()) {
             $user->jobs()->delete();
             
             foreach ($data['jobs'] as $job) {
-                $job['teacher_id'] = auth('teacher')->user()->id;
-                $job = new TeacherJob($job);
-                $job->save();
+                current_user()->addJob($job);
             }
         }
 

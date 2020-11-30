@@ -52,4 +52,16 @@ class Teacher extends Authenticatable
     {
         return $this->hasMany('App\Models\TeacherJob');
     }
+
+    public function detailOfJobs()
+    {
+        return $this->jobs()->with('department', 'major', 'subject')->get();
+    }
+
+    public function addJob($job)
+    {
+        $job['teacher_id'] = $this->id;
+        $job = new TeacherJob($job);
+        $job->save();
+    }
 }

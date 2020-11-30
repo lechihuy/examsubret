@@ -16,29 +16,40 @@ class AuthController extends Controller
             ->only('login', 'showLoginForm', 'loginOauth2', 'callbackOauth2');
     }
 
+    /**
+     * Show the login page
+     */
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
+    /**
+     * Handle to manual login
+     */
     public function login(Request $request) 
     {
         $crendentials = $request->only($this->username(), 'password');
-        $guard = null;
 
+        // Default the login guard is admin 
+        $guard = 'admin';
+
+        // If try to login with admin role not success, try logging in with teacher role
+        // If it succeeds, switch the login guard to teacher
         if (! auth('admin')->attempt($crendentials)) {
             if (! auth('teacher')->attempt($crendentials)) {
                 return $this->respondFailedLogin();
-            } else {
-                $guard = 'teacher';
-            }
-        } else {
-            $guard = 'admin';
-        }
+            } 
+            
+            $guard = 'teacher';
+        } 
 
         return $this->respondSuccessLogin($guard);
     }
 
+    /**
+     * Handle to Oauth2 login 
+     */
     public function loginOauth2()
     {
         $oauthClient = new \League\OAuth2\Client\Provider\GenericProvider([
@@ -60,22 +71,31 @@ class AuthController extends Controller
         return redirect()->away($authUrl);
     }
 
+    /**
+     * Get the username is used for manual login
+     */
     public function username()
     {
         return 'username';
     }
 
+    /**
+     * Handle to logout
+     */
     public function logout(Request $request)
     {
         if (is_auth()) {
-            auth(current_guard())->user()->log('logout');
-            auth()->logout();
+            current_user()->log('logout');
+            current_auth()->logout();
             $request->session()->invalidate();
         }
 
         return redirect()->route('auth.login.form');
     }
 
+    /**
+     * Send the failed manual login response
+     */
     protected function respondFailedLogin()
     {
         return back()->withErrors([
@@ -83,6 +103,9 @@ class AuthController extends Controller
         ], 'login')->withInput();
     }
 
+    /**
+     * Send the success manual login response
+     */
     protected function respondSuccessLogin($guard)
     {
         auth($guard)->user()->updateLastLogin();
@@ -90,6 +113,9 @@ class AuthController extends Controller
         return redirect('/');
     }
 
+    /**
+     * Send the success Oauth2 login response
+     */
     protected function respondFailedLoginOauth2()
     {
         return redirect()->route('auth.login.form')
@@ -98,6 +124,9 @@ class AuthController extends Controller
             ], 'login');
     }
 
+    /**
+     * Handle to the callback of Oauth2 login
+     */
     public function callbackOauth2(Request $request)
     {
         // Validate state

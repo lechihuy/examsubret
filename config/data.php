@@ -1,10 +1,22 @@
 <?php
 
 return [
+	'answer_types' => [
+		[
+			'name' => 'Trắc nghiệm',
+		],
+		[
+			'name' => 'Tự luận'
+		],
+		[
+			'name' => 'Thực hành',
+		]
+	],
+
     'departments' => [
         [
             'code' => 'KCN',
-            'name' => 'Khoa Công nghệ (Môi trường và CNSH]',
+            'name' => 'Khoa Công nghệ (Môi trường và CNSH)',
         ],
         [
             'code' => 'KCT',
@@ -129,7 +141,7 @@ return [
         ],
         [
             'code' => '7210403-TT',
-            'name' => 'Thiết kế đồ họa (Đồ họa tương tác]',
+            'name' => 'Thiết kế đồ họa (Đồ họa tương tác)',
             'department_code' => ['KMC'],
         ],
         [
@@ -149,7 +161,7 @@ return [
         ],
         [
             'code' => '7229030',
-            'name' => 'Văn học (ứng dụng]',
+            'name' => 'Văn học (ứng dụng)',
             'department_code' => ['KXH'],
         ],
         [
@@ -159,17 +171,17 @@ return [
         ],
         [
             'code' => '7310608-H',
-            'name' => 'Đông Phương Học (Hàn quốc học]',
+            'name' => 'Đông Phương Học (Hàn quốc học)',
             'department_code' => ['KXH'],
         ],
         [
             'code' => '7310608-N',
-            'name' => 'Đông Phương Học (Nhật bản học]',
+            'name' => 'Đông Phương Học (Nhật bản học)',
             'department_code' => ['KXH'],
         ],
         [
             'code' => '7310608-T',
-            'name' => 'Đông Phương Học (Trung Quốc học]',
+            'name' => 'Đông Phương Học (Trung Quốc học)',
             'department_code' => ['KXH'],
         ],
         [
@@ -382,7 +394,7 @@ return [
 			]
 		],
 		'DTH0270' => [
-			'name' => 'Tin học ứng dụng: BIM 2(Xây dựng]',
+			'name' => 'Tin học ứng dụng: BIM 2(Xây dựng)',
 			'code' => 'DTH0270',
 			'department_code' => [
 				'AX',
@@ -1322,7 +1334,7 @@ return [
 			]
 		],
 		'DTH0160' => [
-			'name' => 'Kỹ thuật lấy yêu cầu(Requirements Engineering]',
+			'name' => 'Kỹ thuật lấy yêu cầu(Requirements Engineering)',
 			'code' => 'DTH0160',
 			'department_code' => [
 				'KCT'
@@ -1354,7 +1366,7 @@ return [
 			]
 		],
 		'DTN0045' => [
-			'name' => 'Toán cao cấp (Giải tích]',
+			'name' => 'Toán cao cấp (Giải tích)',
 			'code' => 'DTN0045',
 			'department_code' => [
 				'KCT',
@@ -1385,7 +1397,7 @@ return [
 			]
 		],
 		'7DL0030' => [
-			'name' => 'Địa lý Du lịch Việt Nam (Vietnam tourism geography]',
+			'name' => 'Địa lý Du lịch Việt Nam (Vietnam tourism geography)',
 			'code' => '7DL0030',
 			'department_code' => [
 				'KDL'
@@ -1406,7 +1418,7 @@ return [
 			]
 		],
 		'7DL0220' => [
-			'name' => 'Hoạt động khách sạn (E]',
+			'name' => 'Hoạt động khách sạn (E)',
 			'code' => '7DL0220',
 			'department_code' => [
 				'KDL'
@@ -1596,35 +1608,35 @@ return [
 			]
 		],
 		'DDL0063' => [
-			'name' => 'Nghiệp vụ bàn 2(F.B]',
+			'name' => 'Nghiệp vụ bàn 2(F.B)',
 			'code' => 'DDL0063',
 			'department_code' => [
 				'KDL'
 			]
 		],
 		'DDL0064' => [
-			'name' => 'Nghiệp vụ lễ tân nâng cao (F.O]',
+			'name' => 'Nghiệp vụ lễ tân nâng cao (F.O)',
 			'code' => 'DDL0064',
 			'department_code' => [
 				'KDL'
 			]
 		],
 		'DDL0065' => [
-			'name' => 'Nghiệp vụ buồng-phòng nâng cao (H.K]',
+			'name' => 'Nghiệp vụ buồng-phòng nâng cao (H.K)',
 			'code' => 'DDL0065',
 			'department_code' => [
 				'KDL'
 			]
 		],
 		'DDL0121' => [
-			'name' => 'Communication (English]',
+			'name' => 'Communication (English)',
 			'code' => 'DDL0121',
 			'department_code' => [
 				'KDL'
 			]
 		],
 		'DDL0122' => [
-			'name' => 'Communication (French]',
+			'name' => 'Communication (French)',
 			'code' => 'DDL0122',
 			'department_code' => [
 				'KDL'
@@ -1638,7 +1650,7 @@ return [
 			]
 		],
 		'DDL0131' => [
-			'name' => 'Sustainable development of tourism (Phát triển DLBV]',
+			'name' => 'Sustainable development of tourism (Phát triển DLBV)',
 			'code' => 'DDL0131',
 			'department_code' => [
 				'KDL'
@@ -1687,7 +1699,7 @@ return [
 			]
 		],
 		'DDL0221' => [
-			'name' => 'Recreational Park Management(Quản trị khu vui chơi giải trí]',
+			'name' => 'Recreational Park Management(Quản trị khu vui chơi giải trí)',
 			'code' => 'DDL0221',
 			'department_code' => [
 				'KDL'
@@ -1701,7 +1713,7 @@ return [
 			]
 		],
 		'DDL0232' => [
-			'name' => 'Gestion des destinations touristiques (Quản trị điểm đến du lịch]',
+			'name' => 'Gestion des destinations touristiques (Quản trị điểm đến du lịch)',
 			'code' => 'DDL0232',
 			'department_code' => [
 				'KDL'
@@ -1764,14 +1776,14 @@ return [
 			]
 		],
 		'DDL0360' => [
-			'name' => 'Gestion des Parcs de loisirs(Quản lý khu VCGT]',
+			'name' => 'Gestion des Parcs de loisirs(Quản lý khu VCGT)',
 			'code' => 'DDL0360',
 			'department_code' => [
 				'KDL'
 			]
 		],
 		'DDL0370' => [
-			'name' => 'Bộ phận buồng phòng (Housekeeping Department]',
+			'name' => 'Bộ phận buồng phòng (Housekeeping Department)',
 			'code' => 'DDL0370',
 			'department_code' => [
 				'KDL'
@@ -2009,7 +2021,7 @@ return [
 			]
 		],
 		'DTA0032' => [
-			'name' => 'Anh văn 3 (NN2-DL]',
+			'name' => 'Anh văn 3 (NN2-DL)',
 			'code' => 'DTA0032',
 			'department_code' => [
 				'KDL'
@@ -2175,7 +2187,7 @@ return [
 			]
 		],
 		'7KE0010' => [
-			'name' => 'Nền tảng kế toán 1 (ACCA-FA]',
+			'name' => 'Nền tảng kế toán 1 (ACCA-FA)',
 			'code' => '7KE0010',
 			'department_code' => [
 				'KKE'
@@ -2189,7 +2201,7 @@ return [
 			]
 		],
 		'7KE0020' => [
-			'name' => 'Nền tảng kế toán 2 (ACCA-FA]',
+			'name' => 'Nền tảng kế toán 2 (ACCA-FA)',
 			'code' => '7KE0020',
 			'department_code' => [
 				'KKE'
@@ -2210,7 +2222,7 @@ return [
 			]
 		],
 		'7KE0070' => [
-			'name' => 'F2- Kế toán quản trị (ACCA]-1 (E]',
+			'name' => 'F2- Kế toán quản trị (ACCA]-1 (E)',
 			'code' => '7KE0070',
 			'department_code' => [
 				'KKE'
@@ -2275,7 +2287,7 @@ return [
 			]
 		],
 		'DAC0081' => [
-			'name' => 'F2- Kế toán quản trị 1 (ACCA]',
+			'name' => 'F2- Kế toán quản trị 1 (ACCA)',
 			'code' => 'DAC0081',
 			'department_code' => [
 				'KKE',
@@ -2283,7 +2295,7 @@ return [
 			]
 		],
 		'DAC0090' => [
-			'name' => 'F2- Kế toán quản trị 2 (ACCA]',
+			'name' => 'F2- Kế toán quản trị 2 (ACCA)',
 			'code' => 'DAC0090',
 			'department_code' => [
 				'KKE',
@@ -2321,21 +2333,21 @@ return [
 			]
 		],
 		'DAC0170' => [
-			'name' => 'F3- Kế toán tài chính 1 (ACCA]',
+			'name' => 'F3- Kế toán tài chính 1 (ACCA)',
 			'code' => 'DAC0170',
 			'department_code' => [
 				'KKE'
 			]
 		],
 		'DAC0171' => [
-			'name' => 'F3- Kế toán tài chính 1 (ACCA]',
+			'name' => 'F3- Kế toán tài chính 1 (ACCA)',
 			'code' => 'DAC0171',
 			'department_code' => [
 				'KKE'
 			]
 		],
 		'DAC0180' => [
-			'name' => 'F3- Kế toán tài chính 2 (ACCA]',
+			'name' => 'F3- Kế toán tài chính 2 (ACCA)',
 			'code' => 'DAC0180',
 			'department_code' => [
 				'KKE'
@@ -2577,7 +2589,7 @@ return [
 			]
 		],
 		'DAR0020' => [
-			'name' => 'Hội Họa 1(Trang trí]',
+			'name' => 'Hội Họa 1(Trang trí)',
 			'code' => 'DAR0020',
 			'department_code' => [
 				'KKI'
@@ -2768,7 +2780,7 @@ return [
 			]
 		],
 		'DTH0241' => [
-			'name' => 'Tin học chuyên ngành 1(Kiến trúc]',
+			'name' => 'Tin học chuyên ngành 1(Kiến trúc)',
 			'code' => 'DTH0241',
 			'department_code' => [
 				'KKI'
@@ -2960,7 +2972,7 @@ return [
 			]
 		],
 		'DTH0031' => [
-			'name' => 'Giới thiệu về KTPM (Intro to Software Engineering]',
+			'name' => 'Giới thiệu về KTPM (Intro to Software Engineering)',
 			'code' => 'DTH0031',
 			'department_code' => [
 				'KKT'
@@ -3197,14 +3209,14 @@ return [
 			]
 		],
 		'DMC0011' => [
-			'name' => 'ứng dụng kỹ thuật số 1(Photoshop]',
+			'name' => 'ứng dụng kỹ thuật số 1(Photoshop)',
 			'code' => 'DMC0011',
 			'department_code' => [
 				'KMC'
 			]
 		],
 		'DMC0016' => [
-			'name' => 'Ứng dụng Kỹ thuật số 3 (Basic technique:Adobe Premier + After effect]',
+			'name' => 'Ứng dụng Kỹ thuật số 3 (Basic technique:Adobe Premier + After effect)',
 			'code' => 'DMC0016',
 			'department_code' => [
 				'KMC'
@@ -3218,7 +3230,7 @@ return [
 			]
 		],
 		'DMC0044' => [
-			'name' => 'Đồ họa thị giác 1(Trang trí CB]',
+			'name' => 'Đồ họa thị giác 1(Trang trí CB)',
 			'code' => 'DMC0044',
 			'department_code' => [
 				'KMC'
@@ -3232,14 +3244,14 @@ return [
 			]
 		],
 		'DMC0050' => [
-			'name' => 'Hình họa 1(Hình khối, tĩnh vật]',
+			'name' => 'Hình họa 1(Hình khối, tĩnh vật)',
 			'code' => 'DMC0050',
 			'department_code' => [
 				'KMC'
 			]
 		],
 		'DMC0051' => [
-			'name' => 'Tạo hình 1(Hình khối, tĩnh vật, ký họa]',
+			'name' => 'Tạo hình 1(Hình khối, tĩnh vật, ký họa)',
 			'code' => 'DMC0051',
 			'department_code' => [
 				'KMC'
@@ -3316,7 +3328,7 @@ return [
 			]
 		],
 		'DMC0240' => [
-			'name' => 'Kịch bản 1(Trình bày ý tưởng-Storyline]',
+			'name' => 'Kịch bản 1(Trình bày ý tưởng-Storyline)',
 			'code' => 'DMC0240',
 			'department_code' => [
 				'KMC'
@@ -3330,7 +3342,7 @@ return [
 			]
 		],
 		'DMC0252' => [
-			'name' => 'Truyền thông kỹ thuật số 3 (Sound effect]',
+			'name' => 'Truyền thông kỹ thuật số 3 (Sound effect)',
 			'code' => 'DMC0252',
 			'department_code' => [
 				'KMC'
@@ -3414,7 +3426,7 @@ return [
 			]
 		],
 		'DMC0500' => [
-			'name' => 'In ấn đồ họa truyền thống (in lụa-đá]',
+			'name' => 'In ấn đồ họa truyền thống (in lụa-đá)',
 			'code' => 'DMC0500',
 			'department_code' => [
 				'KMC'
@@ -3456,7 +3468,7 @@ return [
 			]
 		],
 		'DMC0640' => [
-			'name' => 'Kỹ xảo 1 (Modeling - 4D cinema]',
+			'name' => 'Kỹ xảo 1 (Modeling - 4D cinema)',
 			'code' => 'DMC0640',
 			'department_code' => [
 				'KMC'
@@ -3470,14 +3482,14 @@ return [
 			]
 		],
 		'DMC0661' => [
-			'name' => 'Đồ án Đồ hoạ tương tác 1 (Kịch bản; TVC;Quay phim;Dựng phim]',
+			'name' => 'Đồ án Đồ hoạ tương tác 1 (Kịch bản; TVC;Quay phim;Dựng phim)',
 			'code' => 'DMC0661',
 			'department_code' => [
 				'KMC'
 			]
 		],
 		'DMC0691' => [
-			'name' => 'Kịch bản 2 (phân cảnh]',
+			'name' => 'Kịch bản 2 (phân cảnh)',
 			'code' => 'DMC0691',
 			'department_code' => [
 				'KMC'
@@ -3575,7 +3587,7 @@ return [
 			]
 		],
 		'DMC1080' => [
-			'name' => 'Tin học ứng dụng II (Lextra-nhẩy sai]',
+			'name' => 'Tin học ứng dụng II (Lextra-nhẩy sai)',
 			'code' => 'DMC1080',
 			'department_code' => [
 				'KMC'
@@ -3596,7 +3608,7 @@ return [
 			]
 		],
 		'DMC1210' => [
-			'name' => 'Lập trình 1 (HTML-Scrip- Code programming]',
+			'name' => 'Lập trình 1 (HTML-Scrip- Code programming)',
 			'code' => 'DMC1210',
 			'department_code' => [
 				'KMC'
@@ -3610,7 +3622,7 @@ return [
 			]
 		],
 		'DMC1310' => [
-			'name' => 'Tin học ứng dụng 1(Photoshop+illustrator]',
+			'name' => 'Tin học ứng dụng 1(Photoshop+illustrator)',
 			'code' => 'DMC1310',
 			'department_code' => [
 				'KMC'
@@ -3681,14 +3693,14 @@ return [
 			]
 		],
 		'7NA0110' => [
-			'name' => 'Dịch cơ bản (Basic translation]',
+			'name' => 'Dịch cơ bản (Basic translation)',
 			'code' => '7NA0110',
 			'department_code' => [
 				'KNN'
 			]
 		],
 		'7NA0140' => [
-			'name' => 'Văn hóa xã hội Anh–Mỹ(British–American Culture & Society]',
+			'name' => 'Văn hóa xã hội Anh–Mỹ(British–American Culture & Society)',
 			'code' => '7NA0140',
 			'department_code' => [
 				'KNN'
@@ -3765,7 +3777,7 @@ return [
 			]
 		],
 		'DNN0062' => [
-			'name' => 'Ngữ âm học (Phonetics]',
+			'name' => 'Ngữ âm học (Phonetics)',
 			'code' => 'DNN0062',
 			'department_code' => [
 				'KNN'
@@ -3800,7 +3812,7 @@ return [
 			]
 		],
 		'DNN0212' => [
-			'name' => 'Business Interpretation 2(Phiên dịch TM 2]',
+			'name' => 'Business Interpretation 2(Phiên dịch TM 2)',
 			'code' => 'DNN0212',
 			'department_code' => [
 				'KNN'
@@ -3821,14 +3833,14 @@ return [
 			]
 		],
 		'DNN0250' => [
-			'name' => 'Business Correspondence (Thư tín thương mại]',
+			'name' => 'Business Correspondence (Thư tín thương mại)',
 			'code' => 'DNN0250',
 			'department_code' => [
 				'KNN'
 			]
 		],
 		'DNN0270' => [
-			'name' => 'Anglo-American Literature(Văn chương Anh-Mỹ]',
+			'name' => 'Anglo-American Literature(Văn chương Anh-Mỹ)',
 			'code' => 'DNN0270',
 			'department_code' => [
 				'KNN'
@@ -3842,14 +3854,14 @@ return [
 			]
 		],
 		'DNN0370' => [
-			'name' => 'Translation 1 (Dịch 1]',
+			'name' => 'Translation 1 (Dịch 1)',
 			'code' => 'DNN0370',
 			'department_code' => [
 				'KNN'
 			]
 		],
 		'DNN0380' => [
-			'name' => 'English for Tourism (Tiếng Anh Du lịch]',
+			'name' => 'English for Tourism (Tiếng Anh Du lịch)',
 			'code' => 'DNN0380',
 			'department_code' => [
 				'KNN'
@@ -3891,35 +3903,35 @@ return [
 			]
 		],
 		'DNN0620' => [
-			'name' => 'Practice for tourism Interpretation (Thực hành phiên dịch du lịch]',
+			'name' => 'Practice for tourism Interpretation (Thực hành phiên dịch du lịch)',
 			'code' => 'DNN0620',
 			'department_code' => [
 				'KNN'
 			]
 		],
 		'DNN0630' => [
-			'name' => 'Advanced English for tourism (Tiếng Anh du lịch nâng cao]',
+			'name' => 'Advanced English for tourism (Tiếng Anh du lịch nâng cao)',
 			'code' => 'DNN0630',
 			'department_code' => [
 				'KNN'
 			]
 		],
 		'DNN0660' => [
-			'name' => 'World destination (Điểm đến du lịch trên thế giới]',
+			'name' => 'World destination (Điểm đến du lịch trên thế giới)',
 			'code' => 'DNN0660',
 			'department_code' => [
 				'KNN'
 			]
 		],
 		'DNN0670' => [
-			'name' => 'Trends and issues in tourism and hospitality (Các KH&VĐ trong DL đương đại]',
+			'name' => 'Trends and issues in tourism and hospitality (Các KH&VĐ trong DL đương đại)',
 			'code' => 'DNN0670',
 			'department_code' => [
 				'KNN'
 			]
 		],
 		'DNN0680' => [
-			'name' => 'Tour guide operations (Nghiệp vụ hướng dẫn]',
+			'name' => 'Tour guide operations (Nghiệp vụ hướng dẫn)',
 			'code' => 'DNN0680',
 			'department_code' => [
 				'KNN'
@@ -4003,14 +4015,14 @@ return [
 			]
 		],
 		'DTQ0450' => [
-			'name' => 'Business Chinese 2 (Tiếng Hoa thương mại 2]',
+			'name' => 'Business Chinese 2 (Tiếng Hoa thương mại 2)',
 			'code' => 'DTQ0450',
 			'department_code' => [
 				'KNN'
 			]
 		],
 		'DTQ0460' => [
-			'name' => 'Chinese business corespondence (Thư tín thương mại tiếng Hoa]',
+			'name' => 'Chinese business corespondence (Thư tín thương mại tiếng Hoa)',
 			'code' => 'DTQ0460',
 			'department_code' => [
 				'KNN'
@@ -4307,7 +4319,7 @@ return [
 			]
 		],
 		'7PR0040' => [
-			'name' => 'Lý thuyết đại cương về Quan hệ công chúng (E]',
+			'name' => 'Lý thuyết đại cương về Quan hệ công chúng (E)',
 			'code' => '7PR0040',
 			'department_code' => [
 				'KQN'
@@ -4669,49 +4681,49 @@ return [
 			]
 		],
 		'DQT0230' => [
-			'name' => 'Cơ sở dữ liệu (Database]',
+			'name' => 'Cơ sở dữ liệu (Database)',
 			'code' => 'DQT0230',
 			'department_code' => [
 				'KQT'
 			]
 		],
 		'DQT0240' => [
-			'name' => 'Phân tích dữ liệu doanh nghiệp (Business Data Analysis]',
+			'name' => 'Phân tích dữ liệu doanh nghiệp (Business Data Analysis)',
 			'code' => 'DQT0240',
 			'department_code' => [
 				'KQT'
 			]
 		],
 		'DQT0250' => [
-			'name' => 'Kỹ thuật lấy yêu cầu doanh nghiệp (Requirements Engineering]',
+			'name' => 'Kỹ thuật lấy yêu cầu doanh nghiệp (Requirements Engineering)',
 			'code' => 'DQT0250',
 			'department_code' => [
 				'KQT'
 			]
 		],
 		'DQT0260' => [
-			'name' => 'Quản lý dự án hệ thống thông tin (ISM and practices]',
+			'name' => 'Quản lý dự án hệ thống thông tin (ISM and practices)',
 			'code' => 'DQT0260',
 			'department_code' => [
 				'KQT'
 			]
 		],
 		'DQT0270' => [
-			'name' => 'Quản lý quy trình doanh nghiệp (Business Process Management]',
+			'name' => 'Quản lý quy trình doanh nghiệp (Business Process Management)',
 			'code' => 'DQT0270',
 			'department_code' => [
 				'KQT'
 			]
 		],
 		'DQT0280' => [
-			'name' => 'Lý thuyết và thực hành HTTT (IS theories and practice]',
+			'name' => 'Lý thuyết và thực hành HTTT (IS theories and practice)',
 			'code' => 'DQT0280',
 			'department_code' => [
 				'KQT'
 			]
 		],
 		'DQT0290' => [
-			'name' => 'Quản lý quy trình và chất lượng HTTT (Process & quality management]',
+			'name' => 'Quản lý quy trình và chất lượng HTTT (Process & quality management)',
 			'code' => 'DQT0290',
 			'department_code' => [
 				'KQT'
@@ -4732,7 +4744,7 @@ return [
 			]
 		],
 		'DTH0053' => [
-			'name' => 'Nền tảng máy tính (Fundamentals of Computing]',
+			'name' => 'Nền tảng máy tính (Fundamentals of Computing)',
 			'code' => 'DTH0053',
 			'department_code' => [
 				'KQT'
@@ -4811,7 +4823,7 @@ return [
 			]
 		],
 		'7TC0050' => [
-			'name' => 'Tài chính quốc tế (E]',
+			'name' => 'Tài chính quốc tế (E)',
 			'code' => '7TC0050',
 			'department_code' => [
 				'KRH'
@@ -5068,7 +5080,7 @@ return [
 			]
 		],
 		'TA227' => [
-			'name' => 'Anh văn 5 (Khối Kinh tế]',
+			'name' => 'Anh văn 5 (Khối Kinh tế)',
 			'code' => 'TA227',
 			'department_code' => [
 				'KTM'
@@ -5103,7 +5115,7 @@ return [
 			]
 		],
 		'DTH0260' => [
-			'name' => 'Tin học ứng dụng: BIM 1 (Xây dựng]',
+			'name' => 'Tin học ứng dụng: BIM 1 (Xây dựng)',
 			'code' => 'DTH0260',
 			'department_code' => [
 				'KXD'
@@ -5355,7 +5367,7 @@ return [
 			]
 		],
 		'DPR0240' => [
-			'name' => 'Thể hiện ý tưởng (Copywriting]',
+			'name' => 'Thể hiện ý tưởng (Copywriting)',
 			'code' => 'DPR0240',
 			'department_code' => [
 				'KXH'
@@ -5642,7 +5654,7 @@ return [
 			]
 		],
 		'DVH0141' => [
-			'name' => 'Văn học hiện đại VN 2(1945-1975]',
+			'name' => 'Văn học hiện đại VN 2(1945-1975)',
 			'code' => 'DVH0141',
 			'department_code' => [
 				'KXH'

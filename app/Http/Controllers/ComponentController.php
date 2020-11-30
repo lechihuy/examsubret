@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Department;
 use App\Models\Subject;
 use App\Models\Major;
+use App\Models\TeacherJob;
 
 class ComponentController extends Controller
 {
@@ -19,27 +20,26 @@ class ComponentController extends Controller
     {
         $data = [];
         $error = false;
+        $job = $request->only('department_id', 'major_id', 'subject_id');
 
-        if (Department::where('id', $request->query('department_id'))->doesntExist()
-        || Major::where('id', $request->query('major_id'))->doesntExist()
-        || Subject::where('id', $request->query('subject_id'))->doesntExist()) {
-            $error = true;
-        }
+        if (! TeacherJob::isValid($job)) { $error = true; }
 
         if (! $error) {
-            $data = $request->query();
-            $data['department'] = Department::select('name')
-                ->where('id', $data['department_id'])->first()->name;
-            $data['major'] = Major::select('name')
-                ->where('id', $data['major_id'])->first()->name;
-            $data['subject'] = Subject::select('name')
-                ->where('id', $data['subject_id'])->first()->name;
+            // $data = $request->query();
+            // $data['department'] = Department::select('name')
+            //     ->where('id', $data['department_id'])->first()->name;
+            // $data['major'] = Major::select('name')
+            //     ->where('id', $data['major_id'])->first()->name;
+            // $data['subject'] = Subject::select('name')
+            //     ->where('id', $data['subject_id'])->first()->name;
+            $data = [
+                'department' => Department::find($job['department_id']),
+                'major' => Major::find($job['major_id']),
+                'subject' => Subject::find($job['subject_id']),
+            ];
         } 
 
-        return [
-            'error' => $error,
-            'data' => $data,
-        ];
+        return ['error' => $error, 'data' => $data];
     }
 
     public function load(Request $request, $view, $handle)
@@ -48,7 +48,7 @@ class ComponentController extends Controller
 
         if ($handle['error']) {
             return response()->json([
-                'message' => 'Đã có lỗi xảy ra.'
+                'message' => 'Đã có lỗi xảy ra, vui lòng tải lại trang.'
             ], 422);
         }
 

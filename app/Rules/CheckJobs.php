@@ -4,9 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-use App\Models\Department;
-use App\Models\Subject;
-use App\Models\Major;
+use App\Models\TeacherJob;
 
 class CheckJobs implements Rule
 {
@@ -32,9 +30,7 @@ class CheckJobs implements Rule
         $isValid = true;
 
         foreach ($jobs as $job) {
-            if (Department::where('id', $job['department_id'])->doesntExist()
-            || Major::where('id', $job['major_id'])->doesntExist()
-            || Subject::where('id', $job['subject_id'])->doesntExist()) {
+            if (! TeacherJob::isValid($job)) {
                 $isValid = false;
                 break;
             }

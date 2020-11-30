@@ -91,12 +91,9 @@
                                 <div class="list-components list-group" id="list-jobs">
                                     @foreach ($jobs as $job)
                                         @include('profile.components.job', [
-                                            'department_id' => $job->department_id,
-                                            'major_id' => $job->major_id,
-                                            'subject_id' => $job->subject_id,
-                                            'department' => $job->department->name,
-                                            'major' => $job->major->name,
-                                            'subject' => $job->subject->name,
+                                            'department' => $job->department,
+                                            'major' => $job->major,
+                                            'subject' => $job->subject,
                                         ])
                                     @endforeach
                                 </div>
