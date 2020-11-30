@@ -25,13 +25,6 @@ class ComponentController extends Controller
         if (! TeacherJob::isValid($job)) { $error = true; }
 
         if (! $error) {
-            // $data = $request->query();
-            // $data['department'] = Department::select('name')
-            //     ->where('id', $data['department_id'])->first()->name;
-            // $data['major'] = Major::select('name')
-            //     ->where('id', $data['major_id'])->first()->name;
-            // $data['subject'] = Subject::select('name')
-            //     ->where('id', $data['subject_id'])->first()->name;
             $data = [
                 'department' => Department::find($job['department_id']),
                 'major' => Major::find($job['major_id']),

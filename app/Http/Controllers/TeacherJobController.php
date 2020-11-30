@@ -28,7 +28,7 @@ class TeacherJobController extends Controller
      */
     public function getSubjects(Request $request)
     {
-        $department = Department::find($$request->query('department_id'));
+        $department = Department::find($request->query('department_id'));
         $subjects = optional($department)->subjects ?? [];
         
         return $subjects;
