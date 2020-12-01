@@ -13,6 +13,7 @@
                 <div class="form-group input-group-sm">
                     <label class="font-weight-bold">Lần thi <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" name="times">
+                    <small class="form-text text-muted">Lần thi chỉ hỗ trợ định dạng số.</small>
                 </div>
             </div>
             {{-- /Times --}}

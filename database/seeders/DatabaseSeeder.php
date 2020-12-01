@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             MajorSeeder::class,
             SubjectSeeder::class,
             AdminSeeder::class,
+            TeacherSeeder::class,
             AnswerTypeSeeder::class,
         ]);
     }

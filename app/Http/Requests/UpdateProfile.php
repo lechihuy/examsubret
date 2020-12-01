@@ -50,7 +50,7 @@ class UpdateProfile extends FormRequest
 
         $rules = [
             'fullname' => 'bail|required|string|min:2|max:50',
-            'phone_number' => "bail|required|string|min:10|max:11|unique:{$table},phone_number,{$user}",
+            'phone_number' => "bail|required|string|regex:/^[0-9]{10,11}$/|unique:{$table},phone_number,{$user}",
         ];
 
         if ($this->old_password || $this->new_password || $this->new_password_confirmation) {

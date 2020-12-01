@@ -81,6 +81,7 @@
                         <div class="form-group input-group-sm">
                             <label class="font-weight-bold">Số điện thoại <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="phone_number" value="{{ $user->phone_number }}">
+                            <small class="form-text text-muted">Hỗ trợ số điện thoại từ 10 đến 11 số, bắt đầu từ 0.</small>
                         </div>
                         {{-- /Phone number --}}
 
