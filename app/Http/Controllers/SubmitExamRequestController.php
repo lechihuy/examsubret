@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreSubmitExamRequest;
 
+use App\Models\SubmitExamRequest;
+
 class SubmitExamRequestController extends Controller
 {
     public function __construct()
@@ -19,7 +21,7 @@ class SubmitExamRequestController extends Controller
      */
     public function index()
     {
-        //
+        dump(SubmitExamRequest::all()->toArray());
     }
 
     /**
