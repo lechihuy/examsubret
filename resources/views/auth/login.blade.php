@@ -54,7 +54,7 @@
                 {{-- /Action --}}
 
                 {{-- Outlook --}}
-                <p class="text-divider text-muted"><span>Dành cho giảng viên</span></p>
+                <p class="text-divider text-muted"><span>hoặc</span></p>
 
                 <a href="{{ route('auth.login.oauth2.redirect') }}" class="btn btn-light btn-block w-100">
                     <img src="{{ asset('images/office-365.png') }}" height="25">

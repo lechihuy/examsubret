@@ -112,4 +112,10 @@ $(document).ready(function() {
         })
     });
 
+    // Select box
+    $(document).on('click', '.select-box .option', function() {
+        let selectbox = $(this).parent('.select-box')
+        selectbox.find('.option').removeClass('active')
+        $(this).addClass('active')
+    })
 });

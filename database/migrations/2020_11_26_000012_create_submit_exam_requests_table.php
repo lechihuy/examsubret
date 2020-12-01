@@ -15,8 +15,11 @@ class CreateSubmitExamRequestsTable extends Migration
     {
         Schema::create('submit_exam_requests', function (Blueprint $table) {
             $table->id();
-            $table->enum('semester', [1, 2, 3]);
-            $table->enum('exam', ['GK', 'CK'])->comment('GK-Giữa kỳ|CK-cuối kỳ');
+            $table->string('semester', 50);
+            $table->string('exam', 50);
+            $table->string('times', 50);
+            $table->unsignedInteger('test_quantity');
+            $table->unsignedInteger('time')->comment('minutes');
             $table->boolean('is_verified')->default(false);
             $table->text('note')->nullable();
             $table->timestamps();
@@ -32,11 +35,6 @@ class CreateSubmitExamRequestsTable extends Migration
             $table->foreign('teacher_id')
                 ->references('id')->on('teachers')
                 ->onDelete('cascade');
-
-            $table->unsignedBigInteger('exam_times_id')->nullable();
-            $table->foreign('exam_times_id')
-                ->references('id')->on('exam_times')
-                ->onDelete('set null');
 
             $table->unsignedBigInteger('department_id')->nullable();
             $table->foreign('department_id')

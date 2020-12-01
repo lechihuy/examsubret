@@ -179,3 +179,8 @@ a:hover {
     border-top: 1px solid #e3e3e3; 
     border-bottom: 1px solid #f7f7f7;
 }
+
+.select-box .active {
+    background-color: #cce5ff !important;
+    color: initial !important;
+}

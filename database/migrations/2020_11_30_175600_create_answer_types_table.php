@@ -16,8 +16,8 @@ class CreateAnswerTypesTable extends Migration
         Schema::create('answer_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-
-            $table->unique(['name']);
+            $table->string('code');
+            $table->unique(['name', 'code']);
         });
     }
 

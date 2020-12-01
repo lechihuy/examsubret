@@ -5,4 +5,6 @@ return [
     'logout' => ':Subject :identification vừa đăng xuất.',
     'change_password' => ':Subject :identification vừa đổi mật khẩu.',
     'update_profile' => ':Subject :identification vừa cập nhật hồ sơ.',
+    
+    'create_subexam' => ':Subject :identification vừa tạo một yêu cầu nộp đề thi.',
 ];

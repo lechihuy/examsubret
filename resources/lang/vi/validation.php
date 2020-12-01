@@ -85,7 +85,7 @@ return [
     'mimes' => 'The :attribute must be a file of type: :values.',
     'mimetypes' => 'The :attribute must be a file of type: :values.',
     'min' => [
-        'numeric' => 'The :attribute must be at least :min.',
+        'numeric' => ':Attribute phải lớn hơn :min.',
         'file' => 'The :attribute must be at least :min kilobytes.',
         'string' => ':Attribute phải dài ít nhất :min ký tự.',
         'array' => 'The :attribute must have at least :min items.',
@@ -96,7 +96,7 @@ return [
     'numeric' => 'The :attribute must be a number.',
     'password' => ':Attribute không chính xác.',
     'present' => 'The :attribute field must be present.',
-    'regex' => 'The :attribute format is invalid.',
+    'regex' => ':Attribute không đúng định dạng.',
     'required' => ':Attribute là bắt buộc.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
@@ -118,6 +118,7 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
+    'xss' => 'Đã có lỗi xảy ra, vui lòng lại trang.',
 
     /*
     |--------------------------------------------------------------------------
@@ -153,7 +154,12 @@ return [
         'email' => 'địa chỉ email',
         'old_password' => 'mật khẩu cũ',
         'new_password' => 'mật khẩu mới',
-        'is_locked' => 'khoá tài khoản'
+        'is_locked' => 'khoá tài khoản',
+        'semester' => 'học kỳ',
+        'exam' => 'kỳ thi',
+        'times' => 'lần thi',
+        'test_quantity' => 'số lượng đề thi',
+        'time' => 'thời lượng thi',
     ],
 
 ];

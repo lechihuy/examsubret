@@ -32,6 +32,8 @@ class ComponentController extends Controller
                 'department' => Department::find($job['department_id']),
                 'major' => Major::find($job['major_id']),
                 'subject' => Subject::find($job['subject_id']),
+                'class' => 'item btn-open-modal-edit-job',
+                'action' => 'Nhấp để sửa'
             ];
         } 
 
@@ -47,7 +49,7 @@ class ComponentController extends Controller
 
         if ($handle['error']) {
             return response()->json([
-                'message' => 'Đã có lỗi xảy ra, vui lòng tải lại trang.'
+                'message' => trans('validation.xss')
             ], 422);
         }
 

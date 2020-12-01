@@ -94,6 +94,8 @@
                                             'department' => $job->department,
                                             'major' => $job->major,
                                             'subject' => $job->subject,
+                                            'class' => 'item btn-open-modal-edit-job',
+                                            'action' => 'Nhấp để sửa'
                                         ])
                                     @endforeach
                                 </div>

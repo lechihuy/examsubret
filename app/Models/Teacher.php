@@ -58,10 +58,19 @@ class Teacher extends Authenticatable
         return $this->jobs()->with('department', 'major', 'subject')->get();
     }
 
-    public function addJob($job)
+    public function addJob($data)
     {
-        $job['teacher_id'] = $this->id;
-        $job = new TeacherJob($job);
-        $job->save();
+        return $this->jobs()->create($data);
+    }
+
+    public function submitExamRequests()
+    {
+        return $this->hasMany('App\Models\SubmitExamRequest');
+    }
+
+    public function createSubmitExamRequest($data)
+    {
+        $this->log('create_subexam');
+        return $this->submitExamRequests()->create($data);
     }
 }

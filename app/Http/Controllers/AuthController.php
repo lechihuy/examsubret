@@ -7,6 +7,7 @@ use Microsoft\Graph\Graph;
 use Microsoft\Graph\Model;
 
 use App\Models\Teacher;
+use App\Models\Admin;
 
 class AuthController extends Controller
 {
@@ -174,20 +175,30 @@ class AuthController extends Controller
                 $username = explode('@', $email)[0];
                 $password = bcrypt($username);
 
-                if (Teacher::canCreate($email)) {
-                    Teacher::create([
-                        'email' =>  $email,
-                        'fullname' => $user->getDisplayName(),
-                        'username' => $username,
-                        'password' => $password
-                    ]);
+                // If the email attached a admin account, login with admin role
+                if (Admin::where('email', $email)->exists()) {
+                    $admin = Admin::firstWhere('email', $email);
+                    $admin->updateLastLogin();
+                    
+                    auth('admin')->login($admin);
+                // If not login with teacher role, 
+                } else {
+                    // The system will auto create the teacher account if it doesn't exists
+                    if (Teacher::canCreate($email)) {
+                        Teacher::create([
+                            'email' =>  $email,
+                            'fullname' => $user->getDisplayName(),
+                            'username' => $username,
+                            'password' => $password
+                        ]);
+                    }
+
+                    $teacher = Teacher::firstWhere('email', $email);
+                    $teacher->updateLastLogin();
+
+                    auth('teacher')->login($teacher);
                 }
 
-                $teacher = Teacher::firstWhere('email', $email);
-                $teacher->updateLastLogin();
-
-                $token = auth('teacher')->login($teacher);
-                
                 return redirect('/');
             } catch (League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
                 return $this->respondFailedLoginOauth2();

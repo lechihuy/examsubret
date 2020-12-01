@@ -1,4 +1,4 @@
-<a role="button" class="item list-group-item list-group-item-action btn-open-modal-edit-job">
+<li role="button" class="list-group-item list-group-item-action {{ $class ?? '' }}">
     <data class="d-none">
         <department>{{ $department->id }}</department>
         <major>{{ $major->id }}</major>
@@ -10,5 +10,7 @@
     <p class="mb-0">
         Khoa {{ $department->name }} - Ngành {{ $major->name }}
     </p>
-    <small class="text-muted"><i>Nhấp để sửa</i></small>
-</a>
+    @if (isset($action))
+        <small class="text-muted"><i>{{ $action }}</i></small>
+    @endif
+</li>

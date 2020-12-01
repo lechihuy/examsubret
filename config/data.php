@@ -1,14 +1,21 @@
 <?php
 
 return [
+	'semesters' => [1, 2, 3],
+
+	'exams' => ['MT' => 'Giữa kỳ', 'ET' => 'Cuối kỳ'],
+
 	'answer_types' => [
 		[
+			'code' => 'MC',
 			'name' => 'Trắc nghiệm',
 		],
 		[
+			'code' => 'ES',
 			'name' => 'Tự luận'
 		],
 		[
+			'code' => 'PT',
 			'name' => 'Thực hành',
 		]
 	],

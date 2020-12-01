@@ -31,7 +31,7 @@
 
             <p class="text-muted text-uppercase mt-3 mb-1">Yêu cầu</p>
             <li class="py-2">
-                <a href="">
+                <a href="{{ route('subexam.index') }}">
                     <i class="fas fa-file-upload"></i> Nộp đề thi
                 </a>
             </li>

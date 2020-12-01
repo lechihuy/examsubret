@@ -4,9 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-use App\Models\TeacherJob;
-
-class CheckJobs implements Rule
+class CheckSemester implements Rule
 {
     /**
      * Create a new rule instance.
@@ -25,18 +23,9 @@ class CheckJobs implements Rule
      * @param  mixed  $value
      * @return bool
      */
-    public function passes($attribute, $jobs)
+    public function passes($attribute, $value)
     {
-        $isValid = true;
-
-        foreach ($jobs as $job) {
-            if (! TeacherJob::isValid($job)) {
-                $isValid = false;
-                break;
-            }
-        }
-
-        return $isValid;
+        return in_array($value, config('data.semesters'));
     }
 
     /**
