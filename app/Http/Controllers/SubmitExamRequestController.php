@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreSubmitExamRequest;
 
 use App\Models\SubmitExamRequest;
+use App\Models\Department;
 
 class SubmitExamRequestController extends Controller
 {
@@ -34,7 +35,7 @@ class SubmitExamRequestController extends Controller
         $this->authorize('create-subexam', current_user());
 
         return view('subexam.create', [
-            'jobs' => current_user()->detailOfJobs(),
+            'departments' => Department::all(),
         ]);
     }
 

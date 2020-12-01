@@ -5,6 +5,8 @@ return [
 
 	'exams' => ['MT' => 'Giữa kỳ', 'ET' => 'Cuối kỳ'],
 
+	'exam_turns' => [1, 2],
+
 	'answer_types' => [
 		[
 			'code' => 'MC',

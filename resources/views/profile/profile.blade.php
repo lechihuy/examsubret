@@ -86,7 +86,7 @@
                         {{-- /Phone number --}}
 
                         {{-- Jobs --}}
-                        @auth('teacher')
+                        {{-- @auth('teacher')
                             <div class="form-group input-group-sm">
                                 <label class="font-weight-bold">Công việc <span class="text-danger">*</span></label>
                                 <div class="list-components list-group" id="list-jobs">
@@ -106,7 +106,7 @@
                                     <i class="fas fa-plus"></i> Thêm công việc
                                 </button>
                             </div>
-                        @endauth
+                        @endauth --}}
                         {{-- /Jobs --}}
 
                     </div>
@@ -182,9 +182,9 @@
     {{-- /Button group --}}
 
     {{-- Modals --}}
-    @include('components.modals.alert')
+    {{-- @include('components.modals.alert')
     @include('profile.components.modals.add-job')
-    @include('profile.components.modals.edit-job')
+    @include('profile.components.modals.edit-job') --}}
     {{-- /Modals --}}
 </main>
 @endsection

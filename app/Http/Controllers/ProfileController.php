@@ -24,12 +24,12 @@ class ProfileController extends Controller
     {
         $data = [
             'user' => current_user(),
-            'departments' => Department::all(),
+            // 'departments' => Department::all(),
         ];
 
-        if (auth('teacher')->check()) {
-            $data['jobs'] = current_user()->detailOfJobs();
-        }
+        // if (auth('teacher')->check()) {
+        //     $data['jobs'] = current_user()->detailOfJobs();
+        // }
 
         return view('profile.profile', $data);
     }
@@ -56,13 +56,13 @@ class ProfileController extends Controller
         $user->save();
 
         // If the user is a teacher, save that teacher'jobs
-        if (auth('teacher')->check()) {
-            $user->jobs()->delete();
+        // if (auth('teacher')->check()) {
+        //     $user->jobs()->delete();
             
-            foreach ($data['jobs'] as $job) {
-                current_user()->addJob($job);
-            }
-        }
+        //     foreach ($data['jobs'] as $job) {
+        //         current_user()->addJob($job);
+        //     }
+        // }
 
         return response()->json([
             'message' => 'Cập nhật hồ sơ thành công.',

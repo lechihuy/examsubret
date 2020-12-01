@@ -20,8 +20,7 @@ class SubmitExamRequest extends Model
         'department_id',
         'major_id',
         'subject_id',
-        'times',
-        'test_quantity',
+        'exam_turn',
         'time',
         'note'
     ];

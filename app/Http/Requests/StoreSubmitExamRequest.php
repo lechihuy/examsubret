@@ -10,6 +10,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 use App\Rules\CheckSemester;
 use App\Rules\CheckExam;
+use App\Rules\CheckExamTurn;
 
 class StoreSubmitExamRequest extends FormRequest
 {
@@ -31,14 +32,13 @@ class StoreSubmitExamRequest extends FormRequest
     public function rules()
     {
         return [
-            'semester' => ['bail', 'required', 'string', new CheckSemester],
-            'exam' => ['bail', 'required', 'string', new CheckExam],
             'department_id' => ['bail', 'required', 'exists:departments,id'],
             'major_id' => ['bail', 'required', 'exists:majors,id'],
             'subject_id' => ['bail', 'required', 'exists:subjects,id'],
-            'times' => ['bail', 'required', 'string', 'max:50', 'regex:/^[0-9]+$/'],
-            'test_quantity' => ['bail', 'required', 'numeric', 'min:1'],
-            'time' => ['bail', 'required', 'numeric', 'min:1'],
+            'semester' => ['bail', 'required', 'string', new CheckSemester],
+            'exam' => ['bail', 'required', 'string', new CheckExam],
+            'exam_turn' => ['bail', 'required', new CheckExamTurn($this)],
+            'time' => ['bail', 'required', 'integer', 'min:1'],
             'note' => ['bail', 'sometimes', 'nullable', 'string'],
         ];
     }
@@ -46,9 +46,6 @@ class StoreSubmitExamRequest extends FormRequest
     public function messages()
     {
         return [
-            'department_id.required' => 'Vui lòng chọn một công việc.',
-            'major_id.required' => 'Vui lòng chọn một công việc.',
-            'subject_id.required' => 'Vui lòng chọn một công việc.',
             'department_id.exists' => trans('validation.xss'),
             'major_id.exists' => trans('validation.xss'),
             'subject_id.exists' => trans('validation.xss'),

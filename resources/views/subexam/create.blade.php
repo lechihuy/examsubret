@@ -1,12 +1,16 @@
 @extends('layouts.master')
 
 @push('metas')
+    <meta name="majors" content="{{ route('majors') }}">
+    <meta name="subjects" content="{{ route('subjects') }}">
 @endpush
 
 @push('styles')
+    <link href="{{ asset('plugins/select2/select2.min.css') }}" rel="stylesheet" />
 @endpush
 
 @push('scripts')
+    <script src="{{ asset('plugins/select2/select2.min.js') }}"></script>
     <script src="{{ asset('js/create-subexam.js') }}"></script>
 @endpush
 
@@ -45,38 +49,8 @@
             {{-- Left column --}}
             <div class="col-12 col-md-8 mb-3 mb-md-0">
                 {{-- Init --}}
-                <div class="card border shadow-sm rounded-0">
-
-                    {{-- Header --}}
-                    <div class="card-header bg-white">
-                        <span class="font-weight-bold">Cơ bản</span>
-                    </div>
-                    {{-- /Header --}}
-
-                    {{-- Body --}}
-                    <div class="card-body pb-0">
-
-                        {{-- Semester --}}
-                        @include('subexam.components.forms.semester')
-                        {{-- /Semester --}}
-
-                        {{-- Exam --}}
-                        @include('subexam.components.forms.exam')
-                        {{-- /Exam --}}
-
-                        {{-- Job --}}
-                        @include('subexam.components.forms.job', ['jobs' => $jobs])
-                        {{-- /Job --}}
-
-                    </div>
-                    {{-- /Body --}}
-                    
-                </div>  
+                @include('subexam.components.forms.init')  
                 {{-- /Init --}}
-
-                {{-- Exam times --}}
-                @include('subexam.components.forms.exam-times')
-                {{-- /Exam times --}}
             </div>
             {{-- /Left column --}}
 
