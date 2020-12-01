@@ -5,6 +5,7 @@ function setupDepartmentSelectors() {
 }
 
 function setupMajorSelectors(department = null) {
+
     $('select[name=major]').select2({
         "language": {
             "noResults": function(){
@@ -15,9 +16,11 @@ function setupMajorSelectors(department = null) {
     })
 
     if (department) {
+
         let departmentId = department.val()
 
         let major = department.parents('.modal').find('select[name=major]')
+        major.find('option').remove()
         major.val('')
         major.trigger('change');
 
@@ -48,6 +51,7 @@ function setupSubjectSelectors(department = null) {
         let departmentId = department.val()
 
         let subject = department.parents('.modal').find('select[name=subject]')
+        subject.find('option').remove()
         subject.val('')
         subject.trigger('change');
 
