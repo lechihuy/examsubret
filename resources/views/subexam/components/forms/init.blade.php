@@ -66,24 +66,64 @@
         </div>
         {{-- /Exam --}}
 
-        {{-- Exam turn --}}
-        @php $exam_turn = $exam_turn ?? config('data.exam_turns')[0] @endphp
-        <div class="form-group input-group-sm">
-            <label class="font-weight-bold d-block">Số lần thi <span class="text-danger">*</span></label>
-            @foreach (config('data.exam_turns') as $value)
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="exam-turn-{{ $value }}" 
-                    name="exam_turn" class="custom-control-input" value="{{ $value }}"
-                    @if ($exam_turn == $value) checked @endif>
-                <label class="custom-control-label" for="exam-turn-{{ $value }}" role="button">{{ $value }}</label>
+        {{-- Exam times --}}
+        <table class="table table-bordered">
+            <tr>
+                <td></td>
+                <td style="width: 100px;" class="times-1">Lần 1</td>
+                <td style="width: 100px;" class="times-2">Lần 2</td>
+            </tr>
+            <tr>
+                <td>Số đề gốc <span class="text-danger">*</span></td>
+                <td class="p-0 mb-0 times-1" style="vertical-align: middle;">
+                    <input type="number" min="1" class="form-control rounded-0 border-0">
+                </td>
+                <td class="p-0 mb-0 times-2" style="vertical-align: middle;">
+                    <input type="number" min="1" class="form-control rounded-0 border-0">
+                </td>
+            </tr>
+            <tr>
+                <td>Số mã đề <span class="text-danger">*</span></td>
+                <td class="p-0 mb-0 times-1" style="vertical-align: middle;">
+                    <input type="number" min="1" class="form-control rounded-0 border-0">
+                </td>
+                <td class="p-0 mb-0 times-2" style="vertical-align: middle;">
+                    <input type="number" min="1" class="form-control rounded-0 border-0">
+                </td>
+            </tr>
+            <tr>
+                <td>Số đề in ra <span class="text-danger">*</span></td>
+                <td class="p-0 mb-0 times-1" style="vertical-align: middle;">
+                    <input type="number" min="1" class="form-control rounded-0 border-0">
+                </td>
+                <td class="p-0 mb-0 times-2" style="vertical-align: middle;">
+                    <input type="number" min="1" class="form-control rounded-0 border-0">
+                </td>
+            </tr>
+        </table>
+        {{-- /Exam times --}}
+
+        {{-- Exam forms --}}
+         <div class="form-group">
+            <label class="font-weight-bold">Hình thức thi <span class="text-danger">*</span></label>
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">Trắc nghiệm</label>
             </div>
-            @endforeach
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck2">
+                <label class="custom-control-label" for="customCheck2">Tự luận</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck3">
+                <label class="custom-control-label" for="customCheck3">Thực hành</label>
+            </div>
         </div>
-        {{-- /Exam turn --}}
+        {{-- /Exam forms --}}
 
         {{-- Time --}}
         <div class="form-group">
-            <label class="font-weight-bold">Thời lượng thi <span class="text-danger">*</span></label>
+            <label class="font-weight-bold">Thời lượng làm bài <span class="text-danger">*</span></label>
             <div class="input-group input-group-sm">
                 <input type="number" class="form-control" name="time" min="1">
                 <div class="input-group-append">
@@ -92,6 +132,7 @@
             </div>
         </div>
         {{-- /Time --}}
+
 
     </div>
     {{-- /Body --}}

@@ -16,14 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'DashboardController')->name('dashboard');
 
 // Submit the exam request
-Route::resource('submit-exam-request', 'SubmitExamRequestController')->names([
-    'index' => 'subexam.index',
-    'create' => 'subexam.create',
-    'store' => 'subexam.store',
-    'edit' => 'subexam.edit',
-    'update' => 'subexam.update',
-    'destroy' => 'subexam.destroy'
-])->parameters(['submit-exam-request' => 'subexam'])->except(['show']);
+Route::resource('submit-exam-requests', 'SubmitExamRequestController')->names([
+    'index' => 'subexams.index',
+    'create' => 'subexams.create',
+    'store' => 'subexams.store',
+    'edit' => 'subexams.edit',
+    'update' => 'subexams.update',
+    'destroy' => 'subexams.destroy'
+])->parameters(['submit-exam-requests' => 'subexams'])->except(['show']);
 
 // Profile
 Route::prefix('profile')->name('profile.')->group(function() {

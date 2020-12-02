@@ -31,13 +31,13 @@
 
             <p class="text-muted text-uppercase mt-3 mb-1">Yêu cầu</p>
             <li class="py-2">
-                <a href="{{ route('subexam.index') }}">
+                <a href="{{ route('subexams.index') }}">
                     <i class="fas fa-file-upload"></i> Nộp đề thi
                 </a>
             </li>
             <li class="py-2">
                 <a href="">
-                    <i class="fas fa-file-download"></i> Trả túi đề thi
+                    <i class="fas fa-file-download"></i> Trả túi bài thi
                 </a>
             </li>
 

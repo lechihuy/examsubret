@@ -22,7 +22,9 @@ class SubmitExamRequestController extends Controller
      */
     public function index()
     {
-        dump(SubmitExamRequest::all()->toArray());
+        return view('subexam.index', [
+           'subexams' => SubmitExamRequest::list()
+        ]);
     }
 
     /**

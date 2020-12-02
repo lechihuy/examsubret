@@ -20,15 +20,15 @@
 <main class="container-narrow">
     {{-- Breadcrumb --}}
     @include('components.breadcrumb', ['items' => [
-        'subexam.index' => 'Yêu cầu nộp đề thi',
-        'subexam.create' => 'Tạo mới'
+        'subexams.index' => 'Yêu cầu nộp đề thi',
+        'subexams.create' => 'Tạo mới'
     ]])
 
     {{-- Header --}}
     <h3 class="d-flex flex-column flex-sm-row">
         <div class="mr-auto">Tạo yêu cầu nộp đề thi</div>
         <div class="ml-0 ml-sm-2 mt-3 mt-sm-0">
-            <a href="{{ route('subexam.index') }}" class="btn btn-light btn-sm float-left float-sm-none">
+            <a href="{{ route('subexams.index') }}" class="btn btn-light btn-sm float-left float-sm-none">
                 <i class="fas fa-reply"></i> Trở về
             </a>
             <button class="btn btn-primary btn-sm btn-create-subexam float-right float-sm-none">
@@ -44,7 +44,7 @@
     {{-- /Alert --}}
 
     {{-- Form --}}
-    <form action="{{ route('subexam.store') }}" method="POST" id="form-create-subexam">
+    <form action="{{ route('subexams.store') }}" method="POST" id="form-create-subexam">
         <div class="row my-4">
             {{-- Left column --}}
             <div class="col-12 col-md-8 mb-3 mb-md-0">
@@ -71,7 +71,7 @@
 
     {{-- Button group --}}
     <div class="mt-3">
-        <a href="{{ route('subexam.index') }}" class="btn btn-light btn-sm">
+        <a href="{{ route('subexams.index') }}" class="btn btn-light btn-sm">
             <i class="fas fa-reply"></i> Trở về
         </a>
         <button class="btn btn-primary btn-sm btn-create-subexam float-right">

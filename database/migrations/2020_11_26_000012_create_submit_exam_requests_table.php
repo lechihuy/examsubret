@@ -17,6 +17,7 @@ class CreateSubmitExamRequestsTable extends Migration
             $table->id();
             $table->string('semester', 50);
             $table->string('exam', 50);
+            
             $table->unsignedTinyInteger('exam_turn');
             $table->unsignedInteger('time')->comment('minutes');
             $table->boolean('is_verified')->default(false);

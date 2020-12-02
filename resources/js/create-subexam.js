@@ -98,18 +98,15 @@ setupDepartmentSelectors()
 setupMajorSelectors()
 setupSubjectSelectors()
 
-// Handle to exam turn
-if ($('input[type=radio][name=exam]:checked').val() == 'MT') {
-    $('input[type=radio][name=exam_turn][value=2]').attr('disabled', true)
-}
+$('.times-2').addClass('d-none')
 
+// Handle to exam times
 $('input[type=radio][name=exam]').on('change', function() {
     let exam = $(this).val()
 
     if (exam == 'MT') {
-        $('input[type=radio][name=exam_turn][value=1]').prop('checked', true)
-        $('input[type=radio][name=exam_turn][value=2]').attr('disabled', true)
+        $('.times-2').addClass('d-none')
     } else {
-        $('input[type=radio][name=exam_turn][value=2]').removeAttr('disabled')
+        $('.times-2').removeClass('d-none')        
     }
 })
