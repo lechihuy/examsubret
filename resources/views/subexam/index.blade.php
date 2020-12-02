@@ -131,6 +131,10 @@
                         @include('subexam.components.table.times', [
                             'times' => $subexam->times_2
                         ])
+                    
+                        @include('subexam.components.table.forms', [
+                            'forms' => $subexam->forms
+                        ])
 
                         {{-- Created at --}}
                         @include('subexam.components.table.created-at', [

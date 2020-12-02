@@ -18,6 +18,8 @@
 
     <th scope="col" colspan="2" class="text-center d-none d-md-table-cell" rowspan="1">Lần 2</th>
 
+    <th scope="col" class="text-center d-none d-md-table-cell" rowspan="2">Hình thức thi</th>    
+
     @auth('admin')
         <th scope="col" class="d-none d-md-table-cell" rowspan="2">Người đăng</th>
     @endauth

@@ -27,11 +27,6 @@ class SubmitExamRequest extends Model
         'note'
     ];
 
-    protected $casts = [
-        'times_1' => 'collection',
-        'times_2' => 'collection',
-    ];
-
     public function department()
     {
         return $this->hasOne('App\Models\Department', 'id');
@@ -82,5 +77,20 @@ class SubmitExamRequest extends Model
         }
 
         return $examsubs->with('department', 'major', 'subject')->paginate(20);
+    }
+
+    public function getTimes1Attribute($value)
+    {
+        return json_decode($value, true);
+    }
+
+    public function getTimes2Attribute($value)
+    {
+        return json_decode($value, true);
+    }
+
+    public function getFormsAttribute($value)
+    {
+        return json_decode($value, true);
     }
 }
