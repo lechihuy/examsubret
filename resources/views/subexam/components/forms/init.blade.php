@@ -69,7 +69,7 @@
         {{-- Exam times --}}
         <table class="table table-bordered">
             <tr>
-                <td></td>
+                <td>Chi tiết nộp đề thi</td>
                 <td style="width: 100px;" class="times-1">Lần 1</td>
                 <td style="width: 100px;" class="times-2">Lần 2</td>
             </tr>
