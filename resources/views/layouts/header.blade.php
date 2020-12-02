@@ -17,7 +17,7 @@
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-quick-acition">
                     <a class="dropdown-item" href="{{ route('subexams.create') }}">Yêu cầu nộp đề thi</a>
-                    <a class="dropdown-item" href="">Yêu cầu trả túi đề thi</a>
+                    <a class="dropdown-item" href="">Yêu cầu trả túi bài thi</a>
                 </div>
             </div>
         @endauth

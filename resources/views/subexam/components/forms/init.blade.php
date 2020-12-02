@@ -68,38 +68,33 @@
 
         {{-- Exam times --}}
         <table class="table table-bordered">
-            <tr>
-                <td>Chi tiết nộp đề thi</td>
-                <td style="width: 100px;" class="times-1">Lần 1</td>
-                <td style="width: 100px;" class="times-2">Lần 2</td>
-            </tr>
-            <tr>
-                <td>Số đề gốc <span class="text-danger">*</span></td>
-                <td class="p-0 mb-0 times-1" style="vertical-align: middle;">
-                    <input type="number" min="1" class="form-control rounded-0 border-0">
-                </td>
-                <td class="p-0 mb-0 times-2" style="vertical-align: middle;">
-                    <input type="number" min="1" class="form-control rounded-0 border-0">
-                </td>
-            </tr>
-            <tr>
-                <td>Số mã đề <span class="text-danger">*</span></td>
-                <td class="p-0 mb-0 times-1" style="vertical-align: middle;">
-                    <input type="number" min="1" class="form-control rounded-0 border-0">
-                </td>
-                <td class="p-0 mb-0 times-2" style="vertical-align: middle;">
-                    <input type="number" min="1" class="form-control rounded-0 border-0">
-                </td>
-            </tr>
-            <tr>
-                <td>Số đề in ra <span class="text-danger">*</span></td>
-                <td class="p-0 mb-0 times-1" style="vertical-align: middle;">
-                    <input type="number" min="1" class="form-control rounded-0 border-0">
-                </td>
-                <td class="p-0 mb-0 times-2" style="vertical-align: middle;">
-                    <input type="number" min="1" class="form-control rounded-0 border-0">
-                </td>
-            </tr>
+            <thead>
+                <tr>
+                    <th scope="col"><strong>Chi tiết nộp đề thi</strong></th>
+                    <th style="width: 100px;" class="times-1"><strong>Lần 1</strong></th>
+                    <th style="width: 100px;" class="times-2"><strong>Lần 2</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Số đề gốc <span class="text-danger">*</span></td>
+                    <td class="p-0 mb-0 times-1" style="vertical-align: middle;">
+                        <input type="number" min="1" class="form-control rounded-0 border-0">
+                    </td>
+                    <td class="p-0 mb-0 times-2" style="vertical-align: middle;">
+                        <input type="number" min="1" class="form-control rounded-0 border-0">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Số mã đề <span class="text-danger">*</span></td>
+                    <td class="p-0 mb-0 times-1" style="vertical-align: middle;">
+                        <input type="number" min="1" class="form-control rounded-0 border-0">
+                    </td>
+                    <td class="p-0 mb-0 times-2" style="vertical-align: middle;">
+                        <input type="number" min="1" class="form-control rounded-0 border-0">
+                    </td>
+                </tr>
+            </tbody>
         </table>
         {{-- /Exam times --}}
 
