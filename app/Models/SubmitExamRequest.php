@@ -29,17 +29,17 @@ class SubmitExamRequest extends Model
 
     public function department()
     {
-        return $this->hasOne('App\Models\Department', 'id');
+        return $this->belongsTo('App\Models\Department', 'department_id');
     }
 
     public function major()
     {
-        return $this->hasOne('App\Models\Major', 'id');
+        return $this->belongsTo('App\Models\Major', 'major_id');
     }
 
     public function subject()
     {
-        return $this->hasOne('App\Models\Subject', 'id');
+        return $this->belongsTo('App\Models\Subject', 'subject_id');
     }
 
     public static function list($filter = [], $select = ['*'])
