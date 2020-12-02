@@ -43,108 +43,107 @@
 
     {{-- Table --}}
     @if (count($subexams ?? []) > 0)
-        @dd($subexams)
-        <table class="table my-table-striped border bg-white my-4">
+    <div class="table-wrapper my-4">
+        <table class="table my-table-striped border bg-white mb-0" style="width: 1600px;">
             <thead>
-                @include('admin.post.components.table.label-row')
+                @include('subexam.components.table.label-row', [
+                    'position' => 'header'
+                ])
             </thead>
             <tbody>
-                @foreach ($posts as $key => $post)
+                @foreach ($subexams as $key => $subexam)
                     <tr class="border-bottom">
                         {{-- Selector --}}
-                        <td scope="row">
+                        <td scope="row" class="cell-fixed" style="left: -1px;">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input check-row" 
-                                data-id="{{ $post->id }}" id="check-row-{{ $post->id }}">
-                                <label class="custom-control-label" for="check-row-{{ $post->id }}"></label>
+                                data-id="{{ $subexam->id }}" id="check-row-{{ $subexam->id }}">
+                                <label class="custom-control-label" for="check-row-{{ $subexam->id }}"></label>
                             </div>
                         </td>
                         {{-- /Selector --}}
 
-                        {{-- Title --}}
-                        <td>
+                        {{-- Subject --}}
+                        <td class="cell-fixed primary-cell" style="left: 48px;">
                             <div class="d-flex">
-                                <a href="{{ route('admin.posts.edit', $post->id) }}">
-                                    {{ $post->title }}</a>
+                                <a href="">{{ $subexam->subject->name }}</a>
 
                                 {{-- Button toggle --}}
                                 <span class="ml-auto d-inline-block d-md-none toggle-cell pl-2" 
-                                data-toggle="collapse" data-target="#collapse-cell-{{ $post->id }}">
+                                data-toggle="collapse" data-target="#collapse-cell-{{ $subexam->id }}">
                                     <i class="fas fa-chevron-down"></i>
                                 </span>
                                 {{-- /Button toggle --}}
                             </div>
 
                             {{-- Data toggle --}}
-                            <div class="collapse d-md-none w-100" id="collapse-cell-{{ $post->id }}">
+                            <div class="collapse d-md-none w-100" id="collapse-cell-{{ $subexam->id }}">
                                 <table class="table table-borderless table-sm mt-3">
-
-                                    {{-- Category --}}
-                                    <tr>
-                                        <td class="font-weight-bold pl-0 pr-1">Chuyên mục</td>
-                                        <td class="pl-1 pr-0">
-                                            @include('admin.post.components.table.category-cell', [
-                                                'category' => $post->category])
-                                        </td>
-                                    </tr>
-                                    {{-- /Category --}}
-
-                                    {{-- Status --}}
-                                    <tr>
-                                        <td class="font-weight-bold pl-0 pr-1">Hiển thị</td>
-                                        <td class="pl-1 pr-0">
-                                            @include('admin.post.components.table.status-cell', [
-                                                'status' => $post->status])
-                                        </td>
-                                    </tr>
-                                    {{-- /Status --}}
 
                                 </table>
 
                                 {{-- Action --}}
                                 <div>
                                     <a class="text-danger btn-modal-confirm" selector="false"
-                                        btn-confirm-id="btn-destroy-items" data-item_id="{{ $post->id }}" role="button">Xóa</a>
+                                        btn-confirm-id="btn-destroy-items" data-item_id="{{ $subexam->id }}" role="button">Xóa</a>
                                 </div>
                                 {{-- /Action --}}
 
                             </div>
                             {{-- /Data toggle --}}
                         </td>
-                        {{-- /Title --}}
+                        {{-- /Subject --}}
+                        
+                        {{-- Year --}}
+                        @include('subexam.components.table.is-verified', [
+                            'is_verified' => $subexam->is_verified
+                        ])
+                        {{-- /Year --}}
 
-                        {{-- Category --}}
-                        <td class="d-none d-md-table-cell">
-                            @include('admin.post.components.table.category-cell', [
-                                'category' => $post->category])
-                        </td>
-                        {{-- /Category --}}
+                        {{-- Year --}}
+                        @include('subexam.components.table.year', [
+                            'year' => $subexam->created_at->format('Y')
+                        ])
+                        {{-- /Year --}}
 
-                        {{-- Status --}}
-                        <td class="d-none d-md-table-cell">
-                            @include('admin.post.components.table.status-cell', [
-                                'status' => $post->status])
-                        </td>
-                        {{-- /Status --}}
+                        {{-- Semester --}}
+                        @include('subexam.components.table.semester', [
+                            'semester' => $subexam->semester
+                        ])
+                        {{-- /Semester --}}
 
-                        @role('SUPER_ADMIN', 'admin')
-                            {{-- Poster --}}
-                            <td class="d-none d-md-table-cell">
-                                @include('admin.post.components.table.poster-cell', [
-                                    'poster' => $post->poster
-                                ])
-                            </td>
-                            {{-- /Poster --}}
-                        @endrole
+                        {{-- Exam --}}
+                        @include('subexam.components.table.exam', [
+                            'exam' => $subexam->exam
+                        ])
+                        {{-- /Exam --}}
 
+                        {{-- Time --}}
+                        @include('subexam.components.table.time', [
+                            'time' => $subexam->time
+                        ])
+                        {{-- /Time --}}
+
+                        @include('subexam.components.table.times', [
+                            'times' => $subexam->times_1
+                        ])
+
+                        @include('subexam.components.table.times', [
+                            'times' => $subexam->times_2
+                        ])
+
+                        {{-- Created at --}}
+                        @include('subexam.components.table.created-at', [
+                            'created_at' => $subexam->created_at->format('d-m-Y H:i:s')
+                        ])
+                        {{-- /Created at --}}
                     </tr>
                 @endforeach
             </tbody>
 
-            <tfoot>
-                @include('admin.post.components.table.label-row')
-            </tfoot>
+           
         </table>
+    </div>
     @else
         <div class="alert alert-info my-4">
             @if (count($filter ?? []))
@@ -157,25 +156,25 @@
     {{-- /Table --}}
 
     {{-- Button groups --}}
-    {{-- <div>
+    <div>
         <div class="float-left">
             @include('components.pagination', [
-                'last_page' => $posts->lastPage()
+                'last_page' => $subexams->lastPage()
             ])
         </div>
         <div class="float-right">
             {{-- Action --}}
-            {{-- @include('admin.post.components.dropdowns.action') --}}
+            @include('subexam.components.dropdowns.action')
 
             {{-- Filter --}}
-            {{-- @include('admin.post.components.dropdowns.filter', ['filter' => $filter]) --}}
+            @include('subexam.components.dropdowns.filter', ['filter' => $filter ?? []])
 
-            {{-- <a href="{{ route('admin.posts.create') }}" class="btn btn-primary btn-sm btn-create-post">
+            <a href="{{ route('subexams.create') }}" class="btn btn-primary btn-sm">
                 <i class="fas fa-plus"></i> Tạo
             </a>
         </div>  
-        <div class="clearfix"></div> --}}
-    {{-- </div> --}}
+        <div class="clearfix"></div>
+    </div>
     {{-- /Button groups --}}
 
     {{-- Modals --}}

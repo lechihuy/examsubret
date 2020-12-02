@@ -5,21 +5,10 @@ return [
 
 	'exams' => ['MT' => 'Giữa kỳ', 'ET' => 'Cuối kỳ'],
 
-	'exam_turns' => [1, 2],
-
-	'answer_types' => [
-		[
-			'code' => 'MC',
-			'name' => 'Trắc nghiệm',
-		],
-		[
-			'code' => 'ES',
-			'name' => 'Tự luận'
-		],
-		[
-			'code' => 'PT',
-			'name' => 'Thực hành',
-		]
+	'exam_forms' => [
+		'MC' => 'Trắc nghiệm',
+		'ES' => 'Tự luận',
+		'PT' => 'Thực hành'
 	],
 
     'departments' => [

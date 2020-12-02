@@ -17075,9 +17075,11 @@ body {
 
 strong,
 b,
-.font-weight-bold {
+.font-weight-bold,
+thead th,
+tfoot th {
   font-family: "Open Sans Bold", sans-serif !important;
-  font-weight: 700 !important;
+  font-weight: 500 !important;
 }
 
 a:hover {
@@ -17109,6 +17111,11 @@ a:hover {
 .table thead th,
 .table thead td {
   border-bottom-width: 1px;
+}
+
+.table th:not(.cell-fixed),
+.table td:not(.cell-fixed) {
+  border-right: 1px solid #dee2e6;
 }
 
 .text-truncate-2 {
@@ -17249,5 +17256,47 @@ a:hover {
 .select-box .active {
   background-color: #cce5ff !important;
   color: initial !important;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+  width: 100%;
+  margin-left: 0;
+  position: relative;
+}
+
+.cell-fixed {
+  position: sticky !important;
+  position: -webkit-sticky !important;
+  background-color: #fff;
+  box-shadow: inset 1px 0 0 #fff;
+}
+
+.primary-cell {
+  width: 20%;
+  box-shadow: inset -1px 0px #dee2e6 !important;
+}
+
+@media screen and (max-width: 768px) {
+  .table-wrapper {
+    overflow: visible;
+    width: 100%;
+    position: static;
+  }
+
+  .table {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .primary-cell {
+    width: auto;
+    box-shadow: none !important;
+  }
+}
+
+.table thead th {
+  vertical-align: middle;
 }
 

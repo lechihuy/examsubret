@@ -15,15 +15,37 @@ class SubmitExamRequest extends Model
      * @var array
      */
     protected $fillable = [
-        'semester',
-        'exam',
         'department_id',
         'major_id',
         'subject_id',
-        'exam_turn',
+        'semester',
+        'exam',
+        'times_1',
+        'times_2',
+        'forms',
         'time',
         'note'
     ];
+
+    protected $casts = [
+        'times_1' => 'collection',
+        'times_2' => 'collection',
+    ];
+
+    public function department()
+    {
+        return $this->hasOne('App\Models\Department', 'id');
+    }
+
+    public function major()
+    {
+        return $this->hasOne('App\Models\Major', 'id');
+    }
+
+    public function subject()
+    {
+        return $this->hasOne('App\Models\Subject', 'id');
+    }
 
     public static function list($filter = [], $select = ['*'])
     {
@@ -59,13 +81,6 @@ class SubmitExamRequest extends Model
             $examsubs->latest('created_at');
         }
 
-        return $examsubs->with([
-            // 'category' => function($query) {
-            //     $query->select('id', 'name');
-            // }, 
-            // 'poster' => function($query) {
-            //     $query->select('id', 'username');
-            // }, 
-        ])->paginate(20);
+        return $examsubs->with('department', 'major', 'subject')->paginate(20);
     }
 }

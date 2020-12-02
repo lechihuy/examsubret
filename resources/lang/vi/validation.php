@@ -161,6 +161,9 @@ return [
         'department_id' => 'khoa',
         'major_id' => 'ngành',
         'subject_id' => 'môn',
+        'origin_exam_qty' => 'số đề gốc',
+        'exam_code_qty' => 'số mã đề',
+        'forms' => 'hình thức thi',
     ],
 
 ];

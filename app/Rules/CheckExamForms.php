@@ -4,18 +4,16 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class CheckExamTurn implements Rule
+class CheckExamForms implements Rule
 {
-    private $request;
-
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct($request)
+    public function __construct()
     {
-        $this->request = $request;
+        //
     }
 
     /**
@@ -27,9 +25,13 @@ class CheckExamTurn implements Rule
      */
     public function passes($attribute, $value)
     {
-        if ($this->request->exam == 'MT' && $value == '2') return false; 
+        $examForms = array_keys(config('data.exam_forms'));
+        
+        foreach ($value as $key) {
+            if (! in_array($key, $examForms)) return false;
+        }
 
-        return in_array($value, config('data.exam_turns'));
+        return true;
     }
 
     /**

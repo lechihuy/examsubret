@@ -1,0 +1,1 @@
+<td class="text-center d-none d-md-table-cell">{{ config('data.exams')[$exam] }}</td>

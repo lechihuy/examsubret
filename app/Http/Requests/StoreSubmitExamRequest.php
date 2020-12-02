@@ -10,7 +10,8 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 use App\Rules\CheckSemester;
 use App\Rules\CheckExam;
-use App\Rules\CheckExamTurn;
+use App\Rules\CheckExamTimes;
+use App\Rules\CheckExamForms;
 
 class StoreSubmitExamRequest extends FormRequest
 {
@@ -22,6 +23,20 @@ class StoreSubmitExamRequest extends FormRequest
     public function authorize()
     {
         return current_user()->can('create-subexam');
+    }
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'times_1' => json_decode($this->times_1, true) ?? [],
+            'times_2' => $this->exam == 'ET' ? json_decode($this->times_2, true) ?? [] : [],
+            'forms' => json_decode($this->forms, true) ?? [],
+        ]);
     }
 
     /**
@@ -37,7 +52,9 @@ class StoreSubmitExamRequest extends FormRequest
             'subject_id' => ['bail', 'required', 'exists:subjects,id'],
             'semester' => ['bail', 'required', 'string', new CheckSemester],
             'exam' => ['bail', 'required', 'string', new CheckExam],
-            'exam_turn' => ['bail', 'required', new CheckExamTurn($this)],
+            'times_1' => ['bail', 'required', 'array', new CheckExamTimes(1)],
+            'times_2' => ['bail', 'sometimes', 'nullable', 'array', new CheckExamTimes(2)],
+            'forms' => ['bail', 'required', 'array', new CheckExamForms],
             'time' => ['bail', 'required', 'integer', 'min:1'],
             'note' => ['bail', 'sometimes', 'nullable', 'string'],
         ];

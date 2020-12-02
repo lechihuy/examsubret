@@ -50,12 +50,16 @@ class SubmitExamRequestController extends Controller
     public function store(StoreSubmitExamRequest $request)
     {
         $data = $request->validated();
+        
+        $data['times_1'] = json_encode($data['times_1']);
+        $data['times_2'] = count($data['times_2']) ? json_encode($data['times_2']) : null;
+        $data['forms'] = json_encode($data['forms']);
 
         current_user()->createSubmitExamRequest($data);
 
         return response()->json([
             'message' => 'Tạo yêu cầu nộp đề thi thành công.',
-            'redirect_to' => route('subexam.create'),
+            'redirect_to' => route('subexams.create'),
         ]);
     }
 
