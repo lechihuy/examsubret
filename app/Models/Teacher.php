@@ -70,11 +70,18 @@ class Teacher extends Authenticatable
 
     public function createSubmitExamRequest($data)
     {
-        // dump($data);
-        
 
         $this->log('create_subexam');
         
         return $this->submitExamRequests()->create($data);
+    }
+
+    public function destroyListSubmitExamRequest($subexams)
+    {
+        foreach ($subexams as $subexam) {
+            $this->log('destroy_subexam', ['id' => $subexam]);
+        }
+
+        return $this->submitExamRequests()->whereIn('id', $subexams)->delete();
     }
 }

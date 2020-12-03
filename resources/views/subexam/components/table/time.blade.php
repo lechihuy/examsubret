@@ -1,1 +1,1 @@
-<td class="text-center d-none d-md-table-cell">{{ $time }} phút</td>
+{{ $time }} phút

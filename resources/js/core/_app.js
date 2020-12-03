@@ -119,20 +119,65 @@ $(document).ready(function() {
         $(this).addClass('active')
     })
 
-    $('.table-wrapper tr').each(function () {
-        var tr = $(this),
-            h = 0;
-        tr.children().each(function () {
-            var td = $(this),
-                tdh = td.height();
-            if (tdh > h) h = tdh;
-        });
-        tr.css({height: h + 'px'});
-    });
-
+    // Table
     $('.table-wrapper td.cell-fixed').each(function(key, item) {
         if ($(item).parent('tr').index() % 2 == 0) {
             $(item).addClass('bg-light');
         }
     })
+
+    // Modal confirm
+    $(document).on('click', '.btn-action[has-confirmed=true]', function() {
+        let selectedItems = $(document).find('.check-row:checked').map(function() {
+            return parseInt($(this).data('id'));
+        }).get();
+
+        if (selectedItems.length == 0) return;
+
+        $('#modal-confirm').modal('show');
+        $('#modal-confirm').attr({
+            'action': $(this).attr('action'),
+            'method': $(this).attr('method'),
+        })
+        $('#modal-confirm data').data($(this).data());
+    });
+
+    $('#modal-confirm .btn-confirm').on('click', function() {
+        let modal = $('#modal-confirm');
+        let al = new AlertModal;
+        let form = new Form('#modal-confirm');
+        let data = modal.find('data').data();
+
+        let selectedItems = $(document).find('.check-row:checked').map(function() {
+            return parseInt($(this).data('id'));
+        }).get();
+
+        if (selectedItems.length) {
+            data['ids'] = selectedItems;
+        }
+
+        $.ajax({
+            url: modal.attr('action'),
+            type: modal.attr('method'),
+            data: data,
+            success: function(res) {
+                modal.modal('hide');
+
+                al.show({
+                    'icon': 'fas fa-check-circle text-success',
+                    'title': 'OK!',
+                    'message': res.message,
+                })
+                form.redirectToIfAvailable(res);
+            }, error: function() {
+                modal.modal('hide');
+
+                al.show({
+                    'icon': 'fas fa-exclamation-circle text-danger',
+                    'title': 'Oops!',
+                    'message': 'Đã có lỗi xảy ra, vui lòng tải lại trang hoặc thực hiện lại.'
+                })
+            }
+        })
+    });
 });

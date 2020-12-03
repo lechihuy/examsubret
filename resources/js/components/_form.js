@@ -26,7 +26,9 @@ Form.prototype.hideAlert = () => {
 }
 
 Form.prototype.redirectToIfAvailable = (_res) => {
-    if (_res.redirect_to) {
+    if (_res.redirect_to == 'RELOAD') {
+        window.location.reload();
+    } else if (_res.redirect_to) {
         window.location.href = _res.redirect_to;
     }
 }

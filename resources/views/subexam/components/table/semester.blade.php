@@ -1,1 +1,1 @@
-<td class="text-center d-none d-md-table-cell">{{ $semester }}</td>
+{{ $semester }}

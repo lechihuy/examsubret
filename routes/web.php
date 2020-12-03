@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'DashboardController')->name('dashboard');
 
 // Submit the exam request
+Route::delete('submit-exam-requests/destroy_list', 'SubmitExamRequestController@destroyList')
+    ->name('subexams.destroy_list');
 Route::resource('submit-exam-requests', 'SubmitExamRequestController')->names([
     'index' => 'subexams.index',
     'create' => 'subexams.create',

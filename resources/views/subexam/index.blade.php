@@ -79,7 +79,40 @@
                             {{-- Data toggle --}}
                             <div class="collapse d-md-none w-100" id="collapse-cell-{{ $subexam->id }}">
                                 <table class="table table-borderless table-sm mt-3">
+                                    {{-- Status --}}
+                                    <tr>
+                                        <td class="font-weight-bold pl-0 pr-1 border-0">Trạng thái</td>
+                                        <td class="pl-1 pr-0 border-0">
+                                            @include('subexam.components.table.status', [
+                                                'is_verified' => $subexam->is_verified,
+                                                'admin_id' => $subexam->admin_id,
+                                                'full_context' => true 
+                                            ])
+                                        </td>
+                                    </tr>
+                                    {{-- /Status --}}
 
+                                    {{-- Year --}}
+                                    <tr>
+                                        <td class="font-weight-bold pl-0 pr-1 border-0">Năm học</td>
+                                        <td class="pl-1 pr-0 border-0">
+                                            @include('subexam.components.table.year', [
+                                                'year' => $subexam->created_at->format('Y')
+                                            ])
+                                        </td>
+                                    </tr>
+                                    {{-- /Year --}}
+
+                                    {{-- Semester --}}
+                                    <tr>
+                                        <td class="font-weight-bold pl-0 pr-1 border-0">Học kỳ</td>
+                                        <td class="pl-1 pr-0 border-0">
+                                            @include('subexam.components.table.semester', [
+                                                'semester' => $subexam->semester
+                                            ])
+                                        </td>
+                                    </tr>
+                                    {{-- /Semester --}}
                                 </table>
 
                                 {{-- Action --}}
@@ -94,58 +127,108 @@
                         </td>
                         {{-- /Subject --}}
                         
-                        {{-- Year --}}
-                        @include('subexam.components.table.is-verified', [
-                            'is_verified' => $subexam->is_verified
-                        ])
-                        {{-- /Year --}}
+                        {{-- Status --}}
+                        <td class="text-center d-none d-md-table-cell">
+                            @include('subexam.components.table.status', [
+                                'is_verified' => $subexam->is_verified,
+                                'admin_id' => $subexam->admin_id,
+                            ])
+                        </td>
+                        {{-- /Status --}}
 
                         {{-- Year --}}
-                        @include('subexam.components.table.year', [
-                            'year' => $subexam->created_at->format('Y')
-                        ])
+                        <td class="text-center d-none d-md-table-cell">
+                            @include('subexam.components.table.year', [
+                                'year' => $subexam->created_at->format('Y')
+                            ])
+                        </td>
                         {{-- /Year --}}
 
                         {{-- Semester --}}
-                        @include('subexam.components.table.semester', [
-                            'semester' => $subexam->semester
-                        ])
+                        <td class="text-center d-none d-md-table-cell">
+                            @include('subexam.components.table.semester', [
+                                'semester' => $subexam->semester
+                            ])
+                        </td>
                         {{-- /Semester --}}
 
                         {{-- Exam --}}
-                        @include('subexam.components.table.exam', [
-                            'exam' => $subexam->exam
-                        ])
+                        <td class="text-center d-none d-md-table-cell">
+                            @include('subexam.components.table.exam', [
+                                'exam' => $subexam->exam
+                            ])
+                        </td>
                         {{-- /Exam --}}
 
                         {{-- Time --}}
-                        @include('subexam.components.table.time', [
-                            'time' => $subexam->time
-                        ])
+                        <td class="text-center d-none d-md-table-cell">
+                            @include('subexam.components.table.time', [
+                                'time' => $subexam->time
+                            ])
+                        </td> 
                         {{-- /Time --}}
 
-                        @include('subexam.components.table.times', [
-                            'times' => $subexam->times_1
-                        ])
+                        {{-- Times 1 --}}
+                        <td class="text-center d-none d-md-table-cell">
+                            @include('subexam.components.table.origin-exam-qty', [
+                                'times' => $subexam->times_1
+                            ])
+                        </td>
 
-                        @include('subexam.components.table.times', [
-                            'times' => $subexam->times_2
-                        ])
-                    
-                        @include('subexam.components.table.forms', [
-                            'forms' => $subexam->forms
-                        ])
+                        <td class="text-center d-none d-md-table-cell">
+                            @include('subexam.components.table.exam-code-qty', [
+                                'times' => $subexam->times_1
+                            ])
+                        </td>
+                        {{-- /Times 1 --}}
+
+                        {{-- Times 2 --}}
+                        <td class="text-center d-none d-md-table-cell">
+                            @include('subexam.components.table.origin-exam-qty', [
+                                'times' => $subexam->times_2
+                            ])
+                        </td>
+
+                        <td class="text-center d-none d-md-table-cell">
+                            @include('subexam.components.table.exam-code-qty', [
+                                'times' => $subexam->times_2
+                            ])
+                        </td>
+                        {{-- /Times 2 --}}
+
+                        {{-- Forms --}}
+                        <td class="text-center d-none d-md-table-cell">
+                            @include('subexam.components.table.forms', [
+                                'forms' => $subexam->forms
+                            ])
+                        </td>
+                        {{-- /Forms --}}
+
+                        {{-- Note --}}
+                        <td class="text-center d-none d-md-table-cell">
+                            @include('subexam.components.table.note', [
+                                'note' => $subexam->note
+                            ])
+                        </td>
+                        {{-- /Note --}}
+
 
                         {{-- Created at --}}
-                        @include('subexam.components.table.created-at', [
-                            'created_at' => $subexam->created_at->format('d-m-Y H:i:s')
-                        ])
+                        <td class="text-center d-none d-md-table-cell">
+                            @include('subexam.components.table.created-at', [
+                                'created_at' => $subexam->created_at->format('d-m-Y H:i:s')
+                            ])
+                        </td>
                         {{-- /Created at --}}
                     </tr>
                 @endforeach
             </tbody>
 
-           
+            <tfoot>
+                @include('subexam.components.table.label-row', [
+                    'position' => 'footer'
+                ])
+            </tfoot>
         </table>
     </div>
     @else
@@ -184,6 +267,7 @@
     {{-- Modals --}}
     @include('components.modals.empty-selected-items')
     @include('components.modals.confirm')
+    @include('components.modals.alert')
     {{-- /Modals --}}
 </main>
 @endsection

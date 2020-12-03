@@ -6,12 +6,16 @@ use Illuminate\Support\Facades\DB;
 
 trait Log
 {
-    public function log($code)
+    public function log($code, $data = [])
     {
-        $message = trans("log.{$code}", [
+        $attrs = [
             'subject' => static::NAME,
             'identification' => $this->identification(),
-        ]);
+        ];
+
+        $attrs = array_merge($attrs, $data);
+
+        $message = trans("log.{$code}", $attrs);
         
         return DB::table($this->logTable)->insert([
             'message' => $message,

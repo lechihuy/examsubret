@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreSubmitExamRequest;
+use Illuminate\Support\Arr;
 
 use App\Models\SubmitExamRequest;
 use App\Models\Department;
@@ -95,5 +96,20 @@ class SubmitExamRequestController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Remove the resource list from storage.
+     */
+    public function destroyList(Request $request)
+    {
+        $this->authorize('destroy-subexam', [$request->ids]);
+
+        current_user()->destroyListSubmitExamRequest($request->ids);
+
+        return response()->json([
+            'message' => 'Đã xóa các yêu cầu nộp đề thi.',
+            'redirect_to' => 'RELOAD'
+        ]);
     }
 }

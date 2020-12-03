@@ -4,15 +4,17 @@
     </a>
 
     <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item btn-action btn-modal-confirm" 
-            btn-confirm-id="btn-destroy-items" role="button">Xoá</a>
+        <a class="dropdown-item btn-action" has-confirmed="true" 
+            action="{{ route('subexams.destroy_list') }}" method="DELETE" role="button">Xóa</a>
 
-        <div class="dropdown-divider"></div>
+        @auth('admin')
+            <div class="dropdown-divider"></div>
 
-        <a class="dropdown-item btn-action btn-modal-confirm" 
-            btn-confirm-id="btn-switch-is-verified-items" data-status="0" role="button">Hủy xác thực</a>
+            <a class="dropdown-item btn-action" has-confirmed="true" 
+                action="" method="PUT" data-status="0" role="button">Hủy xác thực</a>
 
-        <a class="dropdown-item btn-action btn-modal-confirm" 
-            btn-confirm-id="btn-switch-is-verifed-items" data-status="1" role="button">Xác thực</a>
+            <a class="dropdown-item btn-action" has-confirmed="true"
+                action="" method="PUT" data-status="1" role="button">Xác thực</a>
+        @endauth
     </div>
 </div>
