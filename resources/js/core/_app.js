@@ -60,7 +60,7 @@ $(document).ready(function() {
     });
 
     // Action button
-    $('.btn-action').on('click', function() {
+    $('.btn-action[has-selected=true]').on('click', function() {
         selectedItems = $(document).find('.check-row:checked').map(function() {
             return parseInt($(this).data('id'));
         }).get();

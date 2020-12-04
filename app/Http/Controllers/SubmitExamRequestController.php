@@ -23,8 +23,11 @@ class SubmitExamRequestController extends Controller
      */
     public function index()
     {
+        if (auth('teacher')->check()) {
+            $filter = ['teacher_id' => current_user()->id];
+        }
         return view('subexam.index', [
-           'subexams' => SubmitExamRequest::list()
+           'subexams' => SubmitExamRequest::list($filter)
         ]);
     }
 
@@ -93,9 +96,16 @@ class SubmitExamRequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $this->authorize('destroy-subexam', [$id]);
+
+        current_user()->destroySubmitExamRequest($id);
+
+        return response()->json([
+            'message' => 'Đã xóa yêu cầu nộp đề thi.',
+            'redirect_to' => $request->redirect_to
+        ]);
     }
 
     /**

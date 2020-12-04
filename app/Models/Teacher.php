@@ -48,21 +48,6 @@ class Teacher extends Authenticatable
         return $this->username;
     }
 
-    // public function jobs()
-    // {
-    //     return $this->hasMany('App\Models\TeacherJob');
-    // }
-
-    // public function detailOfJobs()
-    // {
-    //     return $this->jobs()->with('department', 'major', 'subject')->get();
-    // }
-
-    // public function addJob($data)
-    // {
-    //     return $this->jobs()->create($data);
-    // }
-
     public function submitExamRequests()
     {
         return $this->hasMany('App\Models\SubmitExamRequest');
@@ -83,5 +68,12 @@ class Teacher extends Authenticatable
         }
 
         return $this->submitExamRequests()->whereIn('id', $subexams)->delete();
+    }
+
+    public function destroySubmitExamRequest($subexam)
+    {
+        $this->log('destroy_subexam', ['id' => $subexam]);
+
+        return $this->submitExamRequests()->where('id', $subexam)->delete();
     }
 }

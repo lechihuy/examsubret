@@ -1,10 +1,10 @@
-<div class="dropdown d-inline-block" id="form-action-subexam">
+<div class="dropdown d-inline-block">
     <a class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
         <i class="fas fa-bolt"></i> <span class="d-none d-sm-inline-block">Hành động</span>
     </a>
 
     <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item btn-action" has-confirmed="true" 
+        <a class="dropdown-item btn-action" has-confirmed="true" has-selected="true"
             action="{{ route('subexams.destroy_list') }}" method="DELETE" role="button">Xóa</a>
 
         @auth('admin')

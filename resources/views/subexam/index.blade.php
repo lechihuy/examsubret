@@ -27,14 +27,15 @@
     {{-- Header --}}
     <h3 class="d-flex flex-column flex-sm-row">
         <div class="mr-auto">Yêu cầu nộp đề thi</div>
+
+        {{-- Filter --}}
+         @include('subexam.components.dropdowns.filter', ['filter' => $filter ?? []])
+
+        {{-- Action --}}
+        @include('subexam.components.dropdowns.action')
+
         <div class="ml-0 ml-sm-2 mt-3 mt-sm-0 text-right">
-            {{-- Action --}}
-            @include('subexam.components.dropdowns.action')
-
-            {{-- Filter --}}
-            @include('subexam.components.dropdowns.filter', ['filter' => $filter ?? []])
-
-            <a href="{{ route('subexams.create') }}" class="btn btn-primary btn-sm btn-create-page">
+            <a href="{{ route('subexams.create') }}" class="btn btn-primary btn-sm">
                 <i class="fas fa-plus"></i> Tạo
             </a>
         </div> 
@@ -44,7 +45,7 @@
     {{-- Table --}}
     @if (count($subexams ?? []) > 0)
     <div class="table-wrapper my-4">
-        <table class="table my-table-striped border bg-white mb-0" style="width: 1600px;">
+        <table class="table my-table-striped border bg-white mb-0" style="width: 1600px; min-width: 100%;">
             <thead>
                 @include('subexam.components.table.label-row', [
                     'position' => 'header'
@@ -66,7 +67,7 @@
                         {{-- Subject --}}
                         <td class="cell-fixed primary-cell" style="left: 48px;">
                             <div class="d-flex">
-                                <a href="">{{ $subexam->subject->name }}</a>
+                                <a href="{{ route('subexams.edit', $subexam->id) }}">{{ $subexam->subject->name }}</a>
 
                                 {{-- Button toggle --}}
                                 <span class="ml-auto d-inline-block d-md-none toggle-cell pl-2" 
@@ -113,12 +114,113 @@
                                         </td>
                                     </tr>
                                     {{-- /Semester --}}
+
+                                    {{-- Exam --}}
+                                    <tr>
+                                        <td class="font-weight-bold pl-0 pr-1 border-0">Kỳ thi</td>
+                                        <td class="pl-1 pr-0 border-0">
+                                            @include('subexam.components.table.exam', [
+                                                'exam' => $subexam->exam
+                                            ])
+                                        </td>
+                                    </tr>
+                                    {{-- /Exam --}}
+
+                                    {{-- Time --}}
+                                    <tr>
+                                        <td class="font-weight-bold pl-0 pr-1 border-0">Thời lượng</td>
+                                        <td class="pl-1 pr-0 border-0">
+                                            @include('subexam.components.table.time', [
+                                                'time' => $subexam->time
+                                            ])
+                                        </td>
+                                    </tr>
+                                    {{-- /Time --}}
+
+                                    {{-- Times 1 --}}
+                                    <tr>
+                                        <td class="font-weight-bold pl-0 pr-1 border-0">Lần 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold pl-0 pr-1 border-0">— Số đề gốc</td>
+                                        <td class="pl-1 pr-0 border-0">
+                                            @include('subexam.components.table.origin-exam-qty', [
+                                                'times' => $subexam->times_1
+                                            ])
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold pl-0 pr-1 border-0">— Số mã đề</td>
+                                        <td class="pl-1 pr-0 border-0">
+                                            @include('subexam.components.table.exam-code-qty', [
+                                                'times' => $subexam->times_1
+                                            ])
+                                        </td>
+                                    </tr>
+                                    {{-- /Times 1 --}}
+
+                                    {{-- Times 1 --}}
+                                    <tr>
+                                        <td class="font-weight-bold pl-0 pr-1 border-0">Lần 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold pl-0 pr-1 border-0">— Số đề gốc</td>
+                                        <td class="pl-1 pr-0 border-0">
+                                            @include('subexam.components.table.origin-exam-qty', [
+                                                'times' => $subexam->times_2
+                                            ])
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold pl-0 pr-1 border-0">— Số mã đề</td>
+                                        <td class="pl-1 pr-0 border-0">
+                                            @include('subexam.components.table.exam-code-qty', [
+                                                'times' => $subexam->times_2
+                                            ])
+                                        </td>
+                                    </tr>
+                                    {{-- /Times 1 --}}
+
+                                    {{-- Forms --}}
+                                    <tr>
+                                        <td class="font-weight-bold pl-0 pr-1 border-0">Hình thức thi</td>
+                                        <td class="pl-1 pr-0 border-0">
+                                            @include('subexam.components.table.forms', [
+                                                'forms' => $subexam->forms
+                                            ])
+                                        </td>
+                                    </tr>
+                                    {{-- /Forms --}}
+
+                                    {{-- Note --}}
+                                    <tr>
+                                        <td class="font-weight-bold pl-0 pr-1 border-0">Ghi chú</td>
+                                        <td class="pl-1 pr-0 border-0">
+                                            @include('subexam.components.table.note', [
+                                                'note' => $subexam->note
+                                            ])
+                                        </td>
+                                    </tr>
+                                    {{-- /Note --}}
+
+                                    {{-- Created at --}}
+                                    <tr>
+                                        <td class="font-weight-bold pl-0 pr-1 border-0">Ngày tạo</td>
+                                        <td class="pl-1 pr-0 border-0">
+                                            @include('subexam.components.table.created-at', [
+                                                'created_at' => $subexam->created_at
+                                            ])
+                                        </td>
+                                    </tr>
+                                    {{-- /Created at --}}
                                 </table>
 
                                 {{-- Action --}}
                                 <div>
-                                    <a class="text-danger btn-modal-confirm" selector="false"
-                                        btn-confirm-id="btn-destroy-items" data-item_id="{{ $subexam->id }}" role="button">Xóa</a>
+                                    <a href="{{ route('subexams.edit', $subexam->id) }}" class="mr-3">Sửa</a>
+                                    <a class="text-danger btn-action" has-confirmed="true" 
+                                    action="{{ route('subexams.destroy', $subexam->id) }}" method="DELETE" 
+                                    data-redirect_to="RELOAD" role="button">Xóa</a>
                                 </div>
                                 {{-- /Action --}}
 
@@ -216,7 +318,7 @@
                         {{-- Created at --}}
                         <td class="text-center d-none d-md-table-cell">
                             @include('subexam.components.table.created-at', [
-                                'created_at' => $subexam->created_at->format('d-m-Y H:i:s')
+                                'created_at' => $subexam->created_at
                             ])
                         </td>
                         {{-- /Created at --}}
@@ -250,15 +352,9 @@
             ])
         </div>
         <div class="float-right">
-            {{-- Action --}}
-            @include('subexam.components.dropdowns.action')
+         
 
-            {{-- Filter --}}
-            @include('subexam.components.dropdowns.filter', ['filter' => $filter ?? []])
-
-            <a href="{{ route('subexams.create') }}" class="btn btn-primary btn-sm">
-                <i class="fas fa-plus"></i> Tạo
-            </a>
+            
         </div>  
         <div class="clearfix"></div>
     </div>
