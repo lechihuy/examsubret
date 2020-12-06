@@ -34,7 +34,7 @@
     <th scope="col" class="text-center d-none d-md-table-cell" rowspan="2">Ghi chú</th>    
     
     @auth('admin')
-        <th scope="col" class="d-none d-md-table-cell" rowspan="2">Người đăng</th>
+        <th scope="col" class="text-center d-none d-md-table-cell" rowspan="2">Người đăng</th>
     @endauth
     <th scope="col" class="text-center d-none d-md-table-cell" rowspan="2">Ngày tạo</th>    
 </tr>

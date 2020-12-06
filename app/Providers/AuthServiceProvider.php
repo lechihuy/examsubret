@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
+use App\Models\SubmitExamRequest;
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -32,6 +34,16 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('destroy-subexam', function($user, $subexams) {
             return auth('admin')->check() 
                 || current_user()->submitExamRequests()->whereIn('id', $subexams)->exists();
+        });
+
+        Gate::define('switch-status-subexam', function($user, $subexams, $action) {
+            if ($action != 'ACCEPT_SUBEXAM') {
+                $isOwnedSubmitExamRequest = current_user()->submitExamRequests()->whereIn('id', $subexams)->exists();
+            } else {
+                $isOwnedSubmitExamRequest = true;
+            }
+
+            return auth('admin')->check() && $isOwnedSubmitExamRequest;
         });
     }
 }

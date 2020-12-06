@@ -4,8 +4,8 @@ window.AlertModal = () => {
 
 AlertModal.prototype.show = (data) => {
     this.alert.modal('show');
-
-    this.alert.find('.icon').addClass(`${data.icon} ${data.icon_color}`)
+    console.log(data)
+    this.alert.find('.icon').attr('class', `icon fa-4x ${data.icon}`)
     this.alert.find('.title').html(data.title)
     this.alert.find('.message').html(data.message);
 }

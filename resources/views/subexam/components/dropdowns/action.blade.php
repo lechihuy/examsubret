@@ -5,16 +5,18 @@
 
     <div class="dropdown-menu dropdown-menu-right">
         <a class="dropdown-item btn-action" has-confirmed="true" has-selected="true"
-            action="{{ route('subexams.destroy_list') }}" method="DELETE" role="button">Xóa</a>
+            action="{{ route('subexams.destroy_list') }}" method="DELETE" role="button">Xóa yêu cầu</a>
 
         @auth('admin')
             <div class="dropdown-divider"></div>
 
-            <a class="dropdown-item btn-action" has-confirmed="true" 
-                action="" method="PUT" data-status="0" role="button">Hủy xác thực</a>
-
-            <a class="dropdown-item btn-action" has-confirmed="true"
-                action="" method="PUT" data-status="1" role="button">Xác thực</a>
+            @foreach (config('data.subexam_actions') as $action => $label)
+                <a class="dropdown-item btn-action" 
+                    has-confirmed="true"
+                    has-selected="true"
+                    action="{{ route('subexams.switch_status_list') }}" 
+                    method="PUT" data-action="{{ $action }}" role="button">{{ $label }}</a>
+            @endforeach
         @endauth
     </div>
 </div>

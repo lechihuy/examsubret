@@ -6,11 +6,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models\Traits\Log;
+use App\Models\Traits\Common;
 
 class Admin extends Authenticatable 
 {
-    use HasFactory, Notifiable, Log;
+    use HasFactory, Notifiable, Common;
 
     const NAME = 'Quản trị viên';
 
@@ -37,20 +37,4 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password',
     ];
-
-    public function identification()
-    {
-        return $this->username;
-    }
-
-    public function updateProfile($data)
-    {
-        if ($data->has('password')) {
-            $this->log("Quản trị viên {$this->identification()} vừa đổi mật khẩu.");
-            $data->put('last_change_password_at', now());
-        }
-
-        $this->log("Quản trị viên {$this->identification()} vừa cập nhật hồ sơ.");
-        return $this->update($data->toArray());
-    }
 }

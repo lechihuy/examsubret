@@ -1,4 +1,5 @@
 require('../components/_alertModal')
+require('../components/_form')
 
 $(document).ready(function() {
     // Tooltip
@@ -132,7 +133,7 @@ $(document).ready(function() {
             return parseInt($(this).data('id'));
         }).get();
 
-        if (selectedItems.length == 0) return;
+        if ($(this).attr('has-selected') && selectedItems.length == 0) return;
 
         $('#modal-confirm').modal('show');
         $('#modal-confirm').attr({
@@ -180,4 +181,24 @@ $(document).ready(function() {
             }
         })
     });
+
+    // Multichoice
+    $(document).on('click', '.check-all-mc', function() {
+        let mc = $(this).attr('mc')
+        let checked = $(this).prop('checked');
+        
+        $(document).find(`input[type=checkbox][mc=${mc}]`).prop('checked', checked);
+    })
+
+    $(document).on('click', `input.choice[type=checkbox][mc]`, function() {
+        let checked = $(this).prop('checked');
+        let mc = $(this).attr('mc')
+        
+        if ($(document).find(`input.choice[type=checkbox][mc=${mc}]:checked`).length 
+            == $(document).find(`input.choice[type=checkbox][mc=${mc}]`).length) {
+            $(document).find(`input.check-all-mc[type=checkbox][mc=${mc}]`).prop('checked', true);
+        } else {
+            $(document).find(`input.check-all-mc[type=checkbox][mc=${mc}]`).prop('checked', false);
+        }
+    })
 });

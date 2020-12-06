@@ -7,7 +7,7 @@
                 </button>
             </div>
             <div class="modal-body text-center">
-                <i class="fa-4x icon"></i> 
+                <i class="icon"></i> 
                 <p class="lead mt-2 title"></p>
                 <p class="text-muted message"></p>
             </div>

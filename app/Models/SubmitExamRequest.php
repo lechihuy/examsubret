@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class SubmitExamRequest extends Model
 {
@@ -42,29 +43,62 @@ class SubmitExamRequest extends Model
         return $this->belongsTo('App\Models\Subject', 'subject_id');
     }
 
+    public function teacher()
+    {
+        return $this->belongsTo('App\Models\Teacher', 'teacher_id');
+    }
+
     public static function list($filter = [], $select = ['*'])
     {
         $examsubs = static::select($select);
             
+        // Status
+        if (isset($filter['status']) && $filter['status'] != 'all') {
+            if ($filter['status'] == 2) {
+                $examsubs->where('admin_id', null);
+            } else {
+                $examsubs->where('is_verified', $filter['status'])
+                    ->whereNotNull('admin_id');
+            }
+        }
+
+        // Department ID
+        if (isset($filter['department_id']) && $filter['department_id'] != 'all') {
+            $examsubs->where('department_id', $filter['department_id']);
+        } 
+
+        // Major ID
+        if (isset($filter['major_id']) && $filter['major_id'] != 'all') {
+            $examsubs->where('major_id', $filter['major_id']);
+        } 
+
+        // Subject ID
+        if (isset($filter['subject_id']) && $filter['subject_id'] != 'all') {
+            $examsubs->where('subject_id', $filter['subject_id']);
+        } 
+
         // Teacher ID
         if (isset($filter['teacher_id']) && $filter['teacher_id'] != 'all') {
-            $filter['teacher_id'] = $filter['teacher_id'] == 'none' ? null : $filter['teacher_id'];
-
             $examsubs->where('teacher_id', $filter['teacher_id']);
         } 
+        
+        // Semester
+        if (isset($filter['semester']) && $filter['semester'] != 'all') {
+            $examsubs->where('semester', $filter['semester']);
+        }
+        
+        // Exam
+        if (isset($filter['exam']) && $filter['exam'] != 'all') {
+            $examsubs->where('exam', $filter['exam']);
+        }
 
-        // Admin ID
-        if (isset($filter['admin_id']) && $filter['admin_id'] != 'all') {
-            $filter['admin_id'] = $filter['admin_id'] == 'none' ? null : $filter['admin_id'];
+        // Forms
+        if (isset($filter['forms']) && $filter['forms'] != 'all') {
+            $forms = explode(',', $filter['forms']);
 
-            $examsubs->where('admin_id', $filter['admin_id']);
-        }  
+            $examsubs->whereJsonContains('forms', $forms);
+        }
 
-        // Is verified
-        if (isset($filter['is_verifed']) && $filter['is_verifed'] != 'all') {
-            $examsubs->where('is_verifed', $filter['is_verifed']);
-        } 
-      
         // Created at
         if (isset($filter['created_at'])) {
             if ($filter['created_at'] == 'desc') {
@@ -92,5 +126,11 @@ class SubmitExamRequest extends Model
     public function getFormsAttribute($value)
     {
         return json_decode($value, true);
+    }
+
+    public static function getYearList()
+    {
+        return static::select(DB::raw('YEAR(created_at) as year'))
+            ->distinct()->orderBy('year', 'desc')->get()->pluck('year')->toArray();
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 
 use App\Models\SubmitExamRequest;
 use App\Models\Department;
+use App\Models\Teacher;
 
 class SubmitExamRequestController extends Controller
 {
@@ -21,13 +22,44 @@ class SubmitExamRequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        if (auth('teacher')->check()) {
-            $filter = ['teacher_id' => current_user()->id];
+        $filter = $request->only([
+            'status', 'department_id', 'major_id', 'subject_id', 
+            'year', 'semester', 'exam', 'forms', 'created_at',
+            'teacher_id'
+        ]);
+
+        if (! count($filter)) {
+            return redirect()->route('subexams.index', ['year' => now()->format('Y')]);
         }
+
+        if (auth('teacher')->check()) {
+            $filter['teacher_id'] = current_user()->id;
+        }
+
+        if (isset($filter['department_id']) && $filter['department_id'] != 'all') {
+            $department = Department::find($filter['department_id']);
+            $majors = optional($department)->majors ?? [];
+            $subjects = optional($department)->subjects ?? [];
+        } else {
+            $majors = []; $subjects = [];
+        }
+
+        if (auth('admin')->check()) {
+            $teachers = Teacher::select(['id', 'username', 'fullname', 'email'])->get();
+        } else {
+            $teachers = [];
+        }
+
         return view('subexam.index', [
-           'subexams' => SubmitExamRequest::list($filter)
+           'subexams' => SubmitExamRequest::list($filter),
+           'departments' => Department::all(),
+           'years' => SubmitExamRequest::getYearList(),
+           'filter' => $filter,
+           'majors' => $majors,
+           'subjects' => $subjects, 
+           'teachers' => $teachers
         ]);
     }
 
@@ -120,6 +152,26 @@ class SubmitExamRequestController extends Controller
         return response()->json([
             'message' => 'Đã xóa các yêu cầu nộp đề thi.',
             'redirect_to' => 'RELOAD'
+        ]);
+    }
+
+    public function switchStatusList(Request $request)
+    {
+        $action = $request->action;
+
+        if (! in_array($action, array_keys(config('data.subexam_actions')))) {
+            return response()->json([
+                'message' => trans('validation.xss')
+            ], 422);
+        }
+
+        $this->authorize('switch-status-subexam', [$request->ids, $action]);
+        
+        current_user()->switchStatusListSubmitExamRequest($action, $request->ids);
+
+        return response()->json([
+            'message' => 'Đã thay đổi trạng thái các yêu cầu nộp đề thi.',
+            // 'redirect_to' => 'RELOAD'
         ]);
     }
 }

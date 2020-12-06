@@ -11,7 +11,7 @@
 
 @push('scripts')
     <script src="{{ asset('plugins/select2/select2.min.js') }}"></script>
-    <script src="{{ asset('js/create-subexam.js') }}"></script>
+    <script src="{{ asset('js/index-subexam.js') }}"></script>
 @endpush
 
 @section('title', 'Yêu cầu nộp đề thi')
@@ -23,18 +23,17 @@
         'subexam.index' => 'Yêu cầu nộp đề thi',
     ]])
 
-
     {{-- Header --}}
     <h3 class="d-flex flex-column flex-sm-row">
         <div class="mr-auto">Yêu cầu nộp đề thi</div>
 
-        {{-- Filter --}}
-         @include('subexam.components.dropdowns.filter', ['filter' => $filter ?? []])
-
-        {{-- Action --}}
-        @include('subexam.components.dropdowns.action')
-
         <div class="ml-0 ml-sm-2 mt-3 mt-sm-0 text-right">
+            {{-- Action --}}
+            @include('subexam.components.dropdowns.action')
+
+            {{-- Filter --}}
+            @include('subexam.components.dropdowns.filter', ['filter' => $filter ?? []])
+        
             <a href="{{ route('subexams.create') }}" class="btn btn-primary btn-sm">
                 <i class="fas fa-plus"></i> Tạo
             </a>
@@ -45,7 +44,7 @@
     {{-- Table --}}
     @if (count($subexams ?? []) > 0)
     <div class="table-wrapper my-4">
-        <table class="table my-table-striped border bg-white mb-0" style="width: 1600px; min-width: 100%;">
+        <table class="table my-table-striped border bg-white mb-0" style="width: 1800px; min-width: 100%;">
             <thead>
                 @include('subexam.components.table.label-row', [
                     'position' => 'header'
@@ -314,6 +313,15 @@
                         </td>
                         {{-- /Note --}}
 
+                        {{-- Teacher --}}
+                        @auth('admin')
+                            <td class="text-center d-none d-md-table-cell">
+                                @include('subexam.components.table.teacher', [
+                                    'teacher' => $subexam->teacher
+                                ])
+                            </td>
+                        @endauth
+                        {{-- /Teacher --}}
 
                         {{-- Created at --}}
                         <td class="text-center d-none d-md-table-cell">
