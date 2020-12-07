@@ -105,21 +105,34 @@ trait Common
 
         switch ($action) {
             case 'ACCEPT_SUBEXAM':
-                $updates = ['admin_id' => $this->id];
+                $updates = [
+                    'admin_id' => $this->id,
+                    'is_verified' => 0,
+                ];
 
                 return SubmitExamRequest::whereIn('id', $subexams)->update($updates);
             break;
 
             case 'CANCEL_ACCEPT_SUBEXAM':
-                $updates = ['admin_id' => null];
+                $updates = [
+                    'admin_id' => null,
+                    'is_verified' => 0,
+                ];
             break;
 
             case 'VERIFY_SUBEXAM':
-                $updates = ['is_verified' => 1];
+                $updates = [
+                    'admin_id' => $this->id,
+                    'is_verified' => 1,
+                ];
+
+                return SubmitExamRequest::whereIn('id', $subexams)->update($updates);
             break;
 
             case 'CANCEL_VERIFY_SUBEXAM':
-                $updates = ['is_verified' => 0];
+                $updates = [
+                    'is_verified' => 0
+                ];
             break;
         }
 

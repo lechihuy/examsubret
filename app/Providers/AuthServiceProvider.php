@@ -27,6 +27,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        Gate::before(function ($user) {
+            return auth('admin')->check();
+        });
+
         Gate::define('create-subexam', function($user) {
             return class_basename($user) === 'Teacher';
         });
@@ -37,13 +41,14 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('switch-status-subexam', function($user, $subexams, $action) {
-            if ($action != 'ACCEPT_SUBEXAM') {
-                $isOwnedSubmitExamRequest = current_user()->submitExamRequests()->whereIn('id', $subexams)->exists();
-            } else {
-                $isOwnedSubmitExamRequest = true;
-            }
+            // if ($action != 'ACCEPT_SUBEXAM') {
+            //     $isOwnedSubmitExamRequest = current_user()->submitExamRequests()->whereIn('id', $subexams)->exists();
+            // } else {
+            //     $isOwnedSubmitExamRequest = true;
+            // }
 
-            return auth('admin')->check() && $isOwnedSubmitExamRequest;
+            // return auth('admin')->check() && $isOwnedSubmitExamRequest;
+            return auth('admin')->check();
         });
     }
 }

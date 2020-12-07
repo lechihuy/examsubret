@@ -171,7 +171,7 @@ class SubmitExamRequestController extends Controller
 
         return response()->json([
             'message' => 'Đã thay đổi trạng thái các yêu cầu nộp đề thi.',
-            // 'redirect_to' => 'RELOAD'
+            'redirect_to' => 'RELOAD'
         ]);
     }
 }

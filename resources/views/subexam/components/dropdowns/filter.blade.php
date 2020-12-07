@@ -1,4 +1,9 @@
 <div class="dropdown d-inline-block">
+    @if (isset($filter))
+        <a class="btn btn-light btn-sm" href="{{ route('subexams.index') }}" style="margin-right: -8px;">
+            <i class="fas fa-sync-alt"></i>
+        </a>
+    @endif
     <a class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
         <i class="fas fa-filter {{ count($filter) ? 'text-success' : '' }}"></i> <span class="d-none d-sm-inline-block">Lọc</span>
     </a>
