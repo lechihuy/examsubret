@@ -4,12 +4,12 @@
     </a>
 
     <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item btn-action" has-confirmed="true" has-selected="true"
-            action="{{ route('subexams.destroy_list') }}" method="DELETE" role="button">Xóa yêu cầu</a>
-
+        @auth('teacher')
+            <a class="dropdown-item btn-action" has-confirmed="true" has-selected="true"
+                action="{{ route('subexams.destroy_list') }}" method="DELETE" role="button">Xóa yêu cầu</a>
+        @endauth
+        
         @auth('admin')
-            <div class="dropdown-divider"></div>
-
             @foreach (config('data.subexam_actions') as $action => $label)
                 <a class="dropdown-item btn-action" 
                     has-confirmed="true"

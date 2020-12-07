@@ -27,17 +27,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::before(function ($user) {
-            return auth('admin')->check();
-        });
-
         Gate::define('create-subexam', function($user) {
             return class_basename($user) === 'Teacher';
         });
 
         Gate::define('destroy-subexam', function($user, $subexams) {
-            return auth('admin')->check() 
-                || current_user()->submitExamRequests()->whereIn('id', $subexams)->exists();
+            return current_user()->submitExamRequests()->whereIn('id', $subexams)->exists();
         });
 
         Gate::define('switch-status-subexam', function($user, $subexams, $action) {

@@ -130,7 +130,7 @@ class SubmitExamRequestController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $this->authorize('destroy-subexam', [$id]);
+        $this->authorize('destroy-subexam', [[$id]]);
 
         current_user()->destroySubmitExamRequest($id);
 
