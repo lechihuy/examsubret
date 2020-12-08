@@ -22,7 +22,7 @@ function setupMajorSelectors(department = null) {
 
         $.ajax({
             type: 'GET',
-            url: route('majors') + '?department_id=' + departmentId
+            url: route('data.majors') + '?department_id=' + departmentId
         }).then(function (data) {
             major.append(new Option('Tất cả', 'all', true, true))
 
@@ -54,7 +54,7 @@ function setupSubjectSelectors(department = null) {
 
         $.ajax({
             type: 'GET',
-            url: route('subjects') + '?department_id=' + departmentId
+            url: route('data.subjects') + '?department_id=' + departmentId
         }).then(function (data) {
             subject.append(new Option('Tất cả', 'all', true, true))
 

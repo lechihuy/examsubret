@@ -73,14 +73,14 @@ $(document).on('select2:select', 'select[name=department_id]', function() {
     setupSubjectSelectors($(this))
 })
 
-// Create a new submit exam request
-$('.btn-create-subexam').on('click', function() {
-    const indexBtn = $('.btn-create-subexam').index($(this));
-    let form = new Form('#form-create-subexam');
+// Edit a submit exam request
+$('.btn-edit-subexam').on('click', function() {
+    const indexBtn = $('.btn-edit-subexam').index($(this));
+    let form = new Form('#form-edit-subexam');
     let formData = form.getData();
     let forms = [];
 
-    $('#form-create-subexam').find('input[type=checkbox][name=forms]:checked').each(function() {
+    $('#form-edit-subexam').find('input[type=checkbox][name=forms]:checked').each(function() {
         forms.push($(this).val());
     });
 
@@ -92,16 +92,16 @@ $('.btn-create-subexam').on('click', function() {
     formData.push({
         name: 'times_1',
         value: JSON.stringify({
-            origin_exam_qty: $('#form-create-subexam').find('input[name=times_1_origin_exam_qty]').val(),
-            exam_code_qty: $('#form-create-subexam').find('input[name=times_1_exam_code_qty]').val(),
+            origin_exam_qty: $('#form-edit-subexam').find('input[name=times_1_origin_exam_qty]').val(),
+            exam_code_qty: $('#form-edit-subexam').find('input[name=times_1_exam_code_qty]').val(),
         })
     });
 
     formData.push({
         name: 'times_2',
         value: JSON.stringify({
-            origin_exam_qty: $('#form-create-subexam').find('input[name=times_2_origin_exam_qty]').val(),
-            exam_code_qty: $('#form-create-subexam').find('input[name=times_2_exam_code_qty]').val(),
+            origin_exam_qty: $('#form-edit-subexam').find('input[name=times_2_origin_exam_qty]').val(),
+            exam_code_qty: $('#form-edit-subexam').find('input[name=times_2_exam_code_qty]').val(),
         })
     });
 
@@ -109,7 +109,7 @@ $('.btn-create-subexam').on('click', function() {
 
     $.ajax({
         url: form.getAction(),
-        method: 'POST',
+        method: 'PUT',
         data: formData,
         success: function(res, textStatus, xhr) {
             form.showAlert(res.message, xhr.status, indexBtn);

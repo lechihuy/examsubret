@@ -39,7 +39,7 @@ window.remove_timestamp_url = url => {
 // }
 
 window.route = (name) => {
-    return $(`meta[name=${name}]`).attr('content');
+    return $(`meta[name="${name}"]`).attr('content');
 }
 
 window.query_url = (uri, queries) => {

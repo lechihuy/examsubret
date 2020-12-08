@@ -17,30 +17,6 @@ class ComponentController extends Controller
     }
 
     /**
-     * Handle to load job component
-     */
-    protected function handleJobComponent(Request $request)
-    {
-        $data = [];
-        $error = false;
-        $job = $request->only('department_id', 'major_id', 'subject_id');
-
-        if (! TeacherJob::isValid($job)) { $error = true; }
-
-        if (! $error) {
-            $data = [
-                'department' => Department::find($job['department_id']),
-                'major' => Major::find($job['major_id']),
-                'subject' => Subject::find($job['subject_id']),
-                'class' => 'item btn-open-modal-edit-job',
-                'action' => 'Nhấp để sửa'
-            ];
-        } 
-
-        return ['error' => $error, 'data' => $data];
-    }
-
-    /**
      * Load a component
      */
     public function load(Request $request, $view, $handle)

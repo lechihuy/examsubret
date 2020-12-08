@@ -37,20 +37,20 @@ class CreateSubmitExamRequestsTable extends Migration
                 ->references('id')->on('teachers')
                 ->onDelete('cascade');
 
-            $table->unsignedBigInteger('department_id')->nullable();
+            $table->unsignedBigInteger('department_id');
             $table->foreign('department_id')
                 ->references('id')->on('departments')
-                ->onDelete('set null');
+                ->onDelete('cascade');
 
-            $table->unsignedBigInteger('major_id')->nullable();
+            $table->unsignedBigInteger('major_id');
             $table->foreign('major_id')
                 ->references('id')->on('majors')
-                ->onDelete('set null');
+                ->onDelete('cascade');
 
-            $table->unsignedBigInteger('subject_id')->nullable();
+            $table->unsignedBigInteger('subject_id');
             $table->foreign('subject_id')
                 ->references('id')->on('subjects')
-                ->onDelete('set null');
+                ->onDelete('cascade');
         });
     }
 

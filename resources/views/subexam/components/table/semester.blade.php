@@ -1,1 +1,1 @@
-{{ $semester }}
+{{ $subexam->semester }}

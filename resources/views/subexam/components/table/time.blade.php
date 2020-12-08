@@ -1,1 +1,1 @@
-{{ $time }} phút
+{{ $subexam->time }} phút

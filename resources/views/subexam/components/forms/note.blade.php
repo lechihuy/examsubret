@@ -10,7 +10,7 @@
     <div id="collapse-note" class="collapse show">
         <div class="card-body">
             <div class="form-group input-group-sm mb-0">
-                <textarea name="note" class="form-control" rows="5" placeholder="Hãy viết vài ghi chú cho yêu cầu..."></textarea>
+                <textarea name="note" class="form-control" rows="5" placeholder="Hãy viết vài ghi chú cho yêu cầu...">{{ $subexam->note ?? '' }}</textarea>
             </div>
         </div>
     </div>

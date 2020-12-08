@@ -11,28 +11,28 @@
 
 @push('scripts')
     <script src="{{ asset('plugins/select2/select2.min.js') }}"></script>
-    <script src="{{ asset('js/create-subexam.js') }}"></script>
+    <script src="{{ asset('js/edit-subexam.js') }}"></script>
 @endpush
 
-@section('title', 'Tạo yêu cầu nộp đề thi')
+@section('title', 'Sửa yêu cầu nộp đề thi')
 
 @section('content')
 <main class="container-narrow">
     {{-- Breadcrumb --}}
     @include('components.breadcrumb', ['items' => [
         'subexams.index' => 'Yêu cầu nộp đề thi',
-        'subexams.create' => 'Tạo mới'
+        'subexams.edit' => 'Sửa'
     ]])
 
     {{-- Header --}}
     <h3 class="d-flex flex-column flex-sm-row">
-        <div class="mr-auto">Tạo yêu cầu nộp đề thi</div>
+        <div class="mr-auto">Sửa yêu cầu nộp đề thi</div>
         <div class="ml-0 ml-sm-2 mt-3 mt-sm-0">
             <a href="{{ route('subexams.index') }}" class="btn btn-light btn-sm float-left float-sm-none">
                 <i class="fas fa-reply"></i> Trở về
             </a>
-            <button class="btn btn-primary btn-sm btn-create-subexam float-right float-sm-none">
-                <i class="fas fa-plus"></i> Tạo
+            <button class="btn btn-success btn-sm btn-edit-subexam float-right float-sm-none">
+                <i class="fas fa-check"></i> Lưu
             </button>
         </div>  
         <div class="clearfix"></div>
@@ -40,11 +40,11 @@
     {{-- /Header --}}
 
     {{-- Alert --}}
-    <div class="alert d-none mt-3" form="#form-create-subexam"></div>
+    <div class="alert d-none mt-3" form="#form-edit-subexam"></div>
     {{-- /Alert --}}
 
     {{-- Form --}}
-    <form action="{{ route('subexams.store') }}" method="POST" id="form-create-subexam">
+    <form action="{{ route('subexams.update', $subexam->id) }}" method="POST" id="form-edit-subexam">
         <div class="row my-4">
             {{-- Left column --}}
             <div class="col-12 col-md-8 mb-3 mb-md-0">
@@ -59,6 +59,10 @@
                 {{-- Note --}}
                 @include('subexam.components.forms.note')
                 {{-- /Note --}}
+
+                {{-- Timestamps --}}
+                @include('subexam.components.forms.timestamps')
+                {{-- /Timestamps --}}
             </div>
             {{-- /Right column --}}
         </div>
@@ -66,7 +70,7 @@
     {{-- /Form --}}
 
     {{-- Alert --}}
-    <div class="alert d-none mt-3" form="#form-create-subexam"></div>
+    <div class="alert d-none mt-3" form="#form-edit-subexam"></div>
     {{-- /Alert --}}
 
     {{-- Button group --}}
@@ -74,15 +78,22 @@
         <a href="{{ route('subexams.index') }}" class="btn btn-light btn-sm">
             <i class="fas fa-reply"></i> Trở về
         </a>
-        <button class="btn btn-primary btn-sm btn-create-subexam float-right">
-            <i class="fas fa-plus"></i> Tạo
+        <a class="btn btn-outline-danger btn-sm btn-action" has-confirmed="true"
+            action="{{ route('subexams.destroy', $subexam->id)}}" method="DELETE"
+            data-redirect_to="{{ route('subexams.index') }}" role="button"
+        >
+            <i class="fas fa-trash-alt"></i> Xóa
+        </a>
+        <button class="btn btn-success btn-sm btn-edit-subexam float-right">
+            <i class="fas fa-check"></i> Lưu
         </button>
         <div class="clearfix"></div>
     </div>
     {{-- /Button group --}}
 
     {{-- Modals --}}
-
+    @include('components.modals.confirm')
+    @include('components.modals.alert')
     {{-- /Modals --}}
 </main>
 @endsection

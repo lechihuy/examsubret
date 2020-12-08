@@ -4,6 +4,7 @@
     "/css/home.css": "/css/home.css",
     "/css/login.css": "/css/login.css",
     "/js/create-subexam.js": "/js/create-subexam.js",
+    "/js/edit-subexam.js": "/js/edit-subexam.js",
     "/js/index-subexam.js": "/js/index-subexam.js",
     "/js/profile.js": "/js/profile.js"
 }

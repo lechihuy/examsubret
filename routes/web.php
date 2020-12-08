@@ -20,14 +20,17 @@ Route::delete('submit-exam-requests/destroy_list', 'SubmitExamRequestController@
     ->name('subexams.destroy_list');
 Route::put('submit-exam-requests/switch_status_list', 'SubmitExamRequestController@switchStatusList')
     ->name('subexams.switch_status_list');
+Route::put('submit-exam-requests/switch_status/{subexam}', 'SubmitExamRequestController@switchStatus')
+    ->name('subexams.switch_status');
 Route::resource('submit-exam-requests', 'SubmitExamRequestController')->names([
     'index' => 'subexams.index',
+    'show' => 'subexams.show',
     'create' => 'subexams.create',
     'store' => 'subexams.store',
     'edit' => 'subexams.edit',
     'update' => 'subexams.update',
     'destroy' => 'subexams.destroy'
-])->parameters(['submit-exam-requests' => 'subexams'])->except(['show']);
+])->parameters(['submit-exam-requests' => 'subexam']);
 
 // Profile
 Route::prefix('profile')->name('profile.')->group(function() {
@@ -54,6 +57,11 @@ Route::name('auth.')->group(function() {
 Route::prefix('components')->name('components.')->group(function() {
     Route::get('load/view/{view}/handle/{handle}', 'ComponentController@load')->name('load');
 });
-Route::get('majors', 'TeacherJobController@getMajors')->name('majors');
-Route::get('subjects', 'TeacherJobController@getSubjects')->name('subjects');
+
+
+// Data
+Route::prefix('data')->name('data.')->group(function() {
+    Route::get('majors', 'DataController@getMajors')->name('majors');
+    Route::get('subjects', 'DataController@getSubjects')->name('subjects');
+});
 

@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
 @push('metas')
-    <meta name="majors" content="{{ route('majors') }}">
-    <meta name="subjects" content="{{ route('subjects') }}">
+    <meta name="data.majors" content="{{ route('data.majors') }}">
+    <meta name="data.subjects" content="{{ route('data.subjects') }}">
 @endpush
 
 @push('styles')
@@ -33,10 +33,12 @@
 
             {{-- Filter --}}
             @include('subexam.components.dropdowns.filter', ['filter' => $filter ?? []])
-        
-            <a href="{{ route('subexams.create') }}" class="btn btn-primary btn-sm">
-                <i class="fas fa-plus"></i> Tạo
-            </a>
+
+            @auth('teacher')
+                <a href="{{ route('subexams.create') }}" class="btn btn-primary btn-sm">
+                    <i class="fas fa-plus"></i> Tạo
+                </a>
+            @endauth
         </div> 
     </h3>
     {{-- /Header --}}
@@ -44,7 +46,7 @@
     {{-- Table --}}
     @if (count($subexams ?? []) > 0)
     <div class="table-wrapper my-4">
-        <table class="table my-table-striped border bg-white mb-0" style="width: 1800px; min-width: 100%;">
+        <table class="table my-table-striped border bg-white mb-0" style="width: 2000px; min-width: 100%;">
             <thead>
                 @include('subexam.components.table.label-row', [
                     'position' => 'header'
@@ -66,7 +68,13 @@
                         {{-- Subject --}}
                         <td class="cell-fixed primary-cell" style="left: 48px;">
                             <div class="d-flex">
-                                <a href="{{ route('subexams.edit', $subexam->id) }}">{{ $subexam->subject->name }}</a>
+                                <a href="
+                                    @auth('admin')
+                                        {{ route('subexams.show', $subexam->id) }}
+                                    @elseauth('teacher')
+                                        {{ route('subexams.edit', $subexam->id) }}
+                                    @endauth
+                                ">{{ $subexam->subject->name }}</a>
 
                                 {{-- Button toggle --}}
                                 <span class="ml-auto d-inline-block d-md-none toggle-cell pl-2" 
@@ -84,8 +92,6 @@
                                         <td class="font-weight-bold pl-0 pr-1 border-0">Trạng thái</td>
                                         <td class="pl-1 pr-0 border-0">
                                             @include('subexam.components.table.status', [
-                                                'is_verified' => $subexam->is_verified,
-                                                'admin_id' => $subexam->admin_id,
                                                 'full_context' => true 
                                             ])
                                         </td>
@@ -96,9 +102,7 @@
                                     <tr>
                                         <td class="font-weight-bold pl-0 pr-1 border-0">Năm học</td>
                                         <td class="pl-1 pr-0 border-0">
-                                            @include('subexam.components.table.year', [
-                                                'year' => $subexam->created_at->format('Y')
-                                            ])
+                                            @include('subexam.components.table.year')
                                         </td>
                                     </tr>
                                     {{-- /Year --}}
@@ -107,9 +111,7 @@
                                     <tr>
                                         <td class="font-weight-bold pl-0 pr-1 border-0">Học kỳ</td>
                                         <td class="pl-1 pr-0 border-0">
-                                            @include('subexam.components.table.semester', [
-                                                'semester' => $subexam->semester
-                                            ])
+                                            @include('subexam.components.table.semester')
                                         </td>
                                     </tr>
                                     {{-- /Semester --}}
@@ -118,9 +120,7 @@
                                     <tr>
                                         <td class="font-weight-bold pl-0 pr-1 border-0">Kỳ thi</td>
                                         <td class="pl-1 pr-0 border-0">
-                                            @include('subexam.components.table.exam', [
-                                                'exam' => $subexam->exam
-                                            ])
+                                            @include('subexam.components.table.exam')
                                         </td>
                                     </tr>
                                     {{-- /Exam --}}
@@ -129,9 +129,7 @@
                                     <tr>
                                         <td class="font-weight-bold pl-0 pr-1 border-0">Thời lượng</td>
                                         <td class="pl-1 pr-0 border-0">
-                                            @include('subexam.components.table.time', [
-                                                'time' => $subexam->time
-                                            ])
+                                            @include('subexam.components.table.time')
                                         </td>
                                     </tr>
                                     {{-- /Time --}}
@@ -158,7 +156,7 @@
                                     </tr>
                                     {{-- /Times 1 --}}
 
-                                    {{-- Times 1 --}}
+                                    {{-- Times 2 --}}
                                     <tr>
                                         <td class="font-weight-bold pl-0 pr-1 border-0">Lần 2</td>
                                     </tr>
@@ -178,15 +176,13 @@
                                             ])
                                         </td>
                                     </tr>
-                                    {{-- /Times 1 --}}
+                                    {{-- /Times 2 --}}
 
                                     {{-- Forms --}}
                                     <tr>
                                         <td class="font-weight-bold pl-0 pr-1 border-0">Hình thức thi</td>
                                         <td class="pl-1 pr-0 border-0">
-                                            @include('subexam.components.table.forms', [
-                                                'forms' => $subexam->forms
-                                            ])
+                                            @include('subexam.components.table.forms')
                                         </td>
                                     </tr>
                                     {{-- /Forms --}}
@@ -195,20 +191,25 @@
                                     <tr>
                                         <td class="font-weight-bold pl-0 pr-1 border-0">Ghi chú</td>
                                         <td class="pl-1 pr-0 border-0">
-                                            @include('subexam.components.table.note', [
-                                                'note' => $subexam->note
-                                            ])
+                                            @include('subexam.components.table.note')
                                         </td>
                                     </tr>
                                     {{-- /Note --}}
+
+                                    @auth('admin')
+                                    <tr>
+                                        <td class="font-weight-bold pl-0 pr-1 border-0">Người tạo</td>
+                                        <td class="pl-1 pr-0 border-0">
+                                            @include('subexam.components.table.teacher')
+                                        </td>
+                                    </tr>
+                                    @endauth
 
                                     {{-- Created at --}}
                                     <tr>
                                         <td class="font-weight-bold pl-0 pr-1 border-0">Ngày tạo</td>
                                         <td class="pl-1 pr-0 border-0">
-                                            @include('subexam.components.table.created-at', [
-                                                'created_at' => $subexam->created_at
-                                            ])
+                                            @include('subexam.components.table.created-at')
                                         </td>
                                     </tr>
                                     {{-- /Created at --}}
@@ -232,42 +233,31 @@
                         
                         {{-- Status --}}
                         <td class="text-center d-none d-md-table-cell">
-                            @include('subexam.components.table.status', [
-                                'is_verified' => $subexam->is_verified,
-                                'admin_id' => $subexam->admin_id,
-                            ])
+                            @include('subexam.components.table.status')
                         </td>
                         {{-- /Status --}}
 
                         {{-- Year --}}
                         <td class="text-center d-none d-md-table-cell">
-                            @include('subexam.components.table.year', [
-                                'year' => $subexam->created_at->format('Y')
-                            ])
+                            @include('subexam.components.table.year')
                         </td>
                         {{-- /Year --}}
 
                         {{-- Semester --}}
                         <td class="text-center d-none d-md-table-cell">
-                            @include('subexam.components.table.semester', [
-                                'semester' => $subexam->semester
-                            ])
+                            @include('subexam.components.table.semester')
                         </td>
                         {{-- /Semester --}}
 
                         {{-- Exam --}}
                         <td class="text-center d-none d-md-table-cell">
-                            @include('subexam.components.table.exam', [
-                                'exam' => $subexam->exam
-                            ])
+                            @include('subexam.components.table.exam')
                         </td>
                         {{-- /Exam --}}
 
                         {{-- Time --}}
                         <td class="text-center d-none d-md-table-cell">
-                            @include('subexam.components.table.time', [
-                                'time' => $subexam->time
-                            ])
+                            @include('subexam.components.table.time')
                         </td> 
                         {{-- /Time --}}
 
@@ -301,35 +291,27 @@
 
                         {{-- Forms --}}
                         <td class="text-center d-none d-md-table-cell">
-                            @include('subexam.components.table.forms', [
-                                'forms' => $subexam->forms
-                            ])
+                            @include('subexam.components.table.forms')
                         </td>
                         {{-- /Forms --}}
 
                         {{-- Note --}}
                         <td class="text-center d-none d-md-table-cell">
-                            @include('subexam.components.table.note', [
-                                'note' => $subexam->note
-                            ])
+                            @include('subexam.components.table.note')
                         </td>
                         {{-- /Note --}}
 
                         {{-- Teacher --}}
                         @auth('admin')
                             <td class="text-center d-none d-md-table-cell">
-                                @include('subexam.components.table.teacher', [
-                                    'teacher' => $subexam->teacher
-                                ])
+                                @include('subexam.components.table.teacher')
                             </td>
                         @endauth
                         {{-- /Teacher --}}
 
                         {{-- Created at --}}
                         <td class="text-center d-none d-md-table-cell">
-                            @include('subexam.components.table.created-at', [
-                                'created_at' => $subexam->created_at
-                            ])
+                            @include('subexam.components.table.created-at')
                         </td>
                         {{-- /Created at --}}
                     </tr>
@@ -362,7 +344,6 @@
             ])
         </div>
         <div class="float-right">
-         
 
             
         </div>  

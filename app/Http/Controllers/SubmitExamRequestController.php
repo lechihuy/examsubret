@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreSubmitExamRequest;
+use App\Http\Requests\UpdateSubmitExamRequest;
 use Illuminate\Support\Arr;
 
 use App\Models\SubmitExamRequest;
@@ -87,10 +88,6 @@ class SubmitExamRequestController extends Controller
     {
         $data = $request->validated();
         
-        $data['times_1'] = json_encode($data['times_1']);
-        $data['times_2'] = count($data['times_2']) ? json_encode($data['times_2']) : null;
-        $data['forms'] = json_encode($data['forms']);
-
         current_user()->createSubmitExamRequest($data);
 
         return response()->json([
@@ -107,7 +104,31 @@ class SubmitExamRequestController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subexam = SubmitExamRequest::findOrFail($id);
+
+        $this->authorize('edit-subexam', [$id]);
+
+        $department = Department::find($subexam->department_id);
+        $majors = optional($department)->majors ?? [];
+        $subjects = optional($department)->subjects ?? [];
+
+        return view('subexam.edit', [
+            'subexam' => $subexam,
+            'departments' => Department::all(),
+            'majors' => $majors,
+            'subjects' => $subjects, 
+        ]);
+    }
+
+    public function show($id)
+    {
+        $subexam = SubmitExamRequest::findOrFail($id);
+
+        $this->authorize('switch-status-subexam');
+
+        return view('subexam.show', [
+            'subexam' => $subexam,
+        ]);
     }
 
     /**
@@ -117,9 +138,16 @@ class SubmitExamRequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateSubmitExamRequest $request, $id)
     {
-        //
+        $data = $request->validated();
+
+        current_user()->updateSubmitExamRequest($id, $data);
+
+        return response()->json([
+            'message' => 'Sửa yêu cầu nộp đề thi thành công.',
+            'redirect_to' => 'RELOAD',
+        ]);
     }
 
     /**
@@ -130,13 +158,15 @@ class SubmitExamRequestController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        SubmitExamRequest::findOrFail($id);
+        
         $this->authorize('destroy-subexam', [[$id]]);
 
         current_user()->destroySubmitExamRequest($id);
 
         return response()->json([
             'message' => 'Đã xóa yêu cầu nộp đề thi.',
-            'redirect_to' => $request->redirect_to
+            'redirect_to' => $request->redirect_to ?? 'RELOAD'
         ]);
     }
 
@@ -145,6 +175,8 @@ class SubmitExamRequestController extends Controller
      */
     public function destroyList(Request $request)
     {
+        SubmitExamRequest::findOrFail($request->ids);
+
         $this->authorize('destroy-subexam', [$request->ids]);
 
         current_user()->destroyListSubmitExamRequest($request->ids);
@@ -155,8 +187,10 @@ class SubmitExamRequestController extends Controller
         ]);
     }
 
-    public function switchStatusList(Request $request)
+    public function switchStatus(Request $request, $id)
     {
+        SubmitExamRequest::findOrFail($id);
+
         $action = $request->action;
 
         if (! in_array($action, array_keys(config('data.subexam_actions')))) {
@@ -165,7 +199,29 @@ class SubmitExamRequestController extends Controller
             ], 422);
         }
 
-        $this->authorize('switch-status-subexam', [$request->ids, $action]);
+        $this->authorize('switch-status-subexam');
+        
+        current_user()->switchStatusSubmitExamRequest($action, $id);
+
+        return response()->json([
+            'message' => 'Đã thay đổi trạng thái yêu cầu nộp đề thi.',
+            'redirect_to' => 'RELOAD'
+        ]);
+    }
+
+    public function switchStatusList(Request $request)
+    {
+        SubmitExamRequest::findOrFail($request->ids);
+
+        $action = $request->action;
+
+        if (! in_array($action, array_keys(config('data.subexam_actions')))) {
+            return response()->json([
+                'message' => trans('validation.xss')
+            ], 422);
+        }
+
+        $this->authorize('switch-status-subexam');
         
         current_user()->switchStatusListSubmitExamRequest($action, $request->ids);
 

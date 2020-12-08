@@ -115,12 +115,12 @@ class SubmitExamRequest extends Model
 
     public function getTimes1Attribute($value)
     {
-        return json_decode($value, true);
+        return json_decode($value);
     }
 
     public function getTimes2Attribute($value)
     {
-        return json_decode($value, true);
+        return json_decode($value);
     }
 
     public function getFormsAttribute($value)

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Department;
 
-class TeacherJobController extends Controller
+class DataController extends Controller
 {
     public function __construct()
     {

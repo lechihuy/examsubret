@@ -31,19 +31,18 @@ class AuthServiceProvider extends ServiceProvider
             return class_basename($user) === 'Teacher';
         });
 
+        Gate::define('edit-subexam', function($user, $subexam) {
+            return current_user()->submitExamRequests()->where('id', $subexam)->exists();
+        });
+
         Gate::define('destroy-subexam', function($user, $subexams) {
             return current_user()->submitExamRequests()->whereIn('id', $subexams)->exists();
         });
 
-        Gate::define('switch-status-subexam', function($user, $subexams, $action) {
-            // if ($action != 'ACCEPT_SUBEXAM') {
-            //     $isOwnedSubmitExamRequest = current_user()->submitExamRequests()->whereIn('id', $subexams)->exists();
-            // } else {
-            //     $isOwnedSubmitExamRequest = true;
-            // }
-
-            // return auth('admin')->check() && $isOwnedSubmitExamRequest;
+        Gate::define('switch-status-subexam', function($user) {
             return auth('admin')->check();
         });
+
+        
     }
 }

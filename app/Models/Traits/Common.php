@@ -33,15 +33,15 @@ trait Common
 
         $message = trans("log.{$code}", $attrs);
         
-        return DB::table($this->logTable)->insert([
-            'message' => $message,
-            $this->foreignKeyLogTable => $this->id,
-        ]);
+        // return DB::table($this->logTable)->insert([
+        //     'message' => $message,
+        //     $this->foreignKeyLogTable => $this->id,
+        // ]);
     }
 
     public function logs()
     {
-        return DB::table($this->logTable)->where($this->foreignKeyLogTable, $this->id)->get();
+        // return DB::table($this->logTable)->where($this->foreignKeyLogTable, $this->id)->get();
     }
 
     /*
@@ -76,66 +76,5 @@ trait Common
     public function hasChangedPassword()
     {
         return (bool) $this->last_change_password_at;
-    }
-
-    public function destroyListSubmitExamRequest($subexams)
-    {
-        foreach ($subexams as $subexam) {
-            $this->log('destroy_subexam', ['id' => $subexam]);
-        }
-
-        return $this->submitExamRequests()->whereIn('id', $subexams)->delete();
-    }
-
-    public function destroySubmitExamRequest($subexam)
-    {
-        $this->log('destroy_subexam', ['id' => $subexam]);
-
-        return $this->submitExamRequests()->where('id', $subexam)->delete();
-    }
-
-    public function switchStatusListSubmitExamRequest($action, $subexams)
-    {
-        foreach ($subexams as $subexam) {
-            $this->log('destroy_subexam', [
-                'id' => $subexam, 
-                'action' => config('data.subexam_actions')[$action],
-            ]);
-        }
-
-        switch ($action) {
-            case 'ACCEPT_SUBEXAM':
-                $updates = [
-                    'admin_id' => $this->id,
-                    'is_verified' => 0,
-                ];
-
-                return SubmitExamRequest::whereIn('id', $subexams)->update($updates);
-            break;
-
-            case 'CANCEL_ACCEPT_SUBEXAM':
-                $updates = [
-                    'admin_id' => null,
-                    'is_verified' => 0,
-                ];
-            break;
-
-            case 'VERIFY_SUBEXAM':
-                $updates = [
-                    'admin_id' => $this->id,
-                    'is_verified' => 1,
-                ];
-
-                return SubmitExamRequest::whereIn('id', $subexams)->update($updates);
-            break;
-
-            case 'CANCEL_VERIFY_SUBEXAM':
-                $updates = [
-                    'is_verified' => 0
-                ];
-            break;
-        }
-
-        return $this->submitExamRequests()->whereIn('id', $subexams)->update($updates);
     }
 }

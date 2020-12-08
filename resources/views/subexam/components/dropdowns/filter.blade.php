@@ -147,21 +147,23 @@
                 @endforeach
             </div>
 
-            <div class="form-group input-group-sm">
-                <label class="font-weight-bold">Người đăng</label>
-                <select name="teacher_id" style="width: 100%;">
-                    <option value="all">Tất cả</option>
-                    @foreach($teachers as $teacher)
-                        <option value="{{ $teacher->id }}"
-                            @if (isset($filter['teacher_id']) && $filter['teacher_id'] == $teacher->id)
-                                selected
-                            @endif
-                        >
-                            {{ $teacher->identification() }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
+            @auth('admin')
+                <div class="form-group input-group-sm">
+                    <label class="font-weight-bold">Người đăng</label>
+                    <select name="teacher_id" style="width: 100%;">
+                        <option value="all">Tất cả</option>
+                        @foreach($teachers as $teacher)
+                            <option value="{{ $teacher->id }}"
+                                @if (isset($filter['teacher_id']) && $filter['teacher_id'] == $teacher->id)
+                                    selected
+                                @endif
+                            >
+                                {{ $teacher->identification() }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            @endauth
 
             <div class="form-group input-group-sm">
                 <label class="font-weight-bold">Ngày tạo</label>

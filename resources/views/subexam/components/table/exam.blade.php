@@ -1,1 +1,1 @@
-{{ config('data.exams')[$exam] }}
+{{ config('data.exams')[$subexam->exam] }}

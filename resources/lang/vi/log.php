@@ -7,5 +7,6 @@ return [
     'update_profile' => ':Subject :identification vừa cập nhật hồ sơ.',
     
     'create_subexam' => ':Subject :identification vừa tạo một yêu cầu nộp đề thi.',
+    'edit_subexam' => ':Subject :identification vừa sửa yêu cầu nộp đề thi #:id.',
     'destroy_subexam' => ':Subject :identification vừa xóa yêu cầu nộp đề thi #:id.',
 ];

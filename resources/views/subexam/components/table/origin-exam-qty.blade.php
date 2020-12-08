@@ -1,1 +1,1 @@
-{{ $times != null ? $times['origin_exam_qty'] : '-' }}
+{{ $times != null ? optional($times)->origin_exam_qty : '-' }}

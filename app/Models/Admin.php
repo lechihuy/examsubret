@@ -37,4 +37,92 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function switchStatusListSubmitExamRequest($action, $subexams)
+    {
+        foreach ($subexams as $subexam) {
+            $this->log('destroy_subexam', [
+                'id' => $subexam, 
+                'action' => config('data.subexam_actions')[$action],
+            ]);
+        }
+
+        switch ($action) {
+            case 'ACCEPT_SUBEXAM':
+                $updates = [
+                    'admin_id' => $this->id,
+                    'is_verified' => 0,
+                ];
+
+                return SubmitExamRequest::whereIn('id', $subexams)->update($updates);
+            break;
+
+            case 'CANCEL_ACCEPT_SUBEXAM':
+                $updates = [
+                    'admin_id' => null,
+                    'is_verified' => 0,
+                ];
+            break;
+
+            case 'VERIFY_SUBEXAM':
+                $updates = [
+                    'admin_id' => $this->id,
+                    'is_verified' => 1,
+                ];
+
+                return SubmitExamRequest::whereIn('id', $subexams)->update($updates);
+            break;
+
+            case 'CANCEL_VERIFY_SUBEXAM':
+                $updates = [
+                    'is_verified' => 0
+                ];
+            break;
+        }
+
+        return $this->submitExamRequests()->whereIn('id', $subexams)->update($updates);
+    }
+
+    public function switchStatusSubmitExamRequest($action, $subexam)
+    {
+        $this->log('destroy_subexam', [
+            'id' => $subexam, 
+            'action' => config('data.subexam_actions')[$action],
+        ]);
+
+        switch ($action) {
+            case 'ACCEPT_SUBEXAM':
+                $updates = [
+                    'admin_id' => $this->id,
+                    'is_verified' => 0,
+                ];
+
+                return SubmitExamRequest::where('id', $subexam)->update($updates);
+            break;
+
+            case 'CANCEL_ACCEPT_SUBEXAM':
+                $updates = [
+                    'admin_id' => null,
+                    'is_verified' => 0,
+                ];
+            break;
+
+            case 'VERIFY_SUBEXAM':
+                $updates = [
+                    'admin_id' => $this->id,
+                    'is_verified' => 1,
+                ];
+
+                return SubmitExamRequest::where('id', $subexam)->update($updates);
+            break;
+
+            case 'CANCEL_VERIFY_SUBEXAM':
+                $updates = [
+                    'is_verified' => 0
+                ];
+            break;
+        }
+
+        return $this->submitExamRequests()->where('id', $subexam)->update($updates);
+    }
 }
