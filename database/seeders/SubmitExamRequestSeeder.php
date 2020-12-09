@@ -28,8 +28,8 @@ class SubmitExamRequestSeeder extends Seeder
                 'forms' => json_encode(['MC']),
                 'time' => 60,
                 'teacher_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
+                'created_at' => now()->addMonth(3),
+                'updated_at' => now()->addMonth(3)
             ],
         ]);
 
@@ -52,8 +52,8 @@ class SubmitExamRequestSeeder extends Seeder
                 'time' => 150,
                 'teacher_id' => 1,
                 'admin_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
+                'created_at' => now()->addMonth(1),
+                'updated_at' => now()->addMonth(1)
             ],
         ]);
 

@@ -13,7 +13,7 @@
     {{-- Body --}}
     <div id="collapse-timestamps" class="collapse">
         <div class="card-body">
-            <div class="alert alert-warning">
+            <div class="alert alert-info">
                 Trường dữ liệu thời gian có dạng <code>Tháng/Ngày/Năm Giờ:Phút:Giây</code>
             </div>
 

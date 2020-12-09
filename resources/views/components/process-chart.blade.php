@@ -1,7 +1,7 @@
  <div class="p-3">
     <div class="progress mt-2">
         @foreach ($counters as $counter)
-            @php $width = ($counter['count'] / $all) * 100 @endphp
+            @php $width = ($all > 0) ? ($counter['count'] / $all) * 100 : 0 @endphp
             <div class="progress-bar bg-{{ $counter['bg'] }}" style="width: {{ $width }}%">
                 {{ round($width, 2) }}%
             </div>

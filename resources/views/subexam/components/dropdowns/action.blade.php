@@ -3,7 +3,7 @@
         <i class="fas fa-bolt"></i> <span class="d-none d-sm-inline-block">Hành động</span>
     </a>
 
-    <div class="dropdown-menu dropdown-menu-right">
+    <div class="dropdown-menu dropdown-menu-right shadow">
         @auth('teacher')
             <a class="dropdown-item btn-action" has-confirmed="true" has-selected="true"
                 action="{{ route('subexams.destroy_list') }}" method="DELETE" role="button">Xóa yêu cầu</a>

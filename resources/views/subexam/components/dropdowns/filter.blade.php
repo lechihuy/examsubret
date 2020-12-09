@@ -8,7 +8,7 @@
         <i class="fas fa-filter {{ count($filter) ? 'text-success' : '' }}"></i> <span class="d-none d-sm-inline-block">Lọc</span>
     </a>
 
-    <div class="dropdown-menu dropdown-menu-right"  style="max-height: 300px !important; overflow: auto;">
+    <div class="dropdown-menu dropdown-menu-right shadow"  style="max-height: 300px !important; overflow: auto;">
         <form class="px-4 py-2" style="width: 300px; max-width: 100%;" id="form-filter">   
             <div class="form-group input-group-sm">
                 <label class="font-weight-bold">Trạng thái</label>
