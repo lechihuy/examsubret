@@ -17305,3 +17305,23 @@ a:hover {
   vertical-align: middle !important;
 }
 
+.counter {
+  position: relative;
+}
+
+.counter i {
+  right: 1rem;
+  top: 1.9rem;
+  opacity: 0.5;
+  position: absolute;
+}
+
+.counter p {
+  font-size: 2rem;
+}
+
+.counter span {
+  font-size: 1rem !important;
+  display: block;
+}
+

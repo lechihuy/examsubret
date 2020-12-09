@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\SubmitExamRequest;
+
 class DashboardController extends Controller
 {
     public function __construct()
@@ -19,6 +21,20 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('dashboard');
+        if (auth('teacher')->check()) {
+            $submitExamRequestCounter = SubmitExamRequest::counter([
+                'teacher_id' => current_user()->id,
+            ]);
+        } else {
+            $submitExamRequestCounter = SubmitExamRequest::counter();
+        }
+
+        $counter = [
+            'subexam' => $submitExamRequestCounter
+        ];
+
+        return view('dashboard', [
+            'counter' => $counter
+        ]);
     }
 }

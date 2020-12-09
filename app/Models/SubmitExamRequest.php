@@ -133,4 +133,28 @@ class SubmitExamRequest extends Model
         return static::select(DB::raw('YEAR(created_at) as year'))
             ->distinct()->orderBy('year', 'desc')->get()->pluck('year')->toArray();
     }
+
+    protected static function cursor($filter)
+    {
+        return isset($filter['teacher_id']) ? static::where('teacher_id', $filter['teacher_id']) : new static;
+    }
+
+    public static function counter($filter = [])
+    {
+        $all = static::cursor($filter);
+
+        $isVerified = static::cursor($filter)->where('is_verified', 1);
+
+        $pending = static::cursor($filter)->where('is_verified', 0)
+            ->whereNotNull('admin_id');
+
+        $unread = static::cursor($filter)->whereNull('admin_id');
+
+        return [
+            'all' => $all->count(),
+            'is_verified' => $isVerified->count(),
+            'pending' => $pending->count(),
+            'unread' => $unread->count(),
+        ];
+    }
 }

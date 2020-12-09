@@ -56,5 +56,30 @@ class SubmitExamRequestSeeder extends Seeder
                 'updated_at' => now()
             ],
         ]);
+
+        DB::table('submit_exam_requests')->insert([
+            [
+                'department_id' => 9,
+                'major_id' => 24,
+                'subject_id' => 327,
+                'semester' => 2,
+                'exam' => 'ET',
+                'times_1' => json_encode([
+                    'origin_exam_qty' => 1,
+                    'exam_code_qty' => 4,
+                ]),
+                'times_2' => json_encode([
+                    'origin_exam_qty' => 1,
+                    'exam_code_qty' => 4,
+                ]),
+                'forms' => json_encode(['MC', 'ES']),
+                'time' => 150,
+                'teacher_id' => 1,
+                'admin_id' => 1,
+                'is_verified' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+        ]);
     }
 }
