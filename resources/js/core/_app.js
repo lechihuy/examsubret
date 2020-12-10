@@ -201,4 +201,9 @@ $(document).ready(function() {
             $(document).find(`input.check-all-mc[type=checkbox][mc=${mc}]`).prop('checked', false);
         }
     })
+
+    // Print table
+    $(document).on('click', '.btn-print', function() {
+        $("#printer").get(0).contentWindow.print()
+    })
 });

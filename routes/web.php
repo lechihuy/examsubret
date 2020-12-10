@@ -16,12 +16,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'DashboardController')->name('dashboard');
 
 // Submit the exam request
-Route::delete('submit-exam-requests/destroy_list', 'SubmitExamRequestController@destroyList')
-    ->name('subexams.destroy_list');
-Route::put('submit-exam-requests/switch_status_list', 'SubmitExamRequestController@switchStatusList')
-    ->name('subexams.switch_status_list');
-Route::put('submit-exam-requests/switch_status/{subexam}', 'SubmitExamRequestController@switchStatus')
-    ->name('subexams.switch_status');
+Route::prefix('submit-exam-requests')->name('subexams.')->group(function() {
+    Route::delete('/destroy_list', 'SubmitExamRequestController@destroyList')
+        ->name('destroy_list');
+    Route::put('/switch_status_list', 'SubmitExamRequestController@switchStatusList')
+        ->name('switch_status_list');
+    Route::put('/switch_status/{subexam}', 'SubmitExamRequestController@switchStatus')
+        ->name('switch_status');
+    Route::get('/export', 'SubmitExamRequestController@export')
+        ->name('export');
+    Route::get('/print', 'SubmitExamRequestController@print')
+        ->name('print');
+});
+
 Route::resource('submit-exam-requests', 'SubmitExamRequestController')->names([
     'index' => 'subexams.index',
     'show' => 'subexams.show',
@@ -57,7 +64,6 @@ Route::name('auth.')->group(function() {
 Route::prefix('components')->name('components.')->group(function() {
     Route::get('load/view/{view}/handle/{handle}', 'ComponentController@load')->name('load');
 });
-
 
 // Data
 Route::prefix('data')->name('data.')->group(function() {

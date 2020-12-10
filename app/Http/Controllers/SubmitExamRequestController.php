@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreSubmitExamRequest;
 use App\Http\Requests\UpdateSubmitExamRequest;
 use Illuminate\Support\Arr;
+use Maatwebsite\Excel\Facades\Excel;
 
 use App\Models\SubmitExamRequest;
 use App\Models\Department;
 use App\Models\Teacher;
+
+use App\Exports\SubmitExamRequestsExport;
 
 class SubmitExamRequestController extends Controller
 {
@@ -228,6 +231,38 @@ class SubmitExamRequestController extends Controller
         return response()->json([
             'message' => 'Đã thay đổi trạng thái các yêu cầu nộp đề thi.',
             'redirect_to' => 'RELOAD'
+        ]);
+    }
+
+    public function export(Request $request)
+    {
+        $filter = $request->only([
+            'status', 'department_id', 'major_id', 'subject_id', 
+            'year', 'semester', 'exam', 'forms', 'created_at',
+            'teacher_id'
+        ]);
+
+        if (! count($filter)) {
+            $filter = ['year' => now()->format('Y')];
+        }
+
+        return Excel::download(new SubmitExamRequestsExport($filter), 'subexams.xlsx');
+    }
+
+    public function print(Request $request)
+    {
+        $filter = $request->only([
+            'status', 'department_id', 'major_id', 'subject_id', 
+            'year', 'semester', 'exam', 'forms', 'created_at',
+            'teacher_id'
+        ]);
+
+        if (! count($filter)) {
+            $filter = ['year' => now()->format('Y')];
+        }
+
+        return view('prints.subexams', [
+            'subexams' => SubmitExamRequest::list($filter),
         ]);
     }
 }

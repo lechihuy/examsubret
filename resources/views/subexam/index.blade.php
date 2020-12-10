@@ -17,6 +17,8 @@
 @section('title', 'Yêu cầu nộp đề thi')
 
 @section('content')
+<iframe id="printer" src="{{ route('subexams.print', $filter) }}" class="d-none"></iframe>
+
 <main class="container-narrow">
     {{-- Breadcrumb --}}
     @include('components.breadcrumb', ['items' => [
@@ -344,7 +346,9 @@
             ])
         </div>
         <div class="float-right">
-            @include('subexam.components.dropdowns.export')
+            @auth('admin')
+                @include('subexam.components.dropdowns.export')
+            @endauth
         </div>  
         <div class="clearfix"></div>
     </div>

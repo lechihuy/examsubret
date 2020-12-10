@@ -157,4 +157,41 @@ class SubmitExamRequest extends Model
             'unread' => $unread->count(),
         ];
     }
+
+    public function status()
+    {
+        if ($this->admin_id == null) {
+            return 'Chưa xem';
+        } else if ($this->is_verified == 1) {
+            return 'Đã xác thực';
+        } else if ($this->is_verified == 0) {
+            return 'Đang xử lý';
+        }
+    }
+
+    public function examText()
+    {
+        return config('data.exams')[$this->exam];
+    }
+
+    public function schoolYear()
+    {
+        $year = $this->created_at->format('Y');
+
+        return $year.' - '.($year + 1);
+    }
+
+    public function timeText()
+    {
+        return $this->time.' phút';
+    }
+
+    public function formsText()
+    {
+        return implode(', ', 
+            array_map(function($value) {
+                return config('data.exam_forms')[$value];
+            }, $this->forms)
+        );
+    }
 }
