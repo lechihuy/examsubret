@@ -13,14 +13,9 @@
     {{-- Body --}}
     <div id="collapse-timestamps" class="collapse">
         <div class="card-body">
-            <div class="alert alert-info">
-                Trường dữ liệu thời gian có dạng <code>Tháng/Ngày/Năm Giờ:Phút:Giây</code>
-            </div>
-
             <div class="form-group input-group-sm">
-                <label class="font-weight-bold">Ngày tạo</label>
-                <input type="datetime-local" class="form-control" name="created_at" 
-                    value="{{ Carbon\Carbon::parse($subexam->created_at)->format('yy-m-d\TH:i:s') }}">
+                <label class="font-weight-bold d-block">Ngày tạo</label>
+                <code>{{ $subexam->created_at->format('m/d/Y H:i:s') }}</code>
             </div>
             <div class="form-group input-group-sm mb-0">
                 <label class="font-weight-bold d-block">Lần cập nhật cuối</label>

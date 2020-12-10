@@ -48,6 +48,11 @@ class SubmitExamRequest extends Model
         return $this->belongsTo('App\Models\Teacher', 'teacher_id');
     }
 
+    public function admin()
+    {
+        return $this->belongsTo('App\Models\Admin', 'admin_id');
+    }
+
     public static function list($filter = [], $select = ['*'])
     {
         $examsubs = static::select($select);

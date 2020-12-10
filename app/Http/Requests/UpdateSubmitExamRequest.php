@@ -61,7 +61,6 @@ class UpdateSubmitExamRequest extends FormRequest
             'forms' => ['bail', 'required', 'array', new CheckExamForms],
             'time' => ['bail', 'required', 'integer', 'min:1'],
             'note' => ['bail', 'sometimes', 'nullable', 'string'],
-            'created_at' => 'bail|required|string|date_format:Y-m-d\TH:i:s'
         ];
     }
 

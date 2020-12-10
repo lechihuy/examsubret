@@ -14,7 +14,7 @@
                 <p>
                     @include('subexam.components.table.status', [
                         'full_context' => true 
-                    ])
+                    ]) bởi <a class="text-primary">{{ $subexam->admin->identification() }}</a>
                 </p>
             </div>
         @endif
@@ -72,6 +72,17 @@
             </select>
         </div>
         {{-- /Subject --}}
+
+        {{-- School year --}}
+        <div class="form-group input-group-sm">
+            <label class="font-weight-bold">Năm học <span class="text-danger">*</span></label>
+            @isset($subexam)
+                <p>{{ $subexam->schoolYear() }}</p>
+            @else
+                <p>{{ now()->format('Y') . '-' . now()->addYear(1)->format('Y') }}</p>
+            @endisset
+        </div>
+        {{-- /School year --}}
 
         {{-- Semester --}}
         @php $semester = $subexam->semester ?? config('data.semesters')[0] @endphp
