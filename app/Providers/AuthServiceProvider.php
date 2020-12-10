@@ -43,6 +43,8 @@ class AuthServiceProvider extends ServiceProvider
             return auth('admin')->check();
         });
 
-        
+        Gate::define('export', function($user) {
+            return auth('admin')->check();
+        });
     }
 }

@@ -236,6 +236,8 @@ class SubmitExamRequestController extends Controller
 
     public function export(Request $request)
     {
+        $this->authorize('export');
+
         $filter = $request->only([
             'status', 'department_id', 'major_id', 'subject_id', 
             'year', 'semester', 'exam', 'forms', 'created_at',
@@ -251,6 +253,8 @@ class SubmitExamRequestController extends Controller
 
     public function print(Request $request)
     {
+        $this->authorize('export');
+
         $filter = $request->only([
             'status', 'department_id', 'major_id', 'subject_id', 
             'year', 'semester', 'exam', 'forms', 'created_at',

@@ -17,7 +17,10 @@
 @section('title', 'Yêu cầu nộp đề thi')
 
 @section('content')
-<iframe id="printer" src="{{ route('subexams.print', $filter) }}" class="d-none"></iframe>
+
+@can('export')
+    <iframe id="printer" src="{{ route('subexams.print', $filter) }}" class="d-none"></iframe>
+@endcan
 
 <main class="container-narrow">
     {{-- Breadcrumb --}}
@@ -346,9 +349,9 @@
             ])
         </div>
         <div class="float-right">
-            @auth('admin')
+            @can('export')
                 @include('subexam.components.dropdowns.export')
-            @endauth
+            @endcan
         </div>  
         <div class="clearfix"></div>
     </div>
