@@ -41,6 +41,46 @@
                 </a>
             </li>
 
+            @auth('admin')
+                <p class="text-muted text-uppercase mt-3 mb-1">Tài khoản</p>
+                <li class="py-2">
+                    <a href="{{ route('subexams.index') }}">
+                        <i class="fas fa-chalkboard-teacher"></i> Giảng viên
+                    </a>
+                </li>
+                <li class="py-2">
+                    <a href="">
+                        <i class="fas fa-user-cog"></i> Quản trị viên
+                    </a>
+                </li>
+
+                <p class="text-muted text-uppercase mt-3 mb-1">Thiết lập</p>
+                <li class="py-2">
+                    <a role="button">
+                        <i class="fas fa-database"></i> Dữ liệu
+                        <i class="fas fa-chevron-down float-right mt-1 icon-toggle"></i>
+                    </a>
+
+                    <ul class="pl-3 mb-1 sub-nav">
+                        <li class="py-1">
+                            <a href="">
+                                <i class="far fa-circle"></i> Khoa
+                            </a>
+                        </li>
+                        <li class="py-1">
+                            <a href="">
+                                <i class="far fa-circle"></i> Ngành
+                            </a>
+                        </li>
+                        <li class="py-1">
+                            <a href="">
+                                <i class="far fa-circle"></i> Môn
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endauth
+
             <p></p>
             <li class="py-2">
                 <a href="{{ route('auth.logout') }}">

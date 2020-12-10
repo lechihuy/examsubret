@@ -1,16 +1,6 @@
 <?php
 
 return [
-	'semesters' => [1, 2, 3],
-
-	'exams' => ['MT' => 'Giữa kỳ', 'ET' => 'Cuối kỳ'],
-
-	'exam_forms' => [
-		'MC' => 'Trắc nghiệm',
-		'ES' => 'Tự luận',
-		'PT' => 'Thực hành'
-	],
-
 	'subexam_actions' => [
 		'ACCEPT_SUBEXAM' => 'Tiếp nhận yêu cầu',
 		'CANCEL_ACCEPT_SUBEXAM' => 'Hủy tiếp nhận yêu cầu',

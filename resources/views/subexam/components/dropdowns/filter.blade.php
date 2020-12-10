@@ -1,4 +1,4 @@
-<div class="dropdown d-inline-block">
+{{-- <div class="dropdown d-inline-block">
     @if (isset($filter))
         <a class="btn btn-light btn-sm" href="{{ route('subexams.index') }}" style="margin-right: -8px;">
             <i class="fas fa-sync-alt"></i>
@@ -188,4 +188,4 @@
             <button type="button" class="btn btn-sm btn-primary float-right btn-search"><i class="fas fa-search"></i> Tìm kiếm</button>
         </form>
     </div>
-</div>
+</div> --}}

@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             SubjectSeeder::class,
             AdminSeeder::class,
             TeacherSeeder::class,
-            SubmitExamRequestSeeder::class,
+            // SubmitExamRequestSeeder::class,
         ]);
     }
 }

@@ -28,6 +28,33 @@ class SubmitExamRequest extends Model
         'note'
     ];
 
+    public static function data() {
+        return [
+            'semesters' => [1, 2, 3],
+
+            'exams' => ['Giữa kỳ', 'Cuối kỳ'],
+
+            'exam_forms' => [
+                'Trắc nghiệm',
+                'Tự luận',
+                'Thực hành',
+                'Vấn đáp',
+                'Tiểu luận'
+            ],
+
+            'used_material' => ['Không', 'Có', 'Khác'],
+
+            'has_answer' => ['Không', 'Có'],
+
+            'has_point_ladder' => ['Không', 'Có'],
+
+            'exam_types' => [
+                'Phát cho mỗi SV một đề',
+                'Chỉ cần chép lên bảng',
+            ]
+        ];
+    }
+
     public function department()
     {
         return $this->belongsTo('App\Models\Department', 'department_id');

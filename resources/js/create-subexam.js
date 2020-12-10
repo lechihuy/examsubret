@@ -128,9 +128,21 @@ setupSubjectSelectors()
 $('input[type=radio][name=exam]').on('change', function() {
     let exam = $(this).val()
 
-    if (exam == 'MT') {
+    if (exam == 'Giữa kỳ') {
         $('.times-2').addClass('d-none')
     } else {
         $('.times-2').removeClass('d-none')        
+    }
+})
+
+// Handle to used material
+$('input[type=radio][name=used_material]').on('change', function() {
+    let usedMaterial = $(this).val()
+
+    if (usedMaterial == 0) {
+        $('textarea[name=used_material_note]').addClass('d-none')
+        $('textarea[name=used_material_note]').val('')
+    } else {
+        $('textarea[name=used_material_note]').removeClass('d-none')        
     }
 })

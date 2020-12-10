@@ -58,7 +58,7 @@
         
         {{-- Subject --}}
         <div class="form-group input-group-sm">
-            <label class="font-weight-bold">Môn <span class="text-danger">*</span></label>
+            <label class="font-weight-bold">Học phần <span class="text-danger">*</span></label>
             <select name="subject_id" style="width: 100%;">
                 @isset($subjects)) 
                     @foreach ($subjects as $subject)
@@ -84,47 +84,77 @@
         </div>
         {{-- /School year --}}
 
-        {{-- Semester --}}
-        @php $semester = $subexam->semester ?? config('data.semesters')[0] @endphp
-        <div class="form-group input-group-sm">
-            <label class="font-weight-bold d-block">Học kỳ <span class="text-danger">*</span></label>
-            @foreach (config('data.semesters') as $value)
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="semester-{{ $value }}" 
-                        name="semester" class="custom-control-input" value="{{ $value }}"
-                        @if ($semester == $value) checked @endif>
-                    <label class="custom-control-label" for="semester-{{ $value }}" role="button">{{ $value }}</label>
+        <div class="row">
+            <div class="col col-sm-6">
+                {{-- Semester --}}
+                @php $semester = $subexam->semester ?? $data['semesters'][0] @endphp
+                <div class="form-group input-group-sm">
+                    <label class="font-weight-bold d-block">Học kỳ <span class="text-danger">*</span></label>
+                    @foreach ($data['semesters'] as $value)
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="semester-{{ $value }}" 
+                                name="semester" class="custom-control-input" value="{{ $value }}"
+                                @if ($semester == $value) checked @endif>
+                            <label class="custom-control-label" for="semester-{{ $value }}" role="button">{{ $value }}</label>
+                        </div>
+                    @endforeach
                 </div>
-            @endforeach
-        </div>
-        {{-- /Semester --}}
-
-        {{-- Exam --}}
-        @php $exam = $subexam->exam ?? array_keys(config('data.exams'))[0] @endphp
-        <div class="form-group input-group-sm">
-            <label class="font-weight-bold d-block">Kỳ thi <span class="text-danger">*</span></label>
-            @foreach (config('data.exams') as $code => $name)
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="exam-{{ $code }}" 
-                    name="exam" class="custom-control-input" value="{{ $code }}"
-                    @if ($exam == $code) checked @endif>
-                <label class="custom-control-label" for="exam-{{ $code }}" role="button">{{ $name }}</label>
+                {{-- /Semester --}}
             </div>
-            @endforeach
+            <div class="col-12 col-sm-6">
+                {{-- Exam --}}
+                @php $exam = $subexam->exam ?? $data['exams'][0] @endphp
+                <div class="form-group input-group-sm">
+                    <label class="font-weight-bold d-block">Kỳ thi <span class="text-danger">*</span></label>
+                    @foreach ($data['exams'] as $key => $name)
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="exam-{{ $key }}" 
+                                name="exam" class="custom-control-input" value="{{ $name }}"
+                                @if ($exam == $name) checked @endif>
+                            <label class="custom-control-label" for="exam-{{ $key }}" role="button">{{ $name }}</label>
+                        </div>
+                    @endforeach
+                </div>
+                {{-- /Exam --}}
+            </div>
         </div>
-        {{-- /Exam --}}
+
+        <div class="row">
+            {{-- Class --}}
+            <div class="col-12 col-sm-6">
+                <div class="form-group input-group-sm">
+                    <label class="font-weight-bold">Lớp <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="class" value="{{ $subexam->class ?? '' }}">
+                </div>
+            </div>
+            {{-- /Class --}}
+
+            {{-- Time --}}
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label class="font-weight-bold">Thời lượng làm bài <span class="text-danger">*</span></label>
+                    <div class="input-group input-group-sm">
+                        <input type="number" class="form-control" name="time" min="1" value="{{ $subexam->time ?? '' }}">
+                        <div class="input-group-append">
+                            <span class="input-group-text">phút</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- /Time --}}
+        </div>
 
         {{-- Exam times --}}
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th scope="col"><strong>Chi tiết nộp đề thi</strong></th>
-                    <th style="width: 100px;" class="times-1"><strong>Lần 1</strong></th>
+                    <th style="width: 100px;" class="times-1"><strong>Đợt 1</strong></th>
                     <th style="width: 100px;" class="times-2
                         @empty($subexam->times_2))
                             d-none
                         @endempty
-                    "><strong>Lần 2</strong></th>
+                    "><strong>Đợt 2</strong></th>
                 </tr>
             </thead>
             <tbody>
@@ -149,59 +179,88 @@
                         >
                     </td>
                 </tr>
-                <tr>
-                    <td>Số mã đề <span class="text-danger">*</span></td>
-                    <td class="p-0 mb-0 times-1" style="vertical-align: middle;">
-                        <input type="number" min="1" class="form-control rounded-0 border-0" name="times_1_exam_code_qty"
-                            @isset($subexam->times_1))
-                                value="{{ $subexam->times_1->exam_code_qty }}"
-                            @endisset
-                        >
-                    </td>
-                    <td class="p-0 mb-0 times-2
-                        @empty($subexam->times_2))
-                            d-none
-                        @endempty
-                    " style="vertical-align: middle;">
-                        <input type="number" min="1" class="form-control rounded-0 border-0" name="times_2_exam_code_qty"
-                            @isset($subexam->times_2))
-                                value="{{ optional($subexam->times_2)->exam_code_qty }}"
-                            @endisset
-                        >
-                    </td>
-                </tr>
             </tbody>
         </table>
         {{-- /Exam times --}}
 
         {{-- Exam forms --}}
-         <div class="form-group">
+        <div class="form-group input-group-sm">
             <label class="font-weight-bold">Hình thức thi <span class="text-danger">*</span></label>
-            @foreach (config('data.exam_forms') as $key => $value)
+            @foreach ($data['exam_forms'] as $key => $value)
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="forms" 
+                    <input type="checkbox" class="custom-control-input" role="button" name="forms" 
                         value="{{ $key }}" id="form-{{ $key }}"
                             @if (isset($subexam) && in_array($key, $subexam->forms))
                                 checked
                             @endif
                         >
-                    <label class="custom-control-label" for="form-{{ $key }}">{{ $value }}</label>
+                    <label class="custom-control-label" role="button" for="form-{{ $key }}">{{ $value }}</label>
                 </div>
             @endforeach
+            <textarea class="form-control mt-2" rows="1" name="exam_form_note" placeholder="Chú thích thêm về hình thức thi"></textarea>
         </div>
         {{-- /Exam forms --}}
 
-        {{-- Time --}}
-        <div class="form-group">
-            <label class="font-weight-bold">Thời lượng làm bài <span class="text-danger">*</span></label>
-            <div class="input-group input-group-sm">
-                <input type="number" class="form-control" name="time" min="1" value="{{ $subexam->time ?? '' }}">
-                <div class="input-group-append">
-                    <span class="input-group-text">phút</span>
-                </div>
+        {{-- Used material --}}
+        @php $usedMaterial = $subexam->used_material ?? $data['used_material'][0] @endphp
+        <div class="form-group input-group-sm">
+            <label class="font-weight-bold d-block">Được sử dụng tài liệu <span class="text-danger">*</span></label>
+            @foreach ($data['used_material'] as $key => $name)
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="used-material-{{ $key }}" 
+                    name="used_material" class="custom-control-input" value="{{ $key }}"
+                    @if ($usedMaterial == $key) checked @endif>
+                <label class="custom-control-label" for="used-material-{{ $key }}" role="button">{{ $name }}</label>
             </div>
+            @endforeach
+            <textarea class="form-control mt-2 d-none" name="used_material_note" rows="1" placeholder="Liệt kê các tài liệu được phép sử dụng"></textarea>
         </div>
-        {{-- /Time --}}
+        {{-- /Used material --}}
+
+        {{-- Has answer --}}
+        @php $hasAnswer = $subexam->has_answer ?? $data['has_answer'][0] @endphp
+        <div class="form-group input-group-sm">
+            <label class="font-weight-bold d-block">Đề thi có kèm đáp án <span class="text-danger">*</span></label>
+            @foreach ($data['has_answer'] as $key => $label)
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="has-answer-{{ $key }}" 
+                    name="has_answer" class="custom-control-input" value="{{ $key }}"
+                    @if ($hasAnswer == $key) checked @endif>
+                <label class="custom-control-label" for="has-answer-{{ $key }}" role="button">{{ $label }}</label>
+            </div>
+            @endforeach
+        </div>
+        {{-- /Has answer --}}
+
+        {{-- Has point ladder --}}
+        @php $hasAnswer = $subexam->has_answer ?? $data['has_point_ladder'][0] @endphp
+        <div class="form-group input-group-sm">
+            <label class="font-weight-bold d-block">Đề thi có kèm thang điểm <span class="text-danger">*</span></label>
+            @foreach ($data['has_point_ladder'] as $key => $label)
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="has-point-ladder-{{ $key }}" 
+                    name="has_point_ladder" class="custom-control-input" value="{{ $key }}"
+                    @if ($hasAnswer == $key) checked @endif>
+                <label class="custom-control-label" for="has-point-ladder-{{ $key }}" role="button">{{ $label }}</label>
+            </div>
+            @endforeach
+        </div>
+        {{-- /Has point ladder --}}
+
+        {{-- Exam type --}}
+        @php $examType = $subexam->exam_type ?? $data['exam_types'][0] @endphp
+        <div class="form-group input-group-sm">
+            <label class="font-weight-bold d-block">Đề thi thuộc loại <span class="text-danger">*</span></label>
+            @foreach ($data['exam_types'] as $key => $label)
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="exam-type-{{ $key }}" 
+                    name="exam_type" class="custom-control-input" value="{{ $key }}"
+                    @if ($hasAnswer == $key) checked @endif>
+                <label class="custom-control-label" for="exam-type-{{ $key }}" role="button">{{ $label }}</label>
+            </div>
+            @endforeach
+        </div>
+        {{-- /Exam type --}}
 
     </div>
     {{-- /Body --}}

@@ -78,6 +78,7 @@ class SubmitExamRequestController extends Controller
 
         return view('subexam.create', [
             'departments' => Department::all(),
+            'data' => SubmitExamRequest::data(),
         ]);
     }
 

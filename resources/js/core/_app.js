@@ -18,6 +18,11 @@ $(document).ready(function() {
         $('#sidebar').toggleClass('d-none');
     });
 
+    $('#sidebar li').on('click', function() {
+        $(this).find('i.icon-toggle').toggleClass('fa-chevron-down fa-chevron-up');
+        $(this).children('.sub-nav').slideToggle();
+    })
+
     // Collapse
     $(document).find('*[data-toggle="collapse"]').click(function() {
         $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
