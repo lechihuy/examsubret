@@ -250,4 +250,23 @@ class SubmitExamRequestController extends Controller
 
         return Excel::download(new SubmitExamRequestsExport($filter), 'subexams.xlsx');
     }
+
+    public function print(Request $request)
+    {
+        $this->authorize('export');
+
+        $filter = $request->only([
+            'status', 'department_id', 'major_id', 'subject_id', 
+            'year', 'semester', 'exam', 'forms', 'created_at',
+            'teacher_id'
+        ]);
+
+        if (! count($filter)) {
+            $filter = ['year' => now()->format('Y')];
+        }
+
+        return view('prints.subexams', [
+            'subexams' => SubmitExamRequest::list($filter),
+        ]);
+    }
 }
