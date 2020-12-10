@@ -85,6 +85,33 @@
                             </tr>
                             {{-- /Status --}}
 
+                            {{-- Subject --}}
+                            <tr>
+                                <td class="font-weight-bold">Môn học</td>
+                                <td>
+                                    {{ $subexam->subject->name }}
+                                </td>
+                            </tr>
+                            {{-- /Subject --}}
+
+                            {{-- Department --}}
+                            <tr>
+                                <td class="font-weight-bold">Khoa</td>
+                                <td>
+                                    {{ $subexam->department->name }}
+                                </td>
+                            </tr>
+                            {{-- /Department --}}
+
+                            {{-- Major --}}
+                            <tr>
+                                <td class="font-weight-bold">Ngành</td>
+                                <td>
+                                    {{ $subexam->major->name }}
+                                </td>
+                            </tr>
+                            {{-- /Major --}}
+
                             {{-- Year --}}
                             <tr>
                                 <td class="font-weight-bold">Năm học</td>
