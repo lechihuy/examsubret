@@ -25,8 +25,6 @@ Route::prefix('submit-exam-requests')->name('subexams.')->group(function() {
         ->name('switch_status');
     Route::get('/export', 'SubmitExamRequestController@export')
         ->name('export');
-    Route::get('/print', 'SubmitExamRequestController@print')
-        ->name('print');
 });
 
 Route::resource('submit-exam-requests', 'SubmitExamRequestController')->names([
