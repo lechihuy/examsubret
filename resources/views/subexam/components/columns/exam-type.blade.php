@@ -1,0 +1,1 @@
+{{ $subexam->examTypeText() }}

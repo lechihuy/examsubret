@@ -4,9 +4,9 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-use App\Models\TeacherJob;
+use App\Models\SubmitExamRequest;
 
-class CheckJobs implements Rule
+class CheckExamType implements Rule
 {
     /**
      * Create a new rule instance.
@@ -25,18 +25,9 @@ class CheckJobs implements Rule
      * @param  mixed  $value
      * @return bool
      */
-    public function passes($attribute, $jobs)
+    public function passes($attribute, $value)
     {
-        $isValid = true;
-
-        foreach ($jobs as $job) {
-            if (! TeacherJob::isValid($job)) {
-                $isValid = false;
-                break;
-            }
-        }
-
-        return $isValid;
+        return in_array($value, array_keys(SubmitExamRequest::data('exam_types')));
     }
 
     /**

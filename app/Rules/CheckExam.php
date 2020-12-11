@@ -4,6 +4,8 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+use App\Models\SubmitExamRequest;
+
 class CheckExam implements Rule
 {
     /**
@@ -25,7 +27,7 @@ class CheckExam implements Rule
      */
     public function passes($attribute, $value)
     {
-        return in_array($value, array_keys(config('data.exams')));
+        return in_array($value, array_keys(SubmitExamRequest::data('exams')));
     }
 
     /**

@@ -77,22 +77,24 @@ $('#form-filter .btn-search').on('click', function() {
     let formData = form.getData()
 
     formData.forEach(function(item, key) {
-        if (item.name == 'forms') {
+        if (item.name == 'exam_forms') {
             delete formData[key]
         }
     })
 
-    let forms = $('#form-filter input[name=forms]:checked').map(function(key, item) {
+    let exam_forms = $('#form-filter input[for=exam_forms]:checked').map(function(key, item) {
         return $(item).val()
     }).get()
 
-    if (forms.indexOf('all') > -1) {
-        forms = 'all'
+    if (exam_forms.indexOf('all') > -1) {
+        exam_forms = 'all'
+    } else {
+        exam_forms = exam_forms.join()
     }
 
     formData.push({
-        name: 'forms',
-        value: forms
+        name: 'exam_forms',
+        value: exam_forms
     })
 
     let queries = {};
@@ -112,3 +114,4 @@ setupDepartmentSelectors()
 setupMajorSelectors()
 setupSubjectSelectors()
 $('select[name=teacher_id]').select2()
+$('select[name=class]').select2()

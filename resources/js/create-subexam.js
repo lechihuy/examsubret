@@ -78,31 +78,14 @@ $('.btn-create-subexam').on('click', function() {
     const indexBtn = $('.btn-create-subexam').index($(this));
     let form = new Form('#form-create-subexam');
     let formData = form.getData();
-    let forms = [];
-
-    $('#form-create-subexam').find('input[type=checkbox][name=forms]:checked').each(function() {
-        forms.push($(this).val());
-    });
-
-    formData.push({
-        name: 'forms',
-        value: JSON.stringify(forms),
-    });
+    
+    let examForms = $('#form-create-subexam').find('input[type=checkbox][for=exam_forms]:checked').map(function(key, item) {
+        return $(item).val();
+    }).get().join();
 
     formData.push({
-        name: 'times_1',
-        value: JSON.stringify({
-            origin_exam_qty: $('#form-create-subexam').find('input[name=times_1_origin_exam_qty]').val(),
-            exam_code_qty: $('#form-create-subexam').find('input[name=times_1_exam_code_qty]').val(),
-        })
-    });
-
-    formData.push({
-        name: 'times_2',
-        value: JSON.stringify({
-            origin_exam_qty: $('#form-create-subexam').find('input[name=times_2_origin_exam_qty]').val(),
-            exam_code_qty: $('#form-create-subexam').find('input[name=times_2_exam_code_qty]').val(),
-        })
+        name: 'exam_forms',
+        value: examForms,
     });
 
     form.hideAlert();
@@ -128,7 +111,7 @@ setupSubjectSelectors()
 $('input[type=radio][name=exam]').on('change', function() {
     let exam = $(this).val()
 
-    if (exam == 'Giữa kỳ') {
+    if (exam == 'MT') {
         $('.times-2').addClass('d-none')
     } else {
         $('.times-2').removeClass('d-none')        

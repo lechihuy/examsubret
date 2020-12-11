@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\SubmitExamRequest;
+
 return [
 
     /*
@@ -57,7 +59,7 @@ return [
         'array' => 'The :attribute must have :value items or more.',
     ],
     'image' => 'The :attribute must be an image.',
-    'in' => 'The selected :attribute is invalid.',
+    'in' => 'Giá trị :attribute không hợp lệ.',
     'in_array' => 'The :attribute field does not exist in :other.',
     'integer' => ':Attribute phải là số nguyên.',
     'ip' => 'The :attribute must be a valid IP address.',
@@ -98,7 +100,7 @@ return [
     'present' => 'The :attribute field must be present.',
     'regex' => ':Attribute không đúng định dạng.',
     'required' => ':Attribute là bắt buộc.',
-    'required_if' => 'The :attribute field is required when :other is :value.',
+    'required_if' => ':Attribute là bắt buộc khi :other là :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
     'required_with' => ':Attribute là bắt buộc khi :values được nhập.',
     'required_with_all' => 'The :attribute field is required when :values are present.',
@@ -118,7 +120,7 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
-    'xss' => 'Đã có lỗi xảy ra, vui lòng lại trang.',
+    'xss' => 'Đã có lỗi xảy ra, vui lòng tải lại trang và thử lại.',
 
     /*
     |--------------------------------------------------------------------------
@@ -135,6 +137,10 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+    ],
+
+    'values' => [
+        'exam' => SubmitExamRequest::data('exams')
     ],
 
     /*
@@ -155,16 +161,24 @@ return [
         'old_password' => 'mật khẩu cũ',
         'new_password' => 'mật khẩu mới',
         'is_locked' => 'khoá tài khoản',
+
         'semester' => 'học kỳ',
         'exam' => 'kỳ thi',
-        'time' => 'thời lượng thi',
+        'time' => 'thời gian làm bài',
         'department_id' => 'khoa',
         'major_id' => 'ngành',
         'subject_id' => 'môn',
-        'origin_exam_qty' => 'số đề gốc',
-        'exam_code_qty' => 'số mã đề',
-        'forms' => 'hình thức thi',
+        'times_1_exam_qty' => 'số đề đợt 1',
+        'times_2_exam_qty' => 'số đề đợt 2',
+        'exam_forms' => 'hình thức thi',
         'created_at' => 'ngày tạo',
+        'class' => 'nhóm lớp học phần',
+        'exam_form_note' => 'chú thích về hình thức thi',
+        'used_material' => 'được sử dụng tài liệu',
+        'used_material_note' => 'liệt kê các tài liệu được phép sử dụng.',
+        'has_answer' => 'đề thi có kèm đáp án',
+        'has_point_ladder' => 'đề thi có kèm thang điểm',
+        'exam_types' => 'đề thi thuộc loại'
     ],
 
 ];

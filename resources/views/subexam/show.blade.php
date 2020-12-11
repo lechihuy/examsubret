@@ -69,7 +69,7 @@
                             <tr>
                                 <td class="font-weight-bold">Người đăng</td>
                                 <td>
-                                    @include('subexam.components.table.teacher')
+                                    @include('subexam.components.columns.teacher')
                                 </td>
                             </tr>
                             {{-- /Teacher --}}
@@ -78,7 +78,7 @@
                             <tr>
                                 <td class="font-weight-bold">Trạng thái</td>
                                 <td>
-                                    @include('subexam.components.table.status', [
+                                    @include('subexam.components.columns.status', [
                                         'full_context' => true 
                                     ])
                                 </td>
@@ -89,7 +89,7 @@
                             <tr>
                                 <td class="font-weight-bold">Môn học</td>
                                 <td>
-                                    {{ $subexam->subject->name }}
+                                    @include('subexam.components.columns.subject')
                                 </td>
                             </tr>
                             {{-- /Subject --}}
@@ -98,7 +98,7 @@
                             <tr>
                                 <td class="font-weight-bold">Khoa</td>
                                 <td>
-                                    {{ $subexam->department->name }}
+                                    @include('subexam.components.columns.department')
                                 </td>
                             </tr>
                             {{-- /Department --}}
@@ -107,7 +107,16 @@
                             <tr>
                                 <td class="font-weight-bold">Ngành</td>
                                 <td>
-                                    {{ $subexam->major->name }}
+                                    @include('subexam.components.columns.major')
+                                </td>
+                            </tr>
+                            {{-- /Major --}}
+
+                            {{-- Major --}}
+                            <tr>
+                                <td class="font-weight-bold">Nhóm LHP</td>
+                                <td>
+                                    @include('subexam.components.columns.class')
                                 </td>
                             </tr>
                             {{-- /Major --}}
@@ -116,7 +125,7 @@
                             <tr>
                                 <td class="font-weight-bold">Năm học</td>
                                 <td>
-                                    @include('subexam.components.table.year')
+                                    @include('subexam.components.columns.year')
                                 </td>
                             </tr>
                             {{-- /Year --}}
@@ -125,9 +134,7 @@
                             <tr>
                                 <td class="font-weight-bold">Học kỳ</td>
                                 <td>
-                                    @include('subexam.components.table.semester', [
-                                        'semester' => $subexam->semester
-                                    ])
+                                    @include('subexam.components.columns.semester')
                                 </td>
                             </tr>
                             {{-- /Semester --}}
@@ -136,37 +143,70 @@
                             <tr>
                                 <td class="font-weight-bold">Kỳ thi</td>
                                 <td>
-                                    @include('subexam.components.table.exam')
+                                    @include('subexam.components.columns.exam')
                                 </td>
                             </tr>
                             {{-- /Exam --}}
 
                             {{-- Time --}}
                             <tr>
-                                <td class="font-weight-bold">Thời lượng</td>
+                                <td class="font-weight-bold">Thời gian làm bài</td>
                                 <td>
-                                    @include('subexam.components.table.time')
+                                    @include('subexam.components.columns.time')
                                 </td>
                             </tr>
                             {{-- /Time --}}
-                            
+
+                            {{-- Used material --}}
+                            <tr>
+                                <td class="font-weight-bold">Được dùng tài liệu</td>
+                                <td>
+                                    @include('subexam.components.columns.used-material')
+                                </td>
+                            </tr>
+                            {{-- /Used material --}}
+
+                            {{-- Has answer --}}
+                            <tr>
+                                <td class="font-weight-bold">Kèm đáp án</td>
+                                <td>
+                                    @include('subexam.components.columns.has-answer')
+                                </td>
+                            </tr>
+                            {{-- /Has answer --}}
+
+                            {{-- Has point ladder --}}
+                            <tr>
+                                <td class="font-weight-bold">Kèm thang điểm</td>
+                                <td>
+                                    @include('subexam.components.columns.has-point-ladder')
+                                </td>
+                            </tr>
+                            {{-- /Has point ladder --}}
 
                             {{-- Forms --}}
                             <tr>
                                 <td class="font-weight-bold">Hình thức thi</td>
                                 <td>
-                                    @include('subexam.components.table.forms')
+                                    @include('subexam.components.columns.exam-forms')
                                 </td>
                             </tr>
                             {{-- /Forms --}}
+
+                            {{-- Exam type --}}
+                            <tr>
+                                <td class="font-weight-bold">Loại đề thi</td>
+                                <td>
+                                    @include('subexam.components.columns.exam-type')
+                                </td>
+                            </tr>
+                            {{-- /Exam type --}}
 
                             {{-- Note --}}
                             <tr>
                                 <td class="font-weight-bold">Ghi chú</td>
                                 <td>
-                                    @include('subexam.components.table.note', [
-                                        'note' => $subexam->note
-                                    ])
+                                    @include('subexam.components.columns.note')
                                 </td>
                             </tr>
                             {{-- /Note --}}
@@ -175,7 +215,7 @@
                             <tr>
                                 <td class="font-weight-bold">Ngày tạo</td>
                                 <td>
-                                    @include('subexam.components.table.created-at')
+                                    @include('subexam.components.columns.created-at')
                                 </td>
                             </tr>
                             {{-- /Created at --}}
@@ -184,9 +224,7 @@
                             <tr>
                                 <td class="font-weight-bold">Lần sửa đổi cuối</td>
                                 <td>
-                                    @include('subexam.components.table.updated-at', [
-                                        'updated_at' => $subexam->updated_at
-                                    ])
+                                    @include('subexam.components.columns.updated-at')
                                 </td>
                             </tr>
                             {{-- /Updated at --}}
@@ -197,44 +235,28 @@
                             <thead>
                                 <tr>
                                     <th scope="col"><strong>Chi tiết nộp đề thi</strong></th>
-                                    <th style="width: 100px;" class="times-1"><strong>Lần 1</strong></th>
+                                    <th style="width: 100px;" class="times-1"><strong>Đợt 1</strong></th>
                                     <th style="width: 100px;" class="times-2
-                                        @if (! isset($subexam->times_2))
+                                        @if (! isset($subexam->times_2_exam_qty))
                                             d-none
                                         @endif
-                                    "><strong>Lần 2</strong></th>
+                                    "><strong>Đợt 2</strong></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Số đề gốc <span class="text-danger">*</span></td>
+                                    <td>Số đề <span class="text-danger">*</span></td>
                                     <td>
-                                        @if (isset($subexam->times_1))
-                                            {{ $subexam->times_1->origin_exam_qty }}
-                                        @endif
+                                        @include('subexam.components.columns.times-1-exam-qty')
                                     </td>
-                                    <td class="@empty($subexam->times_2)) d-none @endempty" style="vertical-align: middle;">
-                                        @if (isset($subexam->times_2))
-                                            {{ optional($subexam->times_2)->origin_exam_qty }}
-                                        @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Số mã đề <span class="text-danger">*</span></td>
-                                    <td>
-                                        @if (isset($subexam->times_1))
-                                            {{ $subexam->times_1->exam_code_qty }}
-                                        @endif
-                                    </td>
-                                    <td class="@empty($subexam->times_2)) d-none @endempty">
-                                        @if (isset($subexam->times_2))
-                                            {{ optional($subexam->times_2)->exam_code_qty }}
-                                        @endif
+                                    <td class="@empty($subexam->times_2_exam_qty)) d-none @endempty" style="vertical-align: middle;">
+                                        @include('subexam.components.columns.times-2-exam-qty')
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                         {{-- /Exam times --}}
+
                     </div>
                 </div>
                 {{-- /Init --}}

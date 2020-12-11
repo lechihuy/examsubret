@@ -17283,7 +17283,6 @@ a:hover {
 }
 
 .primary-cell {
-  width: 20%;
   box-shadow: inset -1px 0px #dee2e6 !important;
 }
 
@@ -17300,7 +17299,7 @@ a:hover {
   }
 
   .primary-cell {
-    width: auto;
+    width: auto !important;
     box-shadow: none !important;
   }
 }

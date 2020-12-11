@@ -61,7 +61,7 @@
                         <i class="fas fa-chevron-down float-right mt-1 icon-toggle"></i>
                     </a>
 
-                    <ul class="pl-3 mb-1 sub-nav">
+                    <ul class="pl-3 sub-nav">
                         <li class="py-1">
                             <a href="">
                                 <i class="far fa-circle"></i> Khoa
@@ -72,12 +72,17 @@
                                 <i class="far fa-circle"></i> Ngành
                             </a>
                         </li>
-                        <li class="py-1">
+                        <li class="py-1 pb-0">
                             <a href="">
                                 <i class="far fa-circle"></i> Môn
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="py-2">
+                    <a href="">
+                        <i class="fas fa-fire"></i> Test
+                    </a>
                 </li>
             @endauth
 

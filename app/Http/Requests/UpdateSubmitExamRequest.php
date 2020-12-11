@@ -10,8 +10,8 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 use App\Rules\CheckSemester;
 use App\Rules\CheckExam;
-use App\Rules\CheckExamTimes;
 use App\Rules\CheckExamForms;
+use App\Rules\CheckExamType;
 
 use App\Models\SubmitExamRequest;
 
@@ -35,12 +35,6 @@ class UpdateSubmitExamRequest extends FormRequest
     protected function prepareForValidation()
     {
         SubmitExamRequest::findOrFail($this->subexam);
-
-        $this->merge([
-            'times_1' => json_decode($this->times_1, true) ?? [],
-            'times_2' => $this->exam == 'ET' ? json_decode($this->times_2, true) ?? [] : [],
-            'forms' => json_decode($this->forms, true) ?? [],
-        ]);
     }
 
     /**
@@ -54,12 +48,19 @@ class UpdateSubmitExamRequest extends FormRequest
             'department_id' => ['bail', 'required', 'exists:departments,id'],
             'major_id' => ['bail', 'required', 'exists:majors,id'],
             'subject_id' => ['bail', 'required', 'exists:subjects,id'],
-            'semester' => ['bail', 'required', 'string', new CheckSemester],
-            'exam' => ['bail', 'required', 'string', new CheckExam],
-            'times_1' => ['bail', 'required', 'array', new CheckExamTimes(1)],
-            'times_2' => ['bail', 'sometimes', 'nullable', 'array', new CheckExamTimes(2)],
-            'forms' => ['bail', 'required', 'array', new CheckExamForms],
+            'class' => ['bail', 'required', 'string'],
             'time' => ['bail', 'required', 'integer', 'min:1'],
+            'semester' => ['bail', 'required', new CheckSemester],
+            'exam' => ['bail', 'required', new CheckExam],
+            'times_1_exam_qty' => ['bail', 'required', 'integer', 'min:1'],
+            'times_2_exam_qty' => ['bail', 'nullable', 'sometimes', 'required_if:exam,ET', 'integer', 'min:1'],
+            'exam_forms' => ['bail', 'required', new CheckExamForms],
+            'exam_form_note' => ['bail', 'nullable', 'sometimes', 'string'],
+            'used_material' => ['bail', 'required', 'in:0,1,2'],
+            'used_material_note' => ['bail', 'nullable', 'sometimes', 'string'],
+            'has_answer' => ['bail', 'required', 'in:0,1'],
+            'has_point_ladder' => ['bail', 'required', 'in:0,1'],
+            'exam_type' => ['bail', 'required', new CheckExamType],
             'note' => ['bail', 'sometimes', 'nullable', 'string'],
         ];
     }
@@ -70,6 +71,9 @@ class UpdateSubmitExamRequest extends FormRequest
             'department_id.exists' => trans('validation.xss'),
             'major_id.exists' => trans('validation.xss'),
             'subject_id.exists' => trans('validation.xss'),
+            'used_material.in' => trans('validation.xss'),
+            'has_answer.in' => trans('validation.xss'),
+            'has_point_ladder.in' => trans('validation.xss'),
         ];
     }
 

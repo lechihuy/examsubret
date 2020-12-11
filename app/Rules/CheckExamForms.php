@@ -4,6 +4,8 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+use App\Models\SubmitExamRequest;
+
 class CheckExamForms implements Rule
 {
     /**
@@ -25,7 +27,8 @@ class CheckExamForms implements Rule
      */
     public function passes($attribute, $value)
     {
-        $examForms = array_keys(config('data.exam_forms'));
+        $value = $value ? explode(',', $value) : [];
+        $examForms = array_keys(SubmitExamRequest::data('exam_forms'));
         
         foreach ($value as $key) {
             if (! in_array($key, $examForms)) return false;

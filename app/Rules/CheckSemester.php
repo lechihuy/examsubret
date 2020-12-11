@@ -4,6 +4,8 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+use App\Models\SubmitExamRequest;
+
 class CheckSemester implements Rule
 {
     /**
@@ -25,7 +27,7 @@ class CheckSemester implements Rule
      */
     public function passes($attribute, $value)
     {
-        return in_array($value, config('data.semesters'));
+        return in_array($value, SubmitExamRequest::data('semesters'));
     }
 
     /**

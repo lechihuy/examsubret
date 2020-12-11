@@ -6,9 +6,46 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
+use App\Models\Tables\SubmitExamRequestTable;
+
 class SubmitExamRequest extends Model
 {
     use HasFactory;
+
+    public static $data = [
+        'semesters' => [1, 2, 3],
+
+        'exams' => [
+            'MT' => 'Giữa kỳ', 
+            'ET' => 'Cuối kỳ'
+        ],
+
+        'exam_forms' => [
+            'MC' => 'Trắc nghiệm',
+            'ES1' => 'Tự luận',
+            'PT' => 'Thực hành',
+            'QA' => 'Vấn đáp',
+            'ES2' => 'Tiểu luận'
+        ],
+
+        'used_material' => ['Không', 'Có', 'Khác'],
+
+        'has_answer' => ['Không', 'Có'],
+
+        'has_point_ladder' => ['Không', 'Có'],
+
+        'exam_types' => [
+            'PE' => 'Phát cho mỗi SV một đề',
+            'BE' => 'Chỉ cần chép lên bảng',
+            'CE' => 'Thi máy tính'
+        ],
+
+        'status' => [
+            'UNSEEN' => 'Chưa xem',
+            'VERIFIED' => 'Đã xác nhận',
+            'PROCESSING' => 'Đang xử lý',
+        ]
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -16,45 +53,39 @@ class SubmitExamRequest extends Model
      * @var array
      */
     protected $fillable = [
+        'class',
         'department_id',
         'major_id',
         'subject_id',
         'semester',
         'exam',
-        'times_1',
-        'times_2',
-        'forms',
+        'times_1_exam_qty',
+        'times_2_exam_qty',
+        'exam_forms',
+        'exam_form_note',
+        'used_material',
+        'used_material_note',
+        'has_answer',
+        'has_point_ladder',
+        'exam_type',
         'time',
         'note'
     ];
 
-    public static function data() {
-        return [
-            'semesters' => [1, 2, 3],
-
-            'exams' => ['Giữa kỳ', 'Cuối kỳ'],
-
-            'exam_forms' => [
-                'Trắc nghiệm',
-                'Tự luận',
-                'Thực hành',
-                'Vấn đáp',
-                'Tiểu luận'
-            ],
-
-            'used_material' => ['Không', 'Có', 'Khác'],
-
-            'has_answer' => ['Không', 'Có'],
-
-            'has_point_ladder' => ['Không', 'Có'],
-
-            'exam_types' => [
-                'Phát cho mỗi SV một đề',
-                'Chỉ cần chép lên bảng',
-            ]
-        ];
+    public static function table() 
+    {
+        return new SubmitExamRequestTable;
     }
 
+    public static function data($key) {
+        return static::$data[$key] ?? null;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Relative methods
+    |--------------------------------------------------------------------------
+    */
     public function department()
     {
         return $this->belongsTo('App\Models\Department', 'department_id');
@@ -80,6 +111,11 @@ class SubmitExamRequest extends Model
         return $this->belongsTo('App\Models\Admin', 'admin_id');
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Helper methods
+    |--------------------------------------------------------------------------
+    */
     public static function list($filter = [], $select = ['*'])
     {
         $examsubs = static::select($select);
@@ -93,6 +129,11 @@ class SubmitExamRequest extends Model
                     ->whereNotNull('admin_id');
             }
         }
+
+        // Class
+        if (isset($filter['class']) && $filter['class'] != 'all') {
+            $examsubs->where('class', $filter['class']);
+        } 
 
         // Department ID
         if (isset($filter['department_id']) && $filter['department_id'] != 'all') {
@@ -124,11 +165,31 @@ class SubmitExamRequest extends Model
             $examsubs->where('exam', $filter['exam']);
         }
 
-        // Forms
-        if (isset($filter['forms']) && $filter['forms'] != 'all') {
-            $forms = explode(',', $filter['forms']);
+        // Exam forms
+        if (isset($filter['exam_forms']) && $filter['exam_forms'] != 'all') {
+            $examForms = explode(',', $filter['exam_forms']);
 
-            $examsubs->whereJsonContains('forms', $forms);
+            $examsubs->whereJsonContains('exam_forms', $examForms);
+        }
+
+        // Used material
+        if (isset($filter['used_material']) && $filter['used_material'] != 'all') {
+            $examsubs->where('used_material', $filter['used_material']);
+        }
+
+        // Has answer
+        if (isset($filter['has_answer']) && $filter['has_answer'] != 'all') {
+            $examsubs->where('has_answer', $filter['has_answer']);
+        }
+
+        // Has point ladder
+        if (isset($filter['has_point_ladder']) && $filter['has_point_ladder'] != 'all') {
+            $examsubs->where('has_point_ladder', $filter['has_point_ladder']);
+        }
+
+        // Exam type
+        if (isset($filter['exam_type']) && $filter['exam_type'] != 'all') {
+            $examsubs->where('exam_type', $filter['exam_type']);
         }
 
         // Created at
@@ -142,20 +203,45 @@ class SubmitExamRequest extends Model
             $examsubs->latest('created_at');
         }
 
-        return $examsubs->with('department', 'major', 'subject')->paginate(20);
+        $examsubs->with('department', 'major', 'subject');
+
+        if (isset($filter['pagination']) && $filter['pagination'] == false) {
+            return $examsubs->get();
+        } else {
+            return $examsubs->paginate(1);
+        }
     }
 
-    public function getTimes1Attribute($value)
+    protected static function cursorCounter($filter)
     {
-        return json_decode($value);
+        return isset($filter['teacher_id']) ? static::where('teacher_id', $filter['teacher_id']) : new static;
     }
 
-    public function getTimes2Attribute($value)
+    public static function counter($filter = [])
     {
-        return json_decode($value);
+        $all = static::cursorCounter($filter);
+
+        $isVerified = static::cursorCounter($filter)->where('is_verified', 1);
+
+        $pending = static::cursorCounter($filter)->where('is_verified', 0)
+            ->whereNotNull('admin_id');
+
+        $unread = static::cursorCounter($filter)->whereNull('admin_id');
+
+        return [
+            'all' => $all->count(),
+            'is_verified' => $isVerified->count(),
+            'pending' => $pending->count(),
+            'unread' => $unread->count(),
+        ];
     }
 
-    public function getFormsAttribute($value)
+    /*
+    |--------------------------------------------------------------------------
+    | Accessor methods
+    |--------------------------------------------------------------------------
+    */
+    public function getExamFormsAttribute($value)
     {
         return json_decode($value, true);
     }
@@ -166,44 +252,27 @@ class SubmitExamRequest extends Model
             ->distinct()->orderBy('year', 'desc')->get()->pluck('year')->toArray();
     }
 
-    protected static function cursor($filter)
+    public static function getClassList()
     {
-        return isset($filter['teacher_id']) ? static::where('teacher_id', $filter['teacher_id']) : new static;
-    }
-
-    public static function counter($filter = [])
-    {
-        $all = static::cursor($filter);
-
-        $isVerified = static::cursor($filter)->where('is_verified', 1);
-
-        $pending = static::cursor($filter)->where('is_verified', 0)
-            ->whereNotNull('admin_id');
-
-        $unread = static::cursor($filter)->whereNull('admin_id');
-
-        return [
-            'all' => $all->count(),
-            'is_verified' => $isVerified->count(),
-            'pending' => $pending->count(),
-            'unread' => $unread->count(),
-        ];
+        return static::select('class')->get()->pluck('class')->toArray();
     }
 
     public function status()
     {
+        $status = static::data('status');
+
         if ($this->admin_id == null) {
-            return 'Chưa xem';
+            return $status['UNSEEN'];
         } else if ($this->is_verified == 1) {
-            return 'Đã xác thực';
+            return $status['VERIFIED'];
         } else if ($this->is_verified == 0) {
-            return 'Đang xử lý';
+            return $status['PROCESSING'];
         }
     }
 
     public function examText()
     {
-        return config('data.exams')[$this->exam];
+        return static::data('exams')[$this->exam];
     }
 
     public function schoolYear()
@@ -218,12 +287,34 @@ class SubmitExamRequest extends Model
         return $this->time.' phút';
     }
 
-    public function formsText()
+    public function examFormsText()
     {
+        $examForms = static::data('exam_forms');
+
         return implode(', ', 
-            array_map(function($value) {
-                return config('data.exam_forms')[$value];
-            }, $this->forms)
+            array_map(function($value) use ($examForms) {
+                return $examForms[$value];
+            }, $this->exam_forms)
         );
+    }
+
+    public function usedMaterialText()
+    {
+        return static::data('used_material')[$this->used_material];
+    }
+
+    public function hasAnswerText()
+    {
+        return static::data('has_answer')[$this->has_answer];
+    }
+
+    public function hasPointLadderText()
+    {
+        return static::data('has_point_ladder')[$this->has_point_ladder];
+    }
+
+    public function examTypeText()
+    {
+        return static::data('exam_types')[$this->exam_type];
     }
 }

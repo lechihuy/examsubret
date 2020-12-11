@@ -17,16 +17,9 @@ class SubmitExamRequestsExport implements FromView, ShouldAutoSize
         $this->filter = $filter;
     }   
 
-    public function map($invoice): array
-    {
-        return [
-            Date::dateTimeToExcel($invoice->created_at),
-        ];
-    }
-
     public function view(): View
     {
-        return view('exports.subexams', [
+        return view('subexam.exports.excel', [
             'subexams' => SubmitExamRequest::list($this->filter)
         ]);
     }

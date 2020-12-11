@@ -78,31 +78,14 @@ $('.btn-edit-subexam').on('click', function() {
     const indexBtn = $('.btn-edit-subexam').index($(this));
     let form = new Form('#form-edit-subexam');
     let formData = form.getData();
-    let forms = [];
-
-    $('#form-edit-subexam').find('input[type=checkbox][name=forms]:checked').each(function() {
-        forms.push($(this).val());
-    });
-
-    formData.push({
-        name: 'forms',
-        value: JSON.stringify(forms),
-    });
+    
+    let examForms = $('#form-edit-subexam').find('input[type=checkbox][for=exam_forms]:checked').map(function(key, item) {
+        return $(item).val();
+    }).get().join();
 
     formData.push({
-        name: 'times_1',
-        value: JSON.stringify({
-            origin_exam_qty: $('#form-edit-subexam').find('input[name=times_1_origin_exam_qty]').val(),
-            exam_code_qty: $('#form-edit-subexam').find('input[name=times_1_exam_code_qty]').val(),
-        })
-    });
-
-    formData.push({
-        name: 'times_2',
-        value: JSON.stringify({
-            origin_exam_qty: $('#form-edit-subexam').find('input[name=times_2_origin_exam_qty]').val(),
-            exam_code_qty: $('#form-edit-subexam').find('input[name=times_2_exam_code_qty]').val(),
-        })
+        name: 'exam_forms',
+        value: examForms,
     });
 
     form.hideAlert();
@@ -132,5 +115,17 @@ $('input[type=radio][name=exam]').on('change', function() {
         $('.times-2').addClass('d-none')
     } else {
         $('.times-2').removeClass('d-none')        
+    }
+})
+
+// Handle to used material
+$('input[type=radio][name=used_material]').on('change', function() {
+    let usedMaterial = $(this).val()
+
+    if (usedMaterial == 0) {
+        $('textarea[name=used_material_note]').addClass('d-none')
+        $('textarea[name=used_material_note]').val('')
+    } else {
+        $('textarea[name=used_material_note]').removeClass('d-none')        
     }
 })

@@ -1,1 +1,0 @@
-{{ config('data.exams')[$subexam->exam] }}

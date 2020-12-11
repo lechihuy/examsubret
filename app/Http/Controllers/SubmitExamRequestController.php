@@ -29,9 +29,10 @@ class SubmitExamRequestController extends Controller
     public function index(Request $request)
     {
         $filter = $request->only([
-            'status', 'department_id', 'major_id', 'subject_id', 
-            'year', 'semester', 'exam', 'forms', 'created_at',
-            'teacher_id'
+            'status', 'class', 'department_id', 'major_id', 'subject_id', 
+            'year', 'semester', 'exam', 'exam_forms', 'used_material', 
+            'has_answer', 'has_point_ladder', 'exam_type',
+            'created_at', 'teacher_id'
         ]);
 
         if (! count($filter)) {
@@ -57,13 +58,16 @@ class SubmitExamRequestController extends Controller
         }
 
         return view('subexam.index', [
-           'subexams' => SubmitExamRequest::list($filter),
-           'departments' => Department::all(),
-           'years' => SubmitExamRequest::getYearList(),
-           'filter' => $filter,
-           'majors' => $majors,
-           'subjects' => $subjects, 
-           'teachers' => $teachers
+            'table' => SubmitExamRequest::table(),
+            'data' => SubmitExamRequest::$data,
+            'subexams' => SubmitExamRequest::list($filter),
+            'departments' => Department::all(),
+            'years' => SubmitExamRequest::getYearList(),
+            'classes' => SubmitExamRequest::getClassList(),
+            'filter' => $filter,
+            'majors' => $majors,
+            'subjects' => $subjects, 
+            'teachers' => $teachers
         ]);
     }
 
@@ -78,7 +82,7 @@ class SubmitExamRequestController extends Controller
 
         return view('subexam.create', [
             'departments' => Department::all(),
-            'data' => SubmitExamRequest::data(),
+            'data' => SubmitExamRequest::$data,
         ]);
     }
 
@@ -91,12 +95,12 @@ class SubmitExamRequestController extends Controller
     public function store(StoreSubmitExamRequest $request)
     {
         $data = $request->validated();
-        
+
         current_user()->createSubmitExamRequest($data);
 
         return response()->json([
             'message' => 'Tạo yêu cầu nộp đề thi thành công.',
-            'redirect_to' => route('subexams.create'),
+            'redirect_to' => route('subexams.index'),
         ]);
     }
 
@@ -117,6 +121,7 @@ class SubmitExamRequestController extends Controller
         $subjects = optional($department)->subjects ?? [];
 
         return view('subexam.edit', [
+            'data' => SubmitExamRequest::$data,
             'subexam' => $subexam,
             'departments' => Department::all(),
             'majors' => $majors,
@@ -240,10 +245,13 @@ class SubmitExamRequestController extends Controller
         $this->authorize('export');
 
         $filter = $request->only([
-            'status', 'department_id', 'major_id', 'subject_id', 
-            'year', 'semester', 'exam', 'forms', 'created_at',
-            'teacher_id'
+            'status', 'class', 'department_id', 'major_id', 'subject_id', 
+            'year', 'semester', 'exam', 'exam_forms', 'used_material', 
+            'has_answer', 'has_point_ladder', 'exam_type',
+            'created_at', 'teacher_id'
         ]);
+
+        $filter['pagination'] = false;
 
         if (! count($filter)) {
             $filter = ['year' => now()->format('Y')];
@@ -257,16 +265,19 @@ class SubmitExamRequestController extends Controller
         $this->authorize('export');
 
         $filter = $request->only([
-            'status', 'department_id', 'major_id', 'subject_id', 
-            'year', 'semester', 'exam', 'forms', 'created_at',
-            'teacher_id'
+            'status', 'class', 'department_id', 'major_id', 'subject_id', 
+            'year', 'semester', 'exam', 'exam_forms', 'used_material', 
+            'has_answer', 'has_point_ladder', 'exam_type',
+            'created_at', 'teacher_id'
         ]);
+
+        $filter['pagination'] = false;
 
         if (! count($filter)) {
             $filter = ['year' => now()->format('Y')];
         }
 
-        return view('prints.subexams', [
+        return view('subexam.exports.print', [
             'subexams' => SubmitExamRequest::list($filter),
         ]);
     }

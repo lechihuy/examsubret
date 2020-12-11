@@ -189,21 +189,21 @@ $(document).ready(function() {
 
     // Multichoice
     $(document).on('click', '.check-all-mc', function() {
-        let mc = $(this).attr('mc')
+        let mc = $(this).attr('for')
         let checked = $(this).prop('checked');
         
-        $(document).find(`input[type=checkbox][mc=${mc}]`).prop('checked', checked);
+        $(document).find(`input[type=checkbox][for=${mc}]`).prop('checked', checked);
     })
 
-    $(document).on('click', `input.choice[type=checkbox][mc]`, function() {
+    $(document).on('click', `input.choice[type=checkbox][for]`, function() {
         let checked = $(this).prop('checked');
-        let mc = $(this).attr('mc')
+        let mc = $(this).attr('for')
         
-        if ($(document).find(`input.choice[type=checkbox][mc=${mc}]:checked`).length 
-            == $(document).find(`input.choice[type=checkbox][mc=${mc}]`).length) {
-            $(document).find(`input.check-all-mc[type=checkbox][mc=${mc}]`).prop('checked', true);
+        if ($(document).find(`input.choice[type=checkbox][for=${mc}]:checked`).length 
+            == $(document).find(`input.choice[type=checkbox][for=${mc}]`).length) {
+            $(document).find(`input.check-all-mc[type=checkbox][for=${mc}]`).prop('checked', true);
         } else {
-            $(document).find(`input.check-all-mc[type=checkbox][mc=${mc}]`).prop('checked', false);
+            $(document).find(`input.check-all-mc[type=checkbox][for=${mc}]`).prop('checked', false);
         }
     })
 

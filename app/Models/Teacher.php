@@ -48,10 +48,8 @@ class Teacher extends Authenticatable
     {
         $this->log('create_subexam');
 
-        $data['times_1'] = json_encode($data['times_1']);
-        $data['times_2'] = count($data['times_2']) ? json_encode($data['times_2']) : null;
-        $data['forms'] = json_encode($data['forms']);
-        
+        $data['exam_forms'] = json_encode(explode(',', $data['exam_forms']));
+
         return $this->submitExamRequests()->create($data);
     }
 
@@ -59,9 +57,7 @@ class Teacher extends Authenticatable
     {
         $this->log('update_subexam', ['id' => $id]);
 
-        $data['times_1'] = json_encode($data['times_1']);
-        $data['times_2'] = count($data['times_2']) ? json_encode($data['times_2']) : null;
-        $data['forms'] = json_encode($data['forms']);
+        $data['exam_forms'] = json_encode(explode(',', $data['exam_forms']));
 
         return $this->submitExamRequests()->where('id', $id)->update($data);
     }

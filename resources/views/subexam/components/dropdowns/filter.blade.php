@@ -1,4 +1,4 @@
-{{-- <div class="dropdown d-inline-block">
+<div class="dropdown d-inline-block">
     @if (isset($filter))
         <a class="btn btn-light btn-sm" href="{{ route('subexams.index') }}" style="margin-right: -8px;">
             <i class="fas fa-sync-alt"></i>
@@ -14,14 +14,7 @@
                 <label class="font-weight-bold">Trạng thái</label>
                 <select name="status" class="form-control">
                     <option value="all">Tất cả</option>
-                    @php 
-                        $status = [
-                            '2' => 'Chưa xem',
-                            '0' => 'Đang xử lý',
-                            '1' => 'Đã xác nhận'
-                        ]
-                    @endphp
-                    @foreach ($status as $key => $value)
+                    @foreach ($data['status'] as $key => $value)
                         <option value="{{ $key }}"
                             @if (isset($filter['status']) && $filter['status'] != 'all' && $filter['status'] == $key) selected @endif
                         >{{ $value }}</option>
@@ -76,6 +69,20 @@
                     @endforeach
                 </select>
             </div>
+
+            <div class="form-group input-group-sm">
+                <label class="font-weight-bold">Nhóm LHP</label>
+                <select name="class" style="width: 100%;">
+                    <option value="all">Tất cả</option>
+                    @foreach ($classes as $class)
+                        <option value="{{ $class }}"
+                            @if (isset($filter['class']) && $filter['class'] == $class)
+                                selected
+                            @endif
+                        >{{ $class }}</option>
+                    @endforeach
+                </select>
+            </div>
             
             <div class="form-group input-group-sm">
                 <label class="font-weight-bold">Năm học</label>
@@ -95,7 +102,7 @@
                 <label class="font-weight-bold">Học kỳ</label>
                 <select name="semester" class="form-control">
                     <option value="all">Tất cả</option>
-                    @foreach (config('data.semesters') as $value)
+                    @foreach ($data['semesters'] as $value)
                         <option value="{{ $value }}"
                             @if (isset($filter['semester']) && $filter['semester'] == $key)
                                 selected
@@ -109,7 +116,7 @@
                 <label class="font-weight-bold">Kỳ thi</label>
                 <select name="exam" class="form-control">
                     <option value="all">Tất cả</option>
-                    @foreach (config('data.exams') as $key => $value)
+                    @foreach ($data['exams'] as $key => $value)
                         <option value="{{ $key }}"
                             @if (isset($filter['exam']) && $filter['exam'] == $key)
                                 selected
@@ -122,34 +129,90 @@
             <div class="form-group">
                 <label class="font-weight-bold">Hình thức thi</label>
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input check-all-mc" name="forms" 
-                        value="all" id="form-all" mc="forms"
-                            @if ((isset($filter['forms']) && $filter['forms'] == 'all')
-                            || ! isset($filter['forms']))
+                    <input type="checkbox" class="custom-control-input check-all-mc" 
+                        value="all" id="form-all" for="exam_forms"
+                            @if ((isset($filter['exam_forms']) && $filter['exam_forms'] == 'all')
+                            || ! isset($filter['exam_forms']))
                                 checked
                             @endif
                         >
                     <label class="custom-control-label pt-1" for="form-all">Tất cả</label>
                 </div>
-                @php $forms = explode(',', $filter['forms'] ?? '') @endphp
-                @foreach (config('data.exam_forms') as $key => $value)
+                @php $examForms = explode(',', $filter['exam_forms'] ?? '') @endphp
+                @foreach ($data['exam_forms'] as $key => $value)
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input choice" name="forms" 
-                            value="{{ $key }}" id="form-{{ $key }}" mc="forms"
-                                @if ((isset($filter['forms']) 
-                                && ($filter['forms'] == 'all' || in_array($key, $forms)))
-                                || ! isset($filter['forms']))
+                        <input type="checkbox" class="custom-control-input choice" 
+                            value="{{ $key }}" id="exam-form-{{ $key }}" for="exam_forms"
+                                @if ((isset($filter['exam_forms']) 
+                                && ($filter['exam_forms'] == 'all' || in_array($key, $examForms)))
+                                || ! isset($filter['exam_forms']))
                                     checked
                                 @endif
                             >
-                        <label class="custom-control-label pt-1" for="form-{{ $key }}">{{ $value }}</label>
+                        <label class="custom-control-label pt-1" for="exam-form-{{ $key }}">{{ $value }}</label>
                     </div>
                 @endforeach
             </div>
 
+            <div class="form-group input-group-sm">
+                <label class="font-weight-bold">Được dùng tài liệu</label>
+                <select name="used_material" class="form-control">
+                    <option value="all">Tất cả</option>
+                    @foreach ($data['used_material'] as $key => $value)
+                        <option value="{{ $key }}"
+                            @if (isset($filter['used_material']) && $filter['used_material'] != 'all' && $filter['used_material'] == $key)
+                                selected
+                            @endif
+                        >{{ $value }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group input-group-sm">
+                <label class="font-weight-bold">Kèm đáp án</label>
+                <select name="has_answer" class="form-control">
+                    <option value="all">Tất cả</option>
+                    @foreach ($data['has_answer'] as $key => $value)
+                        <option value="{{ $key }}"
+                            @if (isset($filter['has_answer']) && $filter['has_answer'] != 'all' && $filter['has_answer'] == $key)
+                                selected
+                            @endif
+                        >{{ $value }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group input-group-sm">
+                <label class="font-weight-bold">Kèm thang điểm</label>
+                <select name="has_point_ladder" class="form-control">
+                    <option value="all">Tất cả</option>
+                    @foreach ($data['has_point_ladder'] as $key => $value)
+                        <option value="{{ $key }}"
+                            @if (isset($filter['has_point_ladder']) && $filter['has_point_ladder'] != 'all' && $filter['has_point_ladder'] == $key)
+                                selected
+                            @endif
+                        >{{ $value }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group input-group-sm">
+                <label class="font-weight-bold">Loại đề thi</label>
+                <select name="exam_type" class="form-control">
+                    <option value="all">Tất cả</option>
+                    @foreach ($data['exam_types'] as $key => $value)
+                        <option value="{{ $key }}"
+                            @if (isset($filter['exam_type']) && $filter['exam_type'] != 'all' && $filter['exam_type'] == $key)
+                                selected
+                            @endif
+                        >{{ $value }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             @auth('admin')
                 <div class="form-group input-group-sm">
-                    <label class="font-weight-bold">Người đăng</label>
+                    <label class="font-weight-bold">Giảng viên</label>
                     <select name="teacher_id" style="width: 100%;">
                         <option value="all">Tất cả</option>
                         @foreach($teachers as $teacher)
@@ -188,4 +251,4 @@
             <button type="button" class="btn btn-sm btn-primary float-right btn-search"><i class="fas fa-search"></i> Tìm kiếm</button>
         </form>
     </div>
-</div> --}}
+</div>
