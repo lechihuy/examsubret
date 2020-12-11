@@ -122,10 +122,11 @@ class SubmitExamRequest extends Model
             
         // Status
         if (isset($filter['status']) && $filter['status'] != 'all') {
-            if ($filter['status'] == 2) {
+            if ($filter['status'] == 'UNSEEN') {
                 $examsubs->where('admin_id', null);
             } else {
-                $examsubs->where('is_verified', $filter['status'])
+                $isVerified = $filter['status'] == 'VERIFIED' ? 1 : 0;
+                $examsubs->where('is_verified', $isVerified)
                     ->whereNotNull('admin_id');
             }
         }
@@ -208,7 +209,7 @@ class SubmitExamRequest extends Model
         if (isset($filter['pagination']) && $filter['pagination'] == false) {
             return $examsubs->get();
         } else {
-            return $examsubs->paginate(1);
+            return $examsubs->paginate(20);
         }
     }
 

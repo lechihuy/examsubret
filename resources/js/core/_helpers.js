@@ -27,21 +27,17 @@ window.remove_timestamp_url = url => {
     return url.split('?timestamp=')[0];
 }
 
-// window.query_url = (uri, key, value) => {
-//     var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
-//     var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+window.query_url = (uri, key, value) => {
+    var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+    var separator = uri.indexOf('?') !== -1 ? "&" : "?";
     
-//     if (uri.match(re)) {
-//         return uri.replace(re, '$1' + key + "=" + value + '$2');
-//     }
+    if (uri.match(re)) {
+        return uri.replace(re, '$1' + key + "=" + value + '$2');
+    }
     
-//     return uri + separator + key + "=" + value;
-// }
+    return uri + separator + key + "=" + value;
+}
 
 window.route = (name) => {
     return $(`meta[name="${name}"]`).attr('content');
-}
-
-window.query_url = (uri, queries) => {
-    uri
 }
