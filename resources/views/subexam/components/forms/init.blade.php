@@ -209,7 +209,7 @@
             </div>
             @endforeach
             <textarea class="form-control mt-2 
-                @if ($subexam->used_material == 0) d-none @endif
+                @if (isset($subject) && $subexam->used_material == 0) d-none @endif
             " name="used_material_note" rows="1" placeholder="Liệt kê các tài liệu được phép sử dụng">{{ $subexam->used_material_note ?? '' }}</textarea>
         </div>
         {{-- /Used material --}}
