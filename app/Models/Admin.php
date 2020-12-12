@@ -118,7 +118,8 @@ class Admin extends Authenticatable
 
             case 'CANCEL_VERIFY_SUBEXAM':
                 $updates = [
-                    'is_verified' => 0
+                    'admin_id' => $this->id,
+                    'is_verified' => 0,
                 ];
             break;
         }

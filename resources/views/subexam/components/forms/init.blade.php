@@ -16,7 +16,7 @@
                         'full_context' => true 
                     ]) 
                     @if ($subexam->admin_id)
-                        bởi <a class="text-primary">{{ $subexam->admin->identification() }}</a>
+                        bởi <a href="">{{ $subexam->admin->identification() }}</a>
                     @endif
                 </p>
             </div>

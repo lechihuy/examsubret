@@ -27,15 +27,19 @@
             @endforeach
         </table>
 
-        {{-- Action --}}
-        @auth('teacher')
-            <div>
+        <div>
+            {{-- Action --}}
+            @auth('teacher')
                 <a href="{{ route('subexams.edit', $subexam->id) }}" class="mr-3">Sửa</a>
                 <a class="text-danger btn-action" has-confirmed="true" 
                 action="{{ route('subexams.destroy', $subexam->id) }}" method="DELETE" 
                 data-redirect_to="RELOAD" role="button">Xóa</a>
-            </div>
-        @endauth
+            @endauth
+
+            @auth('admin')
+                <a href="{{ route('subexams.show', $subexam->id) }}" class="mr-3">Duyệt</a>
+            @endauth
+        </div>
         {{-- /Action --}}
 
     </div>
