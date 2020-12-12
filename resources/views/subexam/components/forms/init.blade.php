@@ -127,7 +127,12 @@
             <div class="col-12 col-sm-6">
                 <div class="form-group input-group-sm">
                     <label class="font-weight-bold">Nhóm lớp học phần <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="class" value="{{ $subexam->class ?? '' }}">
+                    <input type="text" class="form-control" list="classes" name="class" value="{{ $subexam->class ?? '' }}">
+                    <datalist id="classes">
+                        @foreach ($classes as $class)
+                            <option value="{{ $class }}">
+                        @endforeach
+                    </datalist>
                 </div>
             </div>
             {{-- /Class --}}

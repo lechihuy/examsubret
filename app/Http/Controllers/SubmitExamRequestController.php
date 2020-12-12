@@ -83,6 +83,7 @@ class SubmitExamRequestController extends Controller
         return view('subexam.create', [
             'departments' => Department::all(),
             'data' => SubmitExamRequest::$data,
+            'classes' => SubmitExamRequest::getClassList(),
         ]);
     }
 
@@ -126,6 +127,7 @@ class SubmitExamRequestController extends Controller
             'departments' => Department::all(),
             'majors' => $majors,
             'subjects' => $subjects, 
+            'classes' => SubmitExamRequest::getClassList(),
         ]);
     }
 
