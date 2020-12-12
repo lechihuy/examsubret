@@ -267,3 +267,13 @@ a:hover {
     font-size: 1rem !important;
     display: block;
 }
+
+.overlay {
+    width: 280px; 
+    position: fixed; 
+    height: calc(100vh - 51px); 
+    right: 0; 
+    top: 51px; 
+    overflow: auto; 
+    z-index: 999;
+}

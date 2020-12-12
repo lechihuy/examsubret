@@ -23,6 +23,18 @@ $(document).ready(function() {
         $(this).children('.sub-nav').slideToggle();
     })
 
+    // Toggle overlay
+    $(document).on('click', '.btn-toggle-overlay', function() {
+        let overlay = $(this).attr('overlay');
+        $(overlay).toggleClass('d-none');
+    });
+
+    $(document).on('keyup', function(e) {
+        if (e.key === 'Escape') {
+            $('.overlay').addClass('d-none')
+        };
+    });
+
     // Collapse
     $(document).find('*[data-toggle="collapse"]').click(function() {
         $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');

@@ -29,8 +29,8 @@
     ]])
 
     {{-- Header --}}
-    <h3 class="d-flex flex-column flex-sm-row">
-        <div class="mr-auto">Yêu cầu nộp đề thi</div>
+    <div class="d-flex flex-column flex-sm-row">
+        <h3 class="mr-auto">Yêu cầu nộp đề thi</h3>
 
         <div class="ml-0 ml-sm-2 mt-3 mt-sm-0 text-right">
             {{-- Action --}}
@@ -45,7 +45,7 @@
                 </a>
             @endauth
         </div> 
-    </h3>
+    </div>
     {{-- /Header --}}
 
     {{-- Table --}}
