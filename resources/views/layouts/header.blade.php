@@ -24,7 +24,7 @@
                     <h6 class="dropdown-header">Dữ liệu</h6>
                     <a class="dropdown-item" href="{{ route('departments.create') }}">Khoa</a>
                     <a class="dropdown-item" href="{{ route('majors.create') }}">Ngành</a>
-                    <a class="dropdown-item" href="{{ route('subject.create') }}">Học phần</a>
+                    <a class="dropdown-item" href="{{ route('subjects.create') }}">Học phần</a>
 
                 @endauth
             </div>
