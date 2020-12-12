@@ -156,4 +156,77 @@ class Admin extends Authenticatable
 
         return Department::where('id', $id)->update($data);
     }
+
+    public function createMajor($data)
+    {
+        $this->log('create_major');
+
+        return Major::create($data);
+    }
+
+    public function destroyListMajor($majors)
+    {
+        foreach ($majors as $major) {
+            $this->log('destroy_major', ['id' => $major]);
+        }
+
+        return Major::whereIn('id', $majors)->delete();
+    }
+
+    public function destroyMajor($major)
+    {
+        $this->log('destroy_major', ['id' => $major]);
+
+        return Major::where('id', $major)->delete();
+    }
+
+    public function updateMajor($id, $data)
+    {
+        $this->log('edit_major', ['id' => $id]);
+
+        return Major::where('id', $id)->update($data);
+    }
+
+    public function createSubject($data)
+    {
+        $this->log('create_subject');
+
+        $subject = Subject::create($data);
+
+        $data['department_id'] = explode(',', $data['department_id']);
+
+        $subject->departments()->attach($data['department_id']);
+    }
+
+    public function destroyListSubject($subjects)
+    {
+        foreach ($subjects as $subject) {
+            $this->log('destroy_subject', ['id' => $subject]);
+        }
+
+        return Subject::whereIn('id', $subjects)->delete();
+    }
+
+    public function destroySubject($subject)
+    {
+        $this->log('destroy_subject', ['id' => $subject]);
+
+        return Subject::where('id', $subject)->delete();
+    }
+
+    public function updateSubject($id, $data)
+    {
+        $this->log('edit_subject', ['id' => $id]);
+
+        Subject::where('id', $id)->update([
+            'name' => $data['name'],
+            'code' => $data['code'],
+        ]);
+
+        $data['department_id'] = explode(',', $data['department_id']);
+
+        $subject = Subject::find($id);
+        $subject->departments()->detach($subject->departments);
+        $subject->departments()->attach($data['department_id']);
+    }
 }

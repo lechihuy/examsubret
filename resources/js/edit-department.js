@@ -1,6 +1,6 @@
 require('./components/_form')
 
-// Create a new department
+// Edit department
 $('.btn-edit-department').on('click', function() {
     const indexBtn = $('.btn-edit-departmnet').index($(this));
     let form = new Form('#form-edit-department');

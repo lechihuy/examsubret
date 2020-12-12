@@ -21,13 +21,14 @@ class MajorSeeder extends Seeder
             $major = new Major;
             $major->name = $item['name'];
             $major->code = $item['code'];
+            $major->department_id = Department::where('code', $item['department_code'][0])->first()->id;
             $major->save();
 
-            if (isset($item['department_code'])) {
-                $major->departments()->attach(
-                    Department::whereIn('code', $item['department_code'])->get()
-                );
-            }
+            // if (isset($item['department_code'])) {
+            //     $major->departments()->attach(
+            //         Department::whereIn('code', $item['department_code'])->get()
+            //     );
+            // }
         }
     }
 }

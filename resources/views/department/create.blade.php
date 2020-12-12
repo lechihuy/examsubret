@@ -22,7 +22,7 @@
 
     {{-- Header --}}
     <h3 class="d-flex flex-column flex-sm-row">
-        <div class="mr-auto">Tạo mới khoa</div>
+        <div class="mr-auto">Tạo khoa mới</div>
         <div class="ml-0 ml-sm-2 mt-3 mt-sm-0">
             <a href="{{ route('departments.index') }}" class="btn btn-light btn-sm float-left float-sm-none">
                 <i class="fas fa-reply"></i> Trở về

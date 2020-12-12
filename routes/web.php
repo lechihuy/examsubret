@@ -78,3 +78,19 @@ Route::prefix('departments')->name('departments.')->group(function() {
 });
 
 Route::resource('departments', 'DepartmentController')->except('show');
+
+// Major
+Route::prefix('majors')->name('majors.')->group(function() {
+    Route::delete('/destroy_list', 'MajorController@destroyList')
+        ->name('destroy_list');
+});
+
+Route::resource('majors', 'MajorController')->except('show');
+
+// Subject
+Route::prefix('subjects')->name('subjects.')->group(function() {
+    Route::delete('/destroy_list', 'SubjectController@destroyList')
+        ->name('destroy_list');
+});
+
+Route::resource('subjects', 'SubjectController')->except('show');

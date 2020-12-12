@@ -31,7 +31,7 @@ trait Common
 
         $attrs = array_merge($attrs, $data);
 
-        $message = trans("log.{$code}", $attrs);
+        // $message = trans("log.{$code}", $attrs);
         
         // return DB::table($this->logTable)->insert([
         //     'message' => $message,

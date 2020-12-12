@@ -6,10 +6,16 @@ class DepartmentTable extends Table
 {
     public function __construct()
     {
-        $this->column('subject')->label('tên khoa')->primaryColumn()->width(300)
+        $this->column('name')->label('tên khoa')->primaryColumn()->width(300)
             ->render('department.components.columns.name');
         
-        $this->column('status')->label('mã khoa')->width(100)
+        $this->column('code')->label('mã khoa')->width(100)
             ->render('department.components.columns.code');
+
+        $this->column('major')->label('số ngành')->width(100)
+            ->render('department.components.columns.major');
+
+        $this->column('subject')->label('số môn')->width(100)
+            ->render('department.components.columns.subject');
     }
 }

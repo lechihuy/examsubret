@@ -30,7 +30,7 @@ class Department extends Model
 
     public function majors()
     {
-        return $this->belongsToMany('App\Models\Major', 'department_major', 'department_id', 'major_id');
+        return $this->hasMany('App\Models\Major');
     }
 
     public function subjects()

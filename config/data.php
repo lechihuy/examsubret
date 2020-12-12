@@ -9,6 +9,10 @@ return [
 	],
 
     'departments' => [
+		[
+            'code' => 'AX',
+            'name' => 'Khoa Kiến Trúc-Xây Dựng',
+        ],
         [
             'code' => 'KCN',
             'name' => 'Khoa Công nghệ (Môi trường và CNSH)',
@@ -16,10 +20,6 @@ return [
         [
             'code' => 'KCT',
             'name' => 'Khoa Công nghệ thông tin',
-        ],
-        [
-            'code' => 'KDK',
-            'name' => 'Khoa Điều dưỡng và Kỹ thuật y học',
         ],
         [
             'code' => 'KDL',
@@ -182,7 +182,7 @@ return [
         [
             'code' => '7320108',
             'name' => 'Quan hệ công chúng',
-            'department_code' => ['KQH'],
+            'department_code' => ['KQN'],
         ],
         [
             'code' => '7340101',
@@ -242,7 +242,7 @@ return [
         [
             'code' => '7480103',
             'name' => 'Kỹ Thuật Phần Mềm',
-            'department_code' => ['KCT', 'KKT'],
+            'department_code' => ['KCT'],
         ],
         [
             'code' => '7480109',

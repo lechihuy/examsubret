@@ -13,17 +13,17 @@ class CreateDepartmentMajorTable extends Migration
      */
     public function up()
     {
-        Schema::create('department_major', function (Blueprint $table) {
-            $table->unsignedBigInteger('department_id');
-            $table->foreign('department_id')
-                ->references('id')->on('departments')
-                ->onDelete('cascade');
+        // Schema::create('department_major', function (Blueprint $table) {
+        //     $table->unsignedBigInteger('department_id');
+        //     $table->foreign('department_id')
+        //         ->references('id')->on('departments')
+        //         ->onDelete('cascade');
 
-            $table->unsignedBigInteger('major_id');
-            $table->foreign('major_id')
-                    ->references('id')->on('majors')
-                    ->onDelete('cascade');
-        });
+        //     $table->unsignedBigInteger('major_id');
+        //     $table->foreign('major_id')
+        //             ->references('id')->on('majors')
+        //             ->onDelete('cascade');
+        // });
     }
 
     /**

@@ -1,0 +1,1 @@
+<a href="{{ route('departments.edit', $major->department->id) }}">{{ $major->department->name }}</a>

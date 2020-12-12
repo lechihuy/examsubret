@@ -56,12 +56,12 @@
                             </a>
                         </li>
                         <li class="py-1">
-                            <a href="">
+                            <a href="{{ route('majors.index') }}">
                                 <i class="far fa-circle"></i> Ngành
                             </a>
                         </li>
                         <li class="py-1 pb-0">
-                            <a href="">
+                            <a href="{{ route('subjects.index') }}">
                                 <i class="far fa-circle"></i> Học phần
                             </a>
                         </li>
