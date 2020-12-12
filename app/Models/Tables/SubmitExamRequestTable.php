@@ -30,10 +30,10 @@ class SubmitExamRequestTable extends Table
         $this->column('exam_forms')->label('hình thức thi')->width(160)
             ->render('subexam.components.columns.exam-forms');
 
-        $this->column('times_1_exam_qty')->label('số đề lần 1')->width(80)
+        $this->column('times_1_exam_qty')->label('số đề đợt 1')->width(80)
             ->render('subexam.components.columns.times-1-exam-qty');
 
-        $this->column('times_2_exam_qty')->label('số đề lần 2')->width(80)
+        $this->column('times_2_exam_qty')->label('số đề đợt 2')->width(80)
             ->render('subexam.components.columns.times-2-exam-qty');
 
         $this->column('used_material')->label('Được dùng tài liệu')->width(180)

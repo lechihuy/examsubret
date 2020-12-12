@@ -27,8 +27,8 @@
             <th scope="col">Kỳ thi</th>
             <th scope="col">Thời lượng</th>
             <th scope="col">Hình thức thi</th>   
-            <th scope="col">Số đề lần 1</th>    
-            <th scope="col">Số đề lần 2</th>
+            <th scope="col">Số đề đợt 1</th>    
+            <th scope="col">Số đề đợt 2</th>
             <th scope="col">Được dùng tài liệu</th>    
             <th scope="col">Kèm đáp án</th>
             <th scope="col">Kèm thang điểm</th>    

@@ -37,7 +37,7 @@ class SubmitExamRequest extends Model
         'exam_types' => [
             'PE' => 'Phát cho mỗi SV một đề',
             'BE' => 'Chỉ cần chép lên bảng',
-            'CE' => 'Thi máy tính'
+            'CE' => 'Thi phòng máy tính'
         ],
 
         'status' => [

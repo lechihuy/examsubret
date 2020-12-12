@@ -31,8 +31,8 @@
             <a href="{{ route('subexams.index') }}" class="btn btn-light btn-sm float-left float-sm-none">
                 <i class="fas fa-reply"></i> Trở về
             </a>
-            <button class="btn btn-primary btn-sm btn-create-subexam float-right float-sm-none">
-                <i class="fas fa-plus"></i> Tạo
+            <button class="btn btn-success btn-sm btn-create-subexam float-right float-sm-none">
+                <i class="fas fa-check"></i> Lưu
             </button>
         </div>  
         <div class="clearfix"></div>
@@ -74,8 +74,8 @@
         <a href="{{ route('subexams.index') }}" class="btn btn-light btn-sm">
             <i class="fas fa-reply"></i> Trở về
         </a>
-        <button class="btn btn-primary btn-sm btn-create-subexam float-right">
-            <i class="fas fa-plus"></i> Tạo
+        <button class="btn btn-success btn-sm btn-create-subexam float-right">
+            <i class="fas fa-check"></i> Lưu
         </button>
         <div class="clearfix"></div>
     </div>
