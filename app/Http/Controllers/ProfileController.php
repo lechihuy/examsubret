@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateProfile;
 use App\Models\Department;
 use App\Models\Subject;
 use App\Models\Major;
-use App\Models\TeacherJob;
 
 class ProfileController extends Controller
 {

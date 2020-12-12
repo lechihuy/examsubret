@@ -8,8 +8,6 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-use App\Rules\CheckJobs;
-
 class UpdateProfile extends FormRequest
 {
     /**
@@ -55,10 +53,6 @@ class UpdateProfile extends FormRequest
         if ($this->old_password || $this->new_password || $this->new_password_confirmation) {
             $rules['old_password'] = "required|string|password:{$guard}";
             $rules['new_password'] = 'required|string|confirmed';
-        }
-
-        if (auth('teacher')->check()) {
-            $rules['jobs'] = ['sometimes', 'nullable', 'array', new CheckJobs];
         }
 
         return $rules;
