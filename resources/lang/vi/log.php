@@ -1,12 +1,17 @@
 <?php
     
 return [
-    'login' => ':Subject :identification vừa đăng nhập.',
-    'logout' => ':Subject :identification vừa đăng xuất.',
-    'change_password' => ':Subject :identification vừa đổi mật khẩu.',
-    'update_profile' => ':Subject :identification vừa cập nhật hồ sơ.',
+    'login' => ':Subject :identification đăng nhập.',
+    'logout' => ':Subject :identification đăng xuất.',
+    'change_password' => ':Subject :identification đổi mật khẩu.',
+    'update_profile' => ':Subject :identification cập nhật hồ sơ.',
     
-    'create_subexam' => ':Subject :identification vừa tạo một yêu cầu nộp đề thi.',
-    'edit_subexam' => ':Subject :identification vừa sửa yêu cầu nộp đề thi #:id.',
-    'destroy_subexam' => ':Subject :identification vừa xóa yêu cầu nộp đề thi #:id.',
+    'create_subexam' => ':Subject :identification tạo một yêu cầu nộp đề thi.',
+    'edit_subexam' => ':Subject :identification sửa yêu cầu nộp đề thi #:id.',
+    'destroy_subexam' => ':Subject :identification xóa yêu cầu nộp đề thi #:id.',
+    'switch_status_subexam' => ':Subject :identification đổi trạng thái yêu cầu nộp đề thi #:id thành :action.',
+
+    'create_department' => ':Subject :identification tạo một khoa.',
+    'edit_department' => ':Subject :identification sửa khoa #:id.',
+    'destroy_department' => ':Subject :identification xóa khoa #:id.',
 ];

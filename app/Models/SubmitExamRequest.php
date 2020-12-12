@@ -44,6 +44,13 @@ class SubmitExamRequest extends Model
             'UNSEEN' => 'Chưa xem',
             'VERIFIED' => 'Đã xác nhận',
             'PROCESSING' => 'Đang xử lý',
+        ],
+        
+        'actions' => [
+            'ACCEPT_SUBEXAM' => 'Tiếp nhận yêu cầu',
+            'CANCEL_ACCEPT_SUBEXAM' => 'Hủy tiếp nhận yêu cầu',
+            'VERIFY_SUBEXAM' => 'Xác nhận yêu cầu',
+            'CANCEL_VERIFY_SUBEXAM' => 'Hủy xác nhận yêu cầu',
         ]
     ];
 

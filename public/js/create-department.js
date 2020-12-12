@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -97,25 +97,25 @@ eval("var _this = this;\n\nwindow.Form = function (_selector) {\n  _this.form = 
 
 /***/ }),
 
-/***/ "./resources/js/profile.js":
-/*!*********************************!*\
-  !*** ./resources/js/profile.js ***!
-  \*********************************/
+/***/ "./resources/js/create-department.js":
+/*!*******************************************!*\
+  !*** ./resources/js/create-department.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! ./components/_form */ \"./resources/js/components/_form.js\"); // Update profile\n\n\n$('.btn-update-profile').on('click', function () {\n  var indexBtn = $('.btn-update-profile').index($(this));\n  var form = new Form('#form-update-profile');\n  var formData = form.getData();\n  form.hideAlert();\n  $.ajax({\n    url: form.getAction(),\n    method: 'PUT',\n    data: formData,\n    success: function success(res, textStatus, xhr) {\n      form.showAlert(res.message, xhr.status, indexBtn);\n      form.redirectToIfAvailable(res);\n    },\n    error: function error(err) {\n      form.showAlert(err.responseJSON.message, err.status, indexBtn);\n    }\n  });\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvcHJvZmlsZS5qcz8wZDI0Il0sIm5hbWVzIjpbInJlcXVpcmUiLCIkIiwib24iLCJpbmRleEJ0biIsImluZGV4IiwiZm9ybSIsIkZvcm0iLCJmb3JtRGF0YSIsImdldERhdGEiLCJoaWRlQWxlcnQiLCJhamF4IiwidXJsIiwiZ2V0QWN0aW9uIiwibWV0aG9kIiwiZGF0YSIsInN1Y2Nlc3MiLCJyZXMiLCJ0ZXh0U3RhdHVzIiwieGhyIiwic2hvd0FsZXJ0IiwibWVzc2FnZSIsInN0YXR1cyIsInJlZGlyZWN0VG9JZkF2YWlsYWJsZSIsImVycm9yIiwiZXJyIiwicmVzcG9uc2VKU09OIl0sIm1hcHBpbmdzIjoiQUFBQUEsbUJBQU8sQ0FBQyw4REFBRCxDQUFQLEMsQ0FFQTs7O0FBQ0FDLENBQUMsQ0FBQyxxQkFBRCxDQUFELENBQXlCQyxFQUF6QixDQUE0QixPQUE1QixFQUFxQyxZQUFXO0FBQzVDLE1BQU1DLFFBQVEsR0FBR0YsQ0FBQyxDQUFDLHFCQUFELENBQUQsQ0FBeUJHLEtBQXpCLENBQStCSCxDQUFDLENBQUMsSUFBRCxDQUFoQyxDQUFqQjtBQUNBLE1BQUlJLElBQUksR0FBRyxJQUFJQyxJQUFKLENBQVMsc0JBQVQsQ0FBWDtBQUNBLE1BQUlDLFFBQVEsR0FBR0YsSUFBSSxDQUFDRyxPQUFMLEVBQWY7QUFFQUgsTUFBSSxDQUFDSSxTQUFMO0FBRUFSLEdBQUMsQ0FBQ1MsSUFBRixDQUFPO0FBQ0hDLE9BQUcsRUFBRU4sSUFBSSxDQUFDTyxTQUFMLEVBREY7QUFFSEMsVUFBTSxFQUFFLEtBRkw7QUFHSEMsUUFBSSxFQUFFUCxRQUhIO0FBSUhRLFdBQU8sRUFBRSxpQkFBU0MsR0FBVCxFQUFjQyxVQUFkLEVBQTBCQyxHQUExQixFQUErQjtBQUNwQ2IsVUFBSSxDQUFDYyxTQUFMLENBQWVILEdBQUcsQ0FBQ0ksT0FBbkIsRUFBNEJGLEdBQUcsQ0FBQ0csTUFBaEMsRUFBd0NsQixRQUF4QztBQUNBRSxVQUFJLENBQUNpQixxQkFBTCxDQUEyQk4sR0FBM0I7QUFDSCxLQVBFO0FBT0FPLFNBQUssRUFBRSxlQUFTQyxHQUFULEVBQWM7QUFDcEJuQixVQUFJLENBQUNjLFNBQUwsQ0FBZUssR0FBRyxDQUFDQyxZQUFKLENBQWlCTCxPQUFoQyxFQUF5Q0ksR0FBRyxDQUFDSCxNQUE3QyxFQUFxRGxCLFFBQXJEO0FBQ0g7QUFURSxHQUFQO0FBV0gsQ0FsQkQiLCJmaWxlIjoiLi9yZXNvdXJjZXMvanMvcHJvZmlsZS5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbInJlcXVpcmUoJy4vY29tcG9uZW50cy9fZm9ybScpXG5cbi8vIFVwZGF0ZSBwcm9maWxlXG4kKCcuYnRuLXVwZGF0ZS1wcm9maWxlJykub24oJ2NsaWNrJywgZnVuY3Rpb24oKSB7XG4gICAgY29uc3QgaW5kZXhCdG4gPSAkKCcuYnRuLXVwZGF0ZS1wcm9maWxlJykuaW5kZXgoJCh0aGlzKSk7XG4gICAgbGV0IGZvcm0gPSBuZXcgRm9ybSgnI2Zvcm0tdXBkYXRlLXByb2ZpbGUnKTtcbiAgICBsZXQgZm9ybURhdGEgPSBmb3JtLmdldERhdGEoKTtcblxuICAgIGZvcm0uaGlkZUFsZXJ0KCk7XG5cbiAgICAkLmFqYXgoe1xuICAgICAgICB1cmw6IGZvcm0uZ2V0QWN0aW9uKCksXG4gICAgICAgIG1ldGhvZDogJ1BVVCcsXG4gICAgICAgIGRhdGE6IGZvcm1EYXRhLFxuICAgICAgICBzdWNjZXNzOiBmdW5jdGlvbihyZXMsIHRleHRTdGF0dXMsIHhocikge1xuICAgICAgICAgICAgZm9ybS5zaG93QWxlcnQocmVzLm1lc3NhZ2UsIHhoci5zdGF0dXMsIGluZGV4QnRuKTtcbiAgICAgICAgICAgIGZvcm0ucmVkaXJlY3RUb0lmQXZhaWxhYmxlKHJlcyk7XG4gICAgICAgIH0sIGVycm9yOiBmdW5jdGlvbihlcnIpIHtcbiAgICAgICAgICAgIGZvcm0uc2hvd0FsZXJ0KGVyci5yZXNwb25zZUpTT04ubWVzc2FnZSwgZXJyLnN0YXR1cywgaW5kZXhCdG4pO1xuICAgICAgICB9XG4gICAgfSk7XG59KSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/js/profile.js\n");
+eval("__webpack_require__(/*! ./components/_form */ \"./resources/js/components/_form.js\"); // Create a new department\n\n\n$('.btn-create-department').on('click', function () {\n  var indexBtn = $('.btn-create-departmnet').index($(this));\n  var form = new Form('#form-create-department');\n  var formData = form.getData();\n  form.hideAlert();\n  $.ajax({\n    url: form.getAction(),\n    method: 'POST',\n    data: formData,\n    success: function success(res, textStatus, xhr) {\n      form.showAlert(res.message, xhr.status, indexBtn);\n      form.redirectToIfAvailable(res);\n    },\n    error: function error(err) {\n      form.showAlert(err.responseJSON.message, err.status, indexBtn);\n    }\n  });\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvY3JlYXRlLWRlcGFydG1lbnQuanM/YTQxZCJdLCJuYW1lcyI6WyJyZXF1aXJlIiwiJCIsIm9uIiwiaW5kZXhCdG4iLCJpbmRleCIsImZvcm0iLCJGb3JtIiwiZm9ybURhdGEiLCJnZXREYXRhIiwiaGlkZUFsZXJ0IiwiYWpheCIsInVybCIsImdldEFjdGlvbiIsIm1ldGhvZCIsImRhdGEiLCJzdWNjZXNzIiwicmVzIiwidGV4dFN0YXR1cyIsInhociIsInNob3dBbGVydCIsIm1lc3NhZ2UiLCJzdGF0dXMiLCJyZWRpcmVjdFRvSWZBdmFpbGFibGUiLCJlcnJvciIsImVyciIsInJlc3BvbnNlSlNPTiJdLCJtYXBwaW5ncyI6IkFBQUFBLG1CQUFPLENBQUMsOERBQUQsQ0FBUCxDLENBRUE7OztBQUNBQyxDQUFDLENBQUMsd0JBQUQsQ0FBRCxDQUE0QkMsRUFBNUIsQ0FBK0IsT0FBL0IsRUFBd0MsWUFBVztBQUMvQyxNQUFNQyxRQUFRLEdBQUdGLENBQUMsQ0FBQyx3QkFBRCxDQUFELENBQTRCRyxLQUE1QixDQUFrQ0gsQ0FBQyxDQUFDLElBQUQsQ0FBbkMsQ0FBakI7QUFDQSxNQUFJSSxJQUFJLEdBQUcsSUFBSUMsSUFBSixDQUFTLHlCQUFULENBQVg7QUFDQSxNQUFJQyxRQUFRLEdBQUdGLElBQUksQ0FBQ0csT0FBTCxFQUFmO0FBRUFILE1BQUksQ0FBQ0ksU0FBTDtBQUVBUixHQUFDLENBQUNTLElBQUYsQ0FBTztBQUNIQyxPQUFHLEVBQUVOLElBQUksQ0FBQ08sU0FBTCxFQURGO0FBRUhDLFVBQU0sRUFBRSxNQUZMO0FBR0hDLFFBQUksRUFBRVAsUUFISDtBQUlIUSxXQUFPLEVBQUUsaUJBQVNDLEdBQVQsRUFBY0MsVUFBZCxFQUEwQkMsR0FBMUIsRUFBK0I7QUFDcENiLFVBQUksQ0FBQ2MsU0FBTCxDQUFlSCxHQUFHLENBQUNJLE9BQW5CLEVBQTRCRixHQUFHLENBQUNHLE1BQWhDLEVBQXdDbEIsUUFBeEM7QUFDQUUsVUFBSSxDQUFDaUIscUJBQUwsQ0FBMkJOLEdBQTNCO0FBQ0gsS0FQRTtBQU9BTyxTQUFLLEVBQUUsZUFBU0MsR0FBVCxFQUFjO0FBQ3BCbkIsVUFBSSxDQUFDYyxTQUFMLENBQWVLLEdBQUcsQ0FBQ0MsWUFBSixDQUFpQkwsT0FBaEMsRUFBeUNJLEdBQUcsQ0FBQ0gsTUFBN0MsRUFBcURsQixRQUFyRDtBQUNIO0FBVEUsR0FBUDtBQVdILENBbEJEIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL2pzL2NyZWF0ZS1kZXBhcnRtZW50LmpzLmpzIiwic291cmNlc0NvbnRlbnQiOlsicmVxdWlyZSgnLi9jb21wb25lbnRzL19mb3JtJylcblxuLy8gQ3JlYXRlIGEgbmV3IGRlcGFydG1lbnRcbiQoJy5idG4tY3JlYXRlLWRlcGFydG1lbnQnKS5vbignY2xpY2snLCBmdW5jdGlvbigpIHtcbiAgICBjb25zdCBpbmRleEJ0biA9ICQoJy5idG4tY3JlYXRlLWRlcGFydG1uZXQnKS5pbmRleCgkKHRoaXMpKTtcbiAgICBsZXQgZm9ybSA9IG5ldyBGb3JtKCcjZm9ybS1jcmVhdGUtZGVwYXJ0bWVudCcpO1xuICAgIGxldCBmb3JtRGF0YSA9IGZvcm0uZ2V0RGF0YSgpO1xuXG4gICAgZm9ybS5oaWRlQWxlcnQoKTtcblxuICAgICQuYWpheCh7XG4gICAgICAgIHVybDogZm9ybS5nZXRBY3Rpb24oKSxcbiAgICAgICAgbWV0aG9kOiAnUE9TVCcsXG4gICAgICAgIGRhdGE6IGZvcm1EYXRhLFxuICAgICAgICBzdWNjZXNzOiBmdW5jdGlvbihyZXMsIHRleHRTdGF0dXMsIHhocikge1xuICAgICAgICAgICAgZm9ybS5zaG93QWxlcnQocmVzLm1lc3NhZ2UsIHhoci5zdGF0dXMsIGluZGV4QnRuKTtcbiAgICAgICAgICAgIGZvcm0ucmVkaXJlY3RUb0lmQXZhaWxhYmxlKHJlcyk7XG4gICAgICAgIH0sIGVycm9yOiBmdW5jdGlvbihlcnIpIHtcbiAgICAgICAgICAgIGZvcm0uc2hvd0FsZXJ0KGVyci5yZXNwb25zZUpTT04ubWVzc2FnZSwgZXJyLnN0YXR1cywgaW5kZXhCdG4pO1xuICAgICAgICB9XG4gICAgfSk7XG59KSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/js/create-department.js\n");
 
 /***/ }),
 
-/***/ 7:
-/*!***************************************!*\
-  !*** multi ./resources/js/profile.js ***!
-  \***************************************/
+/***/ 1:
+/*!*************************************************!*\
+  !*** multi ./resources/js/create-department.js ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Volumes/Data/Dev/examsubret/resources/js/profile.js */"./resources/js/profile.js");
+module.exports = __webpack_require__(/*! /Volumes/Data/Dev/examsubret/resources/js/create-department.js */"./resources/js/create-department.js");
 
 
 /***/ })

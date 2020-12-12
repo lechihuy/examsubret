@@ -1,0 +1,1 @@
+<code>{{ $department->code }}</code>

@@ -9,18 +9,23 @@
     <div class="ml-auto">
 
         {{-- Dropdown quick action --}}
-        @if (auth('teacher')->check())
-            <div class="dropdown show d-inline-block">
-                <a class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" id="dropdown-quick-acition" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Tạo mới
-                </a>
+        <div class="dropdown show d-inline-block">
+            <a class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" id="dropdown-quick-acition" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Tạo mới
+            </a>
 
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-quick-acition">
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-quick-acition">
+                @auth('teacher')
                     <a class="dropdown-item" href="{{ route('subexams.create') }}">Yêu cầu nộp đề thi</a>
                     <a class="dropdown-item" href="">Yêu cầu trả túi bài thi</a>
-                </div>
+                @endauth
+
+                @auth('admin')
+                    <h6 class="dropdown-header">Dữ liệu</h6>
+                    <a class="dropdown-item" href="{{ route('departments.create') }}">Khoa</a>
+                @endauth
             </div>
-        @endauth
+        </div>
         {{-- /Dropdown quick action --}}
 
         {{-- Toggle sidebar button --}}

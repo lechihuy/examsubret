@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -97,25 +97,25 @@ eval("var _this = this;\n\nwindow.Form = function (_selector) {\n  _this.form = 
 
 /***/ }),
 
-/***/ "./resources/js/profile.js":
-/*!*********************************!*\
-  !*** ./resources/js/profile.js ***!
-  \*********************************/
+/***/ "./resources/js/edit-department.js":
+/*!*****************************************!*\
+  !*** ./resources/js/edit-department.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! ./components/_form */ \"./resources/js/components/_form.js\"); // Update profile\n\n\n$('.btn-update-profile').on('click', function () {\n  var indexBtn = $('.btn-update-profile').index($(this));\n  var form = new Form('#form-update-profile');\n  var formData = form.getData();\n  form.hideAlert();\n  $.ajax({\n    url: form.getAction(),\n    method: 'PUT',\n    data: formData,\n    success: function success(res, textStatus, xhr) {\n      form.showAlert(res.message, xhr.status, indexBtn);\n      form.redirectToIfAvailable(res);\n    },\n    error: function error(err) {\n      form.showAlert(err.responseJSON.message, err.status, indexBtn);\n    }\n  });\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvcHJvZmlsZS5qcz8wZDI0Il0sIm5hbWVzIjpbInJlcXVpcmUiLCIkIiwib24iLCJpbmRleEJ0biIsImluZGV4IiwiZm9ybSIsIkZvcm0iLCJmb3JtRGF0YSIsImdldERhdGEiLCJoaWRlQWxlcnQiLCJhamF4IiwidXJsIiwiZ2V0QWN0aW9uIiwibWV0aG9kIiwiZGF0YSIsInN1Y2Nlc3MiLCJyZXMiLCJ0ZXh0U3RhdHVzIiwieGhyIiwic2hvd0FsZXJ0IiwibWVzc2FnZSIsInN0YXR1cyIsInJlZGlyZWN0VG9JZkF2YWlsYWJsZSIsImVycm9yIiwiZXJyIiwicmVzcG9uc2VKU09OIl0sIm1hcHBpbmdzIjoiQUFBQUEsbUJBQU8sQ0FBQyw4REFBRCxDQUFQLEMsQ0FFQTs7O0FBQ0FDLENBQUMsQ0FBQyxxQkFBRCxDQUFELENBQXlCQyxFQUF6QixDQUE0QixPQUE1QixFQUFxQyxZQUFXO0FBQzVDLE1BQU1DLFFBQVEsR0FBR0YsQ0FBQyxDQUFDLHFCQUFELENBQUQsQ0FBeUJHLEtBQXpCLENBQStCSCxDQUFDLENBQUMsSUFBRCxDQUFoQyxDQUFqQjtBQUNBLE1BQUlJLElBQUksR0FBRyxJQUFJQyxJQUFKLENBQVMsc0JBQVQsQ0FBWDtBQUNBLE1BQUlDLFFBQVEsR0FBR0YsSUFBSSxDQUFDRyxPQUFMLEVBQWY7QUFFQUgsTUFBSSxDQUFDSSxTQUFMO0FBRUFSLEdBQUMsQ0FBQ1MsSUFBRixDQUFPO0FBQ0hDLE9BQUcsRUFBRU4sSUFBSSxDQUFDTyxTQUFMLEVBREY7QUFFSEMsVUFBTSxFQUFFLEtBRkw7QUFHSEMsUUFBSSxFQUFFUCxRQUhIO0FBSUhRLFdBQU8sRUFBRSxpQkFBU0MsR0FBVCxFQUFjQyxVQUFkLEVBQTBCQyxHQUExQixFQUErQjtBQUNwQ2IsVUFBSSxDQUFDYyxTQUFMLENBQWVILEdBQUcsQ0FBQ0ksT0FBbkIsRUFBNEJGLEdBQUcsQ0FBQ0csTUFBaEMsRUFBd0NsQixRQUF4QztBQUNBRSxVQUFJLENBQUNpQixxQkFBTCxDQUEyQk4sR0FBM0I7QUFDSCxLQVBFO0FBT0FPLFNBQUssRUFBRSxlQUFTQyxHQUFULEVBQWM7QUFDcEJuQixVQUFJLENBQUNjLFNBQUwsQ0FBZUssR0FBRyxDQUFDQyxZQUFKLENBQWlCTCxPQUFoQyxFQUF5Q0ksR0FBRyxDQUFDSCxNQUE3QyxFQUFxRGxCLFFBQXJEO0FBQ0g7QUFURSxHQUFQO0FBV0gsQ0FsQkQiLCJmaWxlIjoiLi9yZXNvdXJjZXMvanMvcHJvZmlsZS5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbInJlcXVpcmUoJy4vY29tcG9uZW50cy9fZm9ybScpXG5cbi8vIFVwZGF0ZSBwcm9maWxlXG4kKCcuYnRuLXVwZGF0ZS1wcm9maWxlJykub24oJ2NsaWNrJywgZnVuY3Rpb24oKSB7XG4gICAgY29uc3QgaW5kZXhCdG4gPSAkKCcuYnRuLXVwZGF0ZS1wcm9maWxlJykuaW5kZXgoJCh0aGlzKSk7XG4gICAgbGV0IGZvcm0gPSBuZXcgRm9ybSgnI2Zvcm0tdXBkYXRlLXByb2ZpbGUnKTtcbiAgICBsZXQgZm9ybURhdGEgPSBmb3JtLmdldERhdGEoKTtcblxuICAgIGZvcm0uaGlkZUFsZXJ0KCk7XG5cbiAgICAkLmFqYXgoe1xuICAgICAgICB1cmw6IGZvcm0uZ2V0QWN0aW9uKCksXG4gICAgICAgIG1ldGhvZDogJ1BVVCcsXG4gICAgICAgIGRhdGE6IGZvcm1EYXRhLFxuICAgICAgICBzdWNjZXNzOiBmdW5jdGlvbihyZXMsIHRleHRTdGF0dXMsIHhocikge1xuICAgICAgICAgICAgZm9ybS5zaG93QWxlcnQocmVzLm1lc3NhZ2UsIHhoci5zdGF0dXMsIGluZGV4QnRuKTtcbiAgICAgICAgICAgIGZvcm0ucmVkaXJlY3RUb0lmQXZhaWxhYmxlKHJlcyk7XG4gICAgICAgIH0sIGVycm9yOiBmdW5jdGlvbihlcnIpIHtcbiAgICAgICAgICAgIGZvcm0uc2hvd0FsZXJ0KGVyci5yZXNwb25zZUpTT04ubWVzc2FnZSwgZXJyLnN0YXR1cywgaW5kZXhCdG4pO1xuICAgICAgICB9XG4gICAgfSk7XG59KSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/js/profile.js\n");
+eval("__webpack_require__(/*! ./components/_form */ \"./resources/js/components/_form.js\"); // Create a new department\n\n\n$('.btn-edit-department').on('click', function () {\n  var indexBtn = $('.btn-edit-departmnet').index($(this));\n  var form = new Form('#form-edit-department');\n  var formData = form.getData();\n  form.hideAlert();\n  $.ajax({\n    url: form.getAction(),\n    method: 'PUT',\n    data: formData,\n    success: function success(res, textStatus, xhr) {\n      form.showAlert(res.message, xhr.status, indexBtn);\n      form.redirectToIfAvailable(res);\n    },\n    error: function error(err) {\n      form.showAlert(err.responseJSON.message, err.status, indexBtn);\n    }\n  });\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvZWRpdC1kZXBhcnRtZW50LmpzPzY5NzAiXSwibmFtZXMiOlsicmVxdWlyZSIsIiQiLCJvbiIsImluZGV4QnRuIiwiaW5kZXgiLCJmb3JtIiwiRm9ybSIsImZvcm1EYXRhIiwiZ2V0RGF0YSIsImhpZGVBbGVydCIsImFqYXgiLCJ1cmwiLCJnZXRBY3Rpb24iLCJtZXRob2QiLCJkYXRhIiwic3VjY2VzcyIsInJlcyIsInRleHRTdGF0dXMiLCJ4aHIiLCJzaG93QWxlcnQiLCJtZXNzYWdlIiwic3RhdHVzIiwicmVkaXJlY3RUb0lmQXZhaWxhYmxlIiwiZXJyb3IiLCJlcnIiLCJyZXNwb25zZUpTT04iXSwibWFwcGluZ3MiOiJBQUFBQSxtQkFBTyxDQUFDLDhEQUFELENBQVAsQyxDQUVBOzs7QUFDQUMsQ0FBQyxDQUFDLHNCQUFELENBQUQsQ0FBMEJDLEVBQTFCLENBQTZCLE9BQTdCLEVBQXNDLFlBQVc7QUFDN0MsTUFBTUMsUUFBUSxHQUFHRixDQUFDLENBQUMsc0JBQUQsQ0FBRCxDQUEwQkcsS0FBMUIsQ0FBZ0NILENBQUMsQ0FBQyxJQUFELENBQWpDLENBQWpCO0FBQ0EsTUFBSUksSUFBSSxHQUFHLElBQUlDLElBQUosQ0FBUyx1QkFBVCxDQUFYO0FBQ0EsTUFBSUMsUUFBUSxHQUFHRixJQUFJLENBQUNHLE9BQUwsRUFBZjtBQUVBSCxNQUFJLENBQUNJLFNBQUw7QUFFQVIsR0FBQyxDQUFDUyxJQUFGLENBQU87QUFDSEMsT0FBRyxFQUFFTixJQUFJLENBQUNPLFNBQUwsRUFERjtBQUVIQyxVQUFNLEVBQUUsS0FGTDtBQUdIQyxRQUFJLEVBQUVQLFFBSEg7QUFJSFEsV0FBTyxFQUFFLGlCQUFTQyxHQUFULEVBQWNDLFVBQWQsRUFBMEJDLEdBQTFCLEVBQStCO0FBQ3BDYixVQUFJLENBQUNjLFNBQUwsQ0FBZUgsR0FBRyxDQUFDSSxPQUFuQixFQUE0QkYsR0FBRyxDQUFDRyxNQUFoQyxFQUF3Q2xCLFFBQXhDO0FBQ0FFLFVBQUksQ0FBQ2lCLHFCQUFMLENBQTJCTixHQUEzQjtBQUNILEtBUEU7QUFPQU8sU0FBSyxFQUFFLGVBQVNDLEdBQVQsRUFBYztBQUNwQm5CLFVBQUksQ0FBQ2MsU0FBTCxDQUFlSyxHQUFHLENBQUNDLFlBQUosQ0FBaUJMLE9BQWhDLEVBQXlDSSxHQUFHLENBQUNILE1BQTdDLEVBQXFEbEIsUUFBckQ7QUFDSDtBQVRFLEdBQVA7QUFXSCxDQWxCRCIsImZpbGUiOiIuL3Jlc291cmNlcy9qcy9lZGl0LWRlcGFydG1lbnQuanMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJyZXF1aXJlKCcuL2NvbXBvbmVudHMvX2Zvcm0nKVxuXG4vLyBDcmVhdGUgYSBuZXcgZGVwYXJ0bWVudFxuJCgnLmJ0bi1lZGl0LWRlcGFydG1lbnQnKS5vbignY2xpY2snLCBmdW5jdGlvbigpIHtcbiAgICBjb25zdCBpbmRleEJ0biA9ICQoJy5idG4tZWRpdC1kZXBhcnRtbmV0JykuaW5kZXgoJCh0aGlzKSk7XG4gICAgbGV0IGZvcm0gPSBuZXcgRm9ybSgnI2Zvcm0tZWRpdC1kZXBhcnRtZW50Jyk7XG4gICAgbGV0IGZvcm1EYXRhID0gZm9ybS5nZXREYXRhKCk7XG5cbiAgICBmb3JtLmhpZGVBbGVydCgpO1xuXG4gICAgJC5hamF4KHtcbiAgICAgICAgdXJsOiBmb3JtLmdldEFjdGlvbigpLFxuICAgICAgICBtZXRob2Q6ICdQVVQnLFxuICAgICAgICBkYXRhOiBmb3JtRGF0YSxcbiAgICAgICAgc3VjY2VzczogZnVuY3Rpb24ocmVzLCB0ZXh0U3RhdHVzLCB4aHIpIHtcbiAgICAgICAgICAgIGZvcm0uc2hvd0FsZXJ0KHJlcy5tZXNzYWdlLCB4aHIuc3RhdHVzLCBpbmRleEJ0bik7XG4gICAgICAgICAgICBmb3JtLnJlZGlyZWN0VG9JZkF2YWlsYWJsZShyZXMpO1xuICAgICAgICB9LCBlcnJvcjogZnVuY3Rpb24oZXJyKSB7XG4gICAgICAgICAgICBmb3JtLnNob3dBbGVydChlcnIucmVzcG9uc2VKU09OLm1lc3NhZ2UsIGVyci5zdGF0dXMsIGluZGV4QnRuKTtcbiAgICAgICAgfVxuICAgIH0pO1xufSkiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/js/edit-department.js\n");
 
 /***/ }),
 
-/***/ 7:
-/*!***************************************!*\
-  !*** multi ./resources/js/profile.js ***!
-  \***************************************/
+/***/ 3:
+/*!***********************************************!*\
+  !*** multi ./resources/js/edit-department.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Volumes/Data/Dev/examsubret/resources/js/profile.js */"./resources/js/profile.js");
+module.exports = __webpack_require__(/*! /Volumes/Data/Dev/examsubret/resources/js/edit-department.js */"./resources/js/edit-department.js");
 
 
 /***/ })

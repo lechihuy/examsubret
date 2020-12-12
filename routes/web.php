@@ -71,3 +71,10 @@ Route::prefix('data')->name('data.')->group(function() {
     Route::get('subjects', 'DataController@getSubjects')->name('subjects');
 });
 
+// Department
+Route::prefix('departments')->name('departments.')->group(function() {
+    Route::delete('/destroy_list', 'DepartmentController@destroyList')
+        ->name('destroy_list');
+});
+
+Route::resource('departments', 'DepartmentController')->except('show');

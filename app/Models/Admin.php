@@ -85,9 +85,9 @@ class Admin extends Authenticatable
 
     public function switchStatusSubmitExamRequest($action, $subexam)
     {
-        $this->log('destroy_subexam', [
+        $this->log('switch_status_subexam', [
             'id' => $subexam, 
-            'action' => config('data.subexam_actions')[$action],
+            'action' => SubmitExamRequest::data('actions')[$action],
         ]);
 
         switch ($action) {
@@ -125,5 +125,35 @@ class Admin extends Authenticatable
         }
 
         return $this->submitExamRequests()->where('id', $subexam)->update($updates);
+    }
+
+    public function createDepartment($data)
+    {
+        $this->log('create_department');
+
+        return Department::create($data);
+    }
+
+    public function destroyListDepartment($departments)
+    {
+        foreach ($departments as $department) {
+            $this->log('destroy_department', ['id' => $department]);
+        }
+
+        return Department::whereIn('id', $departments)->delete();
+    }
+
+    public function destroyDepartment($department)
+    {
+        $this->log('destroy_department', ['id' => $department]);
+
+        return Department::where('id', $department)->delete();
+    }
+
+    public function updateDepartment($id, $data)
+    {
+        $this->log('edit_department', ['id' => $id]);
+
+        return Department::where('id', $id)->update($data);
     }
 }
