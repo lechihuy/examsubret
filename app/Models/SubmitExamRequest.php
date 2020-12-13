@@ -126,6 +126,11 @@ class SubmitExamRequest extends Model
     public static function list($filter = [], $select = ['*'])
     {
         $examsubs = static::select($select);
+
+        // Year
+        if (isset($filter['year']) && $filter['year'] != 'all') {
+            $examsubs->whereYear('created_at', $filter['year']);
+        } 
             
         // Status
         if (isset($filter['status']) && $filter['status'] != 'all') {

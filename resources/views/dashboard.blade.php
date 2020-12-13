@@ -16,16 +16,21 @@
         Dashboard
     </h3>
 
-    @if (! current_user()->hasChangedPassword())
+    @if (! current_user()->hasChangedPassword() || ! current_user()->phone_number || ! current_user()->fullname)
         <div class="alert alert-warning my-3" role="alert">
             <h5 class="alert-heading">Xin dành ít thời gian!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </h5>
-            <p>Có vẻ như tài khoản này mới được tạo hoặc chưa thay đổi mật khẩu mặc định, điều này khá nguy hiểm.</p>
+            @if (! current_user()->hasChangedPassword())
+                <li>Có vẻ như tài khoản này mới được tạo hoặc chưa thay đổi mật khẩu mặc định, điều này khá nguy hiểm.</li>
+            @endif
+            @if (! current_user()->phone_number || ! current_user()->fullname)
+                <li>Có vẻ như tài khoản này chưa cung cấp đầy đủ thông tin cần thiết.</li>
+            @endif
             <hr>
-            <p class="mb-0">Hãy đến <a href="{{ route('profile.form') }}">hồ sơ cá nhân</a> để thay đổi mật khẩu mới an toàn hơn.</p>
+            <p class="mb-0">Hãy đến <a href="{{ route('profile.form') }}">hồ sơ cá nhân</a> để cập nhật thông tin.</p>
         </div>
     @endif
 
