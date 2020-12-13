@@ -1,1 +1,1 @@
-<a href="">{{ $subexam->teacher->identification() }}</a>
+<a href="{{ route('profile.show', ['username' => $subexam->teacher->username]) }}">{{ $subexam->teacher->identification() }}</a>

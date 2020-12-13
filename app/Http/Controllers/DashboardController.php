@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\SubmitExamRequest;
+use App\Models\Department;
+use App\Models\Major;
+use App\Models\Subject;
 
 class DashboardController extends Controller
 {
@@ -30,7 +33,10 @@ class DashboardController extends Controller
         }
 
         $counter = [
-            'subexam' => $submitExamRequestCounter
+            'subexam' => $submitExamRequestCounter,
+            'department' => Department::count(),
+            'major' => Major::count(),
+            'subject' => Subject::count(),
         ];
 
         return view('dashboard', [

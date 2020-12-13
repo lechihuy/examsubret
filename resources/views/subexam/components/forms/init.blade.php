@@ -16,7 +16,7 @@
                         'full_context' => true 
                     ]) 
                     @if ($subexam->admin_id)
-                        bởi <a href="">{{ $subexam->admin->identification() }}</a>
+                        bởi <a href="{{ route('profile.show', ['username' => $subexam->admin->username]) }}">{{ $subexam->admin->identification() }}</a>
                     @endif
                 </p>
             </div>

@@ -43,6 +43,7 @@ Route::resource('submit-exam-requests', 'SubmitExamRequestController')->names([
 Route::prefix('profile')->name('profile.')->group(function() {
     Route::get('/', 'ProfileController@showProfileForm')->name('form');
     Route::put('/', 'ProfileController@update')->name('update');
+    Route::get('/{username}', 'ProfileController@showProfile')->name('show');
 });
 
 // Authentication

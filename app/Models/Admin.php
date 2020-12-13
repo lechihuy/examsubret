@@ -229,4 +229,9 @@ class Admin extends Authenticatable
         $subject->departments()->detach($subject->departments);
         $subject->departments()->attach($data['department_id']);
     }
+
+    public function isAdmin()
+    {
+        return true;
+    }
 }

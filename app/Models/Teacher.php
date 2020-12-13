@@ -77,4 +77,9 @@ class Teacher extends Authenticatable
 
         return $this->submitExamRequests()->where('id', $subexam)->delete();
     }
+
+    public function isAdmin()
+    {
+        return false;
+    }
 }

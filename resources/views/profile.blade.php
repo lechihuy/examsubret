@@ -19,10 +19,14 @@
         'profile.form' => 'Hồ sơ'
     ]])
 
+    @empty($show)
     {{-- Header --}}
     <h3 class="d-flex flex-column flex-sm-row">
         <div class="mr-auto">Hồ sơ</div>
         <div class="ml-0 ml-sm-2 mt-3 mt-sm-0">
+            <a href="{{ route('profile.show', ['username' => $user->username]) }}" class="btn btn-light btn-sm float-right float-sm-none">
+                <i class="fas fa-id-card"></i> Xem visit card
+            </a>
             <button class="btn btn-success btn-sm btn-update-profile float-right float-sm-none">
                 <i class="fas fa-check"></i> Lưu
             </button>
@@ -156,5 +160,49 @@
     {{-- Modals --}}
   
     {{-- /Modals --}}
+    @else
+        {{-- Header --}}
+        <h3 class="d-flex flex-column flex-sm-row">
+            <div class="mr-auto">Visit card</div>
+            <div class="ml-0 ml-sm-2 mt-3 mt-sm-0">
+                <a href="javascript:history.back()" class="btn btn-light btn-sm float-right float-sm-none">
+                    <i class="fas fa-reply"></i> Trở về
+                </a>
+            </div>  
+            <div class="clearfix"></div>
+        </h3>
+        {{-- /Header --}}
+
+        <div class="row justify-content-center mt-3">
+            <div style="width: 450px; max-width: 100%;" class=" mx-3">
+                <div class="media bg-white p-4 shadow rounded">
+                    <img src="https://examsubret.test/images/user.png" class="mr-3" width="80">
+                    <div class="media-body mb-0">
+                        <h5 class="mt-0 text-uppercase">{{ $user->identification() }}</h5>
+                        <div>
+                            @if ($user->isAdmin())
+                                <span class="badge badge-primary">{{ App\Models\Admin::NAME }}</span>
+                            @else
+                                <span class="badge badge-success">{{ App\Models\Teacher::NAME }}</span>
+                            @endif
+                        </div>
+                        <div class="mt-2">
+                            <p class="mb-0">
+                                <i class="fas fa-phone mr-2"></i> 
+                                @if ($user->phone_number)
+                                    <a href="tel:{{ $user->phone_number }}">{{ $user->phone_number }}</a>
+                                @else 
+                                    <i class="text-muted">Chưa cập nhật</i>
+                                @endif
+                            </p>
+                            <p class="mb-0">
+                                <i class="fas fa-envelope mr-2"></i> <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endisset
 </main>
 @endsection

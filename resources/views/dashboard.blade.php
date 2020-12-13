@@ -16,6 +16,19 @@
         Dashboard
     </h3>
 
+    @if (! current_user()->hasChangedPassword())
+        <div class="alert alert-warning my-3" role="alert">
+            <h5 class="alert-heading">Xin dành ít thời gian!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </h5>
+            <p>Có vẻ như tài khoản này mới được tạo hoặc chưa thay đổi mật khẩu mặc định, điều này khá nguy hiểm.</p>
+            <hr>
+            <p class="mb-0">Hãy đến <a href="{{ route('profile.form') }}">hồ sơ cá nhân</a> để thay đổi mật khẩu mới an toàn hơn.</p>
+        </div>
+    @endif
+
     <div class="row mt-3">
         <div class="col-12">
             <div class="card">
@@ -84,5 +97,37 @@
             </div>
         </div>
     </div>
+
+    @auth('admin')
+        <div class="row mt-3">
+            <div class="col-4">
+                @include('components.counter', [
+                    'counter' => $counter['department'],
+                    'label' => 'khoa',
+                    'icon' => 'fas fa-tags',
+                    'text_color' => 'dark',
+                    'class' => 'rounded bg-white'
+                ])
+            </div>
+            <div class="col-4">
+                @include('components.counter', [
+                    'counter' => $counter['major'],
+                    'label' => 'ngành',
+                    'icon' => 'fas fa-tags',
+                    'text_color' => 'dark',
+                    'class' => 'rounded bg-white'
+                ])
+            </div>
+            <div class="col-4">
+                @include('components.counter', [
+                    'counter' => $counter['subject'],
+                    'label' => 'học phần',
+                    'icon' => 'fas fa-tags',
+                    'text_color' => 'dark',
+                    'class' => 'rounded bg-white'
+                ])
+            </div>
+        </div>
+    @endauth
 </main>
 @endsection

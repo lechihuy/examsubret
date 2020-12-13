@@ -167,7 +167,7 @@ class AuthController extends Controller
                 $graph = new Graph();
                 $graph->setAccessToken($accessToken->getToken());
 
-                $user = $graph->createRequest('GET', '/me?$select=userPrincipalName')
+                $user = $graph->createRequest('GET', '/me?$select=')
                     ->setReturnType(Model\User::class)
                     ->execute();
 

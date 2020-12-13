@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateProfile;
 use App\Models\Department;
 use App\Models\Subject;
 use App\Models\Major;
+use App\Models\Admin;
+use App\Models\Teacher;
 
 class ProfileController extends Controller
 {
@@ -52,6 +54,23 @@ class ProfileController extends Controller
         return response()->json([
             'message' => 'Cập nhật hồ sơ thành công.',
             'redirect_to' => route('profile.form'),
+        ]);
+    }
+
+    public function showProfile($username)
+    {
+
+        $user = Admin::where('username', $username)->first();
+
+        if (! $user) {
+            $user = Teacher::where('username', $username)->first();
+        }
+
+        if (! $user) abort(404);
+
+        return view('profile', [
+            'user' => $user,
+            'show' => true,
         ]);
     }
 }
