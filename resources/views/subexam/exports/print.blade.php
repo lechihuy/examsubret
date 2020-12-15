@@ -37,7 +37,17 @@
 
     .col {
         float: left;
+    }
+
+    .col-3 {
         width: calc(100% / 3);
+    }
+
+    .col-2 {
+        width: calc(100% / 2);
+    }
+
+    .text-center {
         text-align: center;
     }
 
@@ -46,11 +56,18 @@
     }
 </style>
 <header>
-    <h3>TRƯỜNG ĐẠI HỌC VĂN LANG</h3>
-    <h1>PHÒNG KHẢO THÍ & ĐBCLĐT</h1>
-    <p>69/68 Đăng Thùy Trâm, P.13, Q. Gò Vấp, TP.HCM</p>
-    <p>ĐT: (028) 71099231 - Fax: (028) 38369716</p>
-    <p>E-mail: p.ktdb@vanlanguni.edu.vn</p>
+    <div class="col col-2">
+        <h3>TRƯỜNG ĐẠI HỌC VĂN LANG</h3>
+        <h1>PHÒNG KHẢO THÍ & ĐBCLĐT</h1>
+        <p>69/68 Đăng Thùy Trâm, P.13, Q. Gò Vấp, TP.HCM</p>
+        <p>ĐT: (028) 71099231 - Fax: (028) 38369716</p>
+        <p>E-mail: p.ktdb@vanlanguni.edu.vn</p>
+    </div>
+    <div class="col col-2 text-center">
+        <h3 style="margin-top: 20px;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</h3>
+        <p>Độc lập - Tự do - Hạnh phúc</p>
+    </div>
+    <div class="clearfix"></div>
 </header>
 <table>
     <thead>
@@ -95,16 +112,15 @@
     </tbody>
 </table>
 <footer>
-    <div class="col">
-        <p><strong>Trưởng khoa</strong></p>
-        <p>(Ký, ghi rõ họ tên)</p>
+    <div class="col col-3">
+        <p style="opacity: 0;">p</p>
     </div>
-    <div class="col">
-        <p><strong>Chủ nhiệm bộ môn</strong></p>
-        <p>(Ký, ghi rõ họ tên)</p>
+    <div class="col col-3">
+        <p style="opacity: 0;">p</p>
     </div>
-    <div class="col">
-        <p><strong>Giảng viên ra đề</strong></p>
+    <div class="col col-3 text-center">
+        <p><strong>Tp. HCM, ngày {{ now()->format('d') }} tháng {{ now()->format('m') }} năm {{ now()->format('Y') }}</strong></p>
+        <p>Người nhận bàn giao đề thi</p>
         <p>(Ký, ghi rõ họ tên)</p>
     </div>
     <div class="clearfix"></div>
