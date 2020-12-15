@@ -9,6 +9,8 @@
         <button type="button" class="btn btn-sm btn-light btn-toggle-overlay" overlay="#overlay-filter"><i class="fas fa-times"></i> Đóng</button>
     </div>
     <form class="py-2" id="form-filter">   
+        <p class="text-uppercase text-muted mb-2">Cơ bản</p>
+
         <div class="form-group input-group-sm">
             <label class="font-weight-bold">Trạng thái</label>
             <select name="status" class="form-control">
@@ -125,6 +127,27 @@
             </select>
         </div>
 
+
+        @auth('admin')
+            <div class="form-group input-group-sm">
+                <label class="font-weight-bold">Giảng viên</label>
+                <select name="teacher_id" style="width: 100%;">
+                    <option value="all">Tất cả</option>
+                    @foreach($teachers as $teacher)
+                        <option value="{{ $teacher->id }}"
+                            @if (isset($filter['teacher_id']) && $filter['teacher_id'] == $teacher->id)
+                                selected
+                            @endif
+                        >
+                            {{ $teacher->identification() }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        @endauth
+
+        <p class="text-uppercase text-muted mb-2 mt-4">Nâng cao</p>
+
         <div class="form-group">
             <label class="font-weight-bold">Hình thức thi</label>
             <div class="custom-control custom-checkbox">
@@ -208,24 +231,6 @@
                 @endforeach
             </select>
         </div>
-
-        @auth('admin')
-            <div class="form-group input-group-sm">
-                <label class="font-weight-bold">Giảng viên</label>
-                <select name="teacher_id" style="width: 100%;">
-                    <option value="all">Tất cả</option>
-                    @foreach($teachers as $teacher)
-                        <option value="{{ $teacher->id }}"
-                            @if (isset($filter['teacher_id']) && $filter['teacher_id'] == $teacher->id)
-                                selected
-                            @endif
-                        >
-                            {{ $teacher->identification() }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-        @endauth
 
         <div class="form-group input-group-sm">
             <label class="font-weight-bold">Ngày tạo</label>

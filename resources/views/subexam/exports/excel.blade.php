@@ -19,6 +19,8 @@
             <th scope="col">Loại đề thi</th>    
             <th scope="col">Ghi chú</th>   
             <th scope="col">Giảng viên</th>
+            <th scope="col">Số điện thoại</th>
+            <th scope="col">Địa chỉ email</th>
             <th scope="col">Ngày tạo</th> 
         </tr>
     </thead>
@@ -43,6 +45,8 @@
                 <td>{{ $subexam->examTypeText() }}</td>
                 <td>{{ $subexam->notes }}</td>
                 <td>{{ $subexam->teacher->identification() }}</td>
+                <td>{{ $subexam->teacher->phone_number }}</td>
+                <td>{{ $subexam->teacher->email }}</td>
                 <td>@include('subexam.components.columns.created-at')</td>
             </tr>
         @endforeach

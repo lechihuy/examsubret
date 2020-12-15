@@ -48,6 +48,17 @@
     </div>
     {{-- /Header --}}
 
+    {{-- Search --}}
+    <div class="input-group input-group-sm mt-3">
+        <input type="text" placeholder="Nhập tên học phần để tìm kiếm..." class="form-control" action="{{ request()->fullUrl() }}" name="k" value="{{ $filter['k'] ?? '' }}">
+        <div class="input-group-append">
+            <button class="btn btn-primary btn-search" action="{{ request()->fullUrl() }}" type="button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+    {{-- /Search --}}
+
     {{-- Table --}}
     @if (count($subexams ?? []) > 0)
     <div class="table-wrapper my-4">

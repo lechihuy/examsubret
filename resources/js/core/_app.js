@@ -91,10 +91,7 @@ $(document).ready(function() {
 
     // Pagination
     $(document).on('click', '.btn-go-to-page', function() {
-        let page = $(this).parent().find('input[name=page]').val();
-        let url = $(this).attr('action');
-
-        location.href = query_url(url, 'page', page);
+        
     });
 
     // Open modal

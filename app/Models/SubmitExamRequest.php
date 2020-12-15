@@ -205,6 +205,22 @@ class SubmitExamRequest extends Model
             $examsubs->where('exam_type', $filter['exam_type']);
         }
 
+        // Search
+        if (isset($filter['k'])) {
+            $examsubs->whereHas('subject', function($q) use ($filter) {
+                $q->where('name', 'like', '%'.$filter['k'].'%');
+                $q->orderByRaw('
+                    (CASE 
+                        WHEN (name LIKE ?) THEN 1
+                        WHEN (name LIKE ?) THEN 1
+                        WHEN (name LIKE ?) THEN 1
+                        ELSE 4
+                    END)'
+                , [$filter['k'], $filter['k'].'%', '%'.$filter['k']]);
+            });
+           
+        }
+
         // Created at
         if (isset($filter['created_at'])) {
             if ($filter['created_at'] == 'desc') {

@@ -97,6 +97,11 @@ $('#form-filter .btn-search').on('click', function() {
         value: exam_forms
     })
 
+    formData.push({
+        name: 'k',
+        value: $('input[name=k]').val()
+    })
+
     let queries = {};
     
     formData.forEach(function(item) {
@@ -115,3 +120,19 @@ setupMajorSelectors()
 setupSubjectSelectors()
 $('select[name=teacher_id]').select2()
 $('select[name=class]').select2()
+
+$('.btn-search').on('click', function() {
+    let k = $('input[name=k]').val();
+    let url = $(this).attr('action');
+
+    location.href = query_url(url, 'k', k);
+})
+
+$('input[name=k]').on('keyup', function(e) {
+    if (e.key == 'Enter') {
+        let k = $('input[name=k]').val();
+        let url = $(this).attr('action');
+
+        location.href = query_url(url, 'k', k);
+    }
+})

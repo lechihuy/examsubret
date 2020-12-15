@@ -6,7 +6,7 @@ class SubmitExamRequestTable extends Table
 {
     public function __construct()
     {
-        $this->column('subject')->label('học phần')->primaryColumn()->width(300)
+        $this->column('subject')->label('tên học phần')->primaryColumn()->width(300)
             ->render('subexam.components.columns.subject');
         
         $this->column('status')->label('trạng thái')->width(100)
