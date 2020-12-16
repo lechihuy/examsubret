@@ -59,12 +59,9 @@
     <div class="col col-2">
         <h3>TRƯỜNG ĐẠI HỌC VĂN LANG</h3>
         <h1>PHÒNG KHẢO THÍ & ĐBCLĐT</h1>
-        <p>69/68 Đăng Thùy Trâm, P.13, Q. Gò Vấp, TP.HCM</p>
-        <p>ĐT: (028) 71099231 - Fax: (028) 38369716</p>
-        <p>E-mail: p.ktdb@vanlanguni.edu.vn</p>
     </div>
     <div class="col col-2 text-center">
-        <h3 style="margin-top: 20px;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</h3>
+        <h3>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</h3>
         <p>Độc lập - Tự do - Hạnh phúc</p>
     </div>
     <div class="clearfix"></div>
