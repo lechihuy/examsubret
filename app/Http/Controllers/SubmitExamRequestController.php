@@ -250,7 +250,7 @@ class SubmitExamRequestController extends Controller
             'status', 'class', 'department_id', 'major_id', 'subject_id', 
             'year', 'semester', 'exam', 'exam_forms', 'used_material', 
             'has_answer', 'has_point_ladder', 'exam_type',
-            'created_at', 'teacher_id', 'k'
+            'created_at', 'teacher_id', 'k', 'selected'
         ]);
 
         $filter['pagination'] = false;
@@ -270,7 +270,7 @@ class SubmitExamRequestController extends Controller
             'status', 'class', 'department_id', 'major_id', 'subject_id', 
             'year', 'semester', 'exam', 'exam_forms', 'used_material', 
             'has_answer', 'has_point_ladder', 'exam_type',
-            'created_at', 'teacher_id', 'k'
+            'created_at', 'teacher_id', 'k', 'selected'
         ]);
 
         $filter['pagination'] = false;

@@ -69,11 +69,11 @@ $(document).ready(function() {
         img.attr('src', img.attr('remove-src'));
     });
 
-     // Check all table
-     $(document).on('change', '.check-all', function() {
+    // Check all table
+    $(document).on('change', '.check-all', function() {
         let checked = $(this).prop('checked');
 
-        $(this).parents('table').find('.check-row').prop('checked', checked);
+        $(this).parents('table').find('.check-row').prop('checked', checked).change();
         $(this).parents('table').find('.check-all').prop('checked', checked);
     });
 
@@ -91,7 +91,10 @@ $(document).ready(function() {
 
     // Pagination
     $(document).on('click', '.btn-go-to-page', function() {
-        
+        let page = $(this).parent().find('input[name=page]').val();
+        let url = $(this).attr('action');
+
+        location.href = query_url(url, 'page', page);
     });
 
     // Open modal
@@ -184,6 +187,8 @@ $(document).ready(function() {
                     'message': res.message,
                 })
                 form.redirectToIfAvailable(res);
+
+                Cookies.set('subexam_selected_items', '');
             }, error: function() {
                 modal.modal('hide');
 
@@ -214,10 +219,5 @@ $(document).ready(function() {
         } else {
             $(document).find(`input.check-all-mc[type=checkbox][for=${mc}]`).prop('checked', false);
         }
-    })
-
-    // Print table
-    $(document).on('click', '.btn-print', function() {
-        $("#printer").get(0).contentWindow.print()
-    })
+    })    
 });

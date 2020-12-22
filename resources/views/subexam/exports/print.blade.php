@@ -58,7 +58,7 @@
 <header>
     <div class="col col-2">
         <h3>TRƯỜNG ĐẠI HỌC VĂN LANG</h3>
-        <h1>PHÒNG KHẢO THÍ & ĐBCLĐT</h1>
+        <h1>TRUNG TÂM KHẢO THÍ</h1>
     </div>
     <div class="col col-2 text-center">
         <h3>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</h3>

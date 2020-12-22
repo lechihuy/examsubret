@@ -1,3 +1,4 @@
+
 function setupDepartmentSelectors() {
     $('select[name=department_id]').select2();
 }
@@ -135,4 +136,109 @@ $('input[name=k]').on('keyup', function(e) {
 
         location.href = query_url(url, 'k', k);
     }
+})
+
+// Save selected items
+if (Cookies.get('subexam_selected_items') != '' && Cookies.get('subexam_selected_items') !== undefined) {
+    let subexamSelectedItems = Cookies.get('subexam_selected_items').split(',');
+    let checked = 0;
+
+    for (item of subexamSelectedItems) {
+        $(`.check-row[data-id=${item}]`).prop('checked', true);
+    }
+
+    $('.check-row').each(function(key, item) {
+        if (subexamSelectedItems.includes($(item).data('id').toString())) {
+            $(item).prop('checked', true);
+            checked++;
+        }
+    });
+
+    if (checked == $('.check-row').length) {
+        $('.check-all').prop('checked', true);
+    }
+
+    $('#save-selected-item-switcher .counter').html(subexamSelectedItems.length);
+}
+
+if (Cookies.get('subexam_save_selected_items_mode') !== undefined) {
+    $('#save-selected-item-mode').prop('checked', Cookies.get('subexam_save_selected_items_mode') === 'true')
+}
+
+if (Cookies.get('subexam_save_selected_items_mode') === 'true') {
+    $('#save-selected-item-switcher .label-counter').removeClass('d-none');
+} else {
+    $('#save-selected-item-switcher .label-counter').addClass('d-none');
+}
+
+$('#save-selected-item-mode').on('change', function() {
+    let mode = $(this).prop('checked');
+    Cookies.set(`subexam_save_selected_items_mode`, mode)
+
+    if (Cookies.get('subexam_save_selected_items_mode') === 'true') {
+        $('#save-selected-item-switcher .label-counter').removeClass('d-none');
+        Cookies.set('subexam_selected_items', '');
+    } else {
+        $('#save-selected-item-switcher .label-counter').addClass('d-none');
+        Cookies.remove('subexam_selected_items');
+    }
+
+    $('#save-selected-item-switcher .counter').html('0');
+});
+
+$('.check-row').on('change', function() {
+    if (Cookies.get('subexam_save_selected_items_mode') === 'true') {
+        let checked = $(this).prop('checked');
+        let subexamSelectedItems = Cookies.get('subexam_selected_items') != '' 
+            ? Cookies.get('subexam_selected_items').split(',')
+            : [];
+        let id = $(this).data('id').toString();
+
+        if (checked) {
+            subexamSelectedItems.push(id);
+        } else {
+            subexamSelectedItems.splice(subexamSelectedItems.indexOf(id), 1);
+        }
+    
+        Cookies.set('subexam_selected_items', subexamSelectedItems.join(','));
+
+        $('#save-selected-item-switcher .counter').html(subexamSelectedItems.length);
+    }
+})
+
+// Export table
+$(document).on('click', '.btn-print', function() {
+    $('#printer').remove();
+
+    let url = $(this).attr('action');
+    let selected = null;
+
+    if (Cookies.get('subexam_save_selected_items_mode') === 'true') {
+        selected = Cookies.get('subexam_selected_items')
+    } else {
+        selected = $('.check-row:checked').map(function(key, item) {
+            return $(item).data('id');
+        }).get().join(',') ?? '';
+    }
+
+    $('body').append(`
+        <iframe id="printer" class="d-none" src="${query_url(url, 'selected', selected)}"></iframe>
+    `)
+
+    $('#printer').get(0).contentWindow.print()
+})
+
+$(document).on('click', '.btn-excel', function() {
+    let url = $(this).attr('action');
+    let selected = null;
+
+    if (Cookies.get('subexam_save_selected_items_mode') === 'true') {
+        selected = Cookies.get('subexam_selected_items')
+    } else {
+        selected = $('.check-row:checked').map(function(key, item) {
+            return $(item).data('id');
+        }).get().join(',') ?? '';
+    }
+
+    window.location = query_url(url, 'selected', selected);
 })

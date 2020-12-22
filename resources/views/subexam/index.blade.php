@@ -18,10 +18,6 @@
 
 @section('content')
 
-@can('export')
-    <iframe id="printer" src="{{ route('subexams.print', $filter) }}" class="d-none"></iframe>
-@endcan
-
 <main class="container-narrow">
     {{-- Breadcrumb --}}
     @include('components.breadcrumb', ['items' => [
@@ -59,9 +55,19 @@
     </div>
     {{-- /Search --}}
 
+    @can('export')
+    <div class="mt-4 py-2 d-flex justify-content-between align-items-start" id="save-selected-item-switcher" style="margin-bottom: -1px;">
+        <div class="custom-control custom-switch mr-2">
+            <input type="checkbox" class="custom-control-input" id="save-selected-item-mode">
+            <label class="custom-control-label" for="save-selected-item-mode">Chế độ chọn phần tử để xuất</label>
+        </div>
+        <span class="label-counter badge badge-primary">Đã chọn <span class="counter">0</span></span>
+    </div>
+    @endcan
+
     {{-- Table --}}
     @if (count($subexams ?? []) > 0)
-    <div class="table-wrapper my-4">
+    <div class="table-wrapper @cannot('export') mt-4 @endcannot mb-4">
         <table class="table my-table-striped border bg-white mb-0" style="min-width: 100%; width: {{ $table->widthTable() }}px;">
             <thead>
                 @include('subexam.components.table.label-row', [

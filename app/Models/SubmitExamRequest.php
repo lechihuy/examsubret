@@ -127,6 +127,12 @@ class SubmitExamRequest extends Model
     {
         $examsubs = static::select($select);
 
+        // Selected
+        if (isset($filter['selected']) && $filter['selected'] != '') {
+            $selected = explode(',', $filter['selected']);
+            $examsubs->whereIn('id', $selected);
+        }
+
         // Year
         if (isset($filter['year']) && $filter['year'] != 'all') {
             $examsubs->whereYear('created_at', $filter['year']);
@@ -237,7 +243,7 @@ class SubmitExamRequest extends Model
         if (isset($filter['pagination']) && $filter['pagination'] == false) {
             return $examsubs->get();
         } else {
-            return $examsubs->paginate(20);
+            return $examsubs->paginate(1);
         }
     }
 
