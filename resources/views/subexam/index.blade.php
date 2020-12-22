@@ -59,7 +59,7 @@
     <div class="mt-4 py-2 d-flex justify-content-between align-items-start" id="save-selected-item-switcher" style="margin-bottom: -1px;">
         <div class="custom-control custom-switch mr-2">
             <input type="checkbox" class="custom-control-input" id="save-selected-item-mode">
-            <label class="custom-control-label" for="save-selected-item-mode">Chế độ lưu phần tử để xuất</label>
+            <label class="custom-control-label" for="save-selected-item-mode">Chế độ lưu phần tử để xuất (khi thao tác với nhiều trang)</label>
         </div>
         <span class="label-counter badge badge-primary">Đã chọn <span class="counter">0</span></span>
     </div>
