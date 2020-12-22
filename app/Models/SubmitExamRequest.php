@@ -243,7 +243,7 @@ class SubmitExamRequest extends Model
         if (isset($filter['pagination']) && $filter['pagination'] == false) {
             return $examsubs->get();
         } else {
-            return $examsubs->paginate(1);
+            return $examsubs->paginate(20);
         }
     }
 
