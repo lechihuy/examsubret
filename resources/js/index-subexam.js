@@ -194,9 +194,9 @@ $('.check-row').on('change', function() {
             : [];
         let id = $(this).data('id').toString();
 
-        if (checked) {
+        if (checked && ! subexamSelectedItems.includes(id)) {
             subexamSelectedItems.push(id);
-        } else {
+        } else if (! checked && subexamSelectedItems.includes(id)) {
             subexamSelectedItems.splice(subexamSelectedItems.indexOf(id), 1);
         }
     
