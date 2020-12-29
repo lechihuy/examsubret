@@ -95,8 +95,18 @@
 
             {{-- Right column --}}
             <div class="col-12 col-md-4 pl-3 pl-md-0">
-                {{-- Change password --}}
                 <div class="card border shadow-sm rounded-0">
+                    <div class="card-header bg-white">
+                        <span class="font-weight-bold">Lần đăng nhập gần đây nhất</span>
+                    </div>
+
+                    <div class="card-body">
+                        <code>{{ $user->last_login_at }}</code>
+                    </div>
+                </div>
+
+                {{-- Change password --}}
+                <div class="card border shadow-sm rounded-0 mt-3">
                     <div class="card-header bg-white" data-toggle="collapse" data-target="#collapse-change-password" aria-expanded="true">
                         <span class="font-weight-bold">Đổi mật khẩu
                             <a class="float-right text-dark">
@@ -176,7 +186,7 @@
         <div class="row justify-content-center mt-3">
             <div style="width: 450px; max-width: 100%;" class=" mx-3">
                 <div class="media bg-white p-4 shadow rounded">
-                    <img src="https://examsubret.test/images/user.png" class="mr-3" width="80">
+                    <img src="{{ asset('images/user.png') }}" class="mr-3" width="80">
                     <div class="media-body mb-0">
                         <h5 class="mt-0 text-uppercase">{{ $user->identification() }}</h5>
                         <div>
