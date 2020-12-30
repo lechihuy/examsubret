@@ -81,6 +81,6 @@ trait Common
 
     public function getAvatar()
     {
-        return $this->avatar ? Storage::url($this->avatar) : asset('images/user.png');
+        return $this->avatar ? url(Storage::url($this->avatar)) : asset('images/user.png');
     }
 }
