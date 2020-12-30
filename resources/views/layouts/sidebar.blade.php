@@ -2,7 +2,8 @@
     {{-- Profile --}}
     <div class="profile px-2 py-3">
         <div class="media">
-            <img src="{{ asset('images/user.png') }}" class="mr-3 rounded" width="50">
+            <img src="{{ $user->getAvatar() }}" class="mr-3 rounded-circle" style="width: 50px; height: 50px;">
+
             <div class="media-body">
                 <p class="text-white text-truncate mb-0">{{ auth()->user()->identification() }}</p>
                 @if (current_guard() == 'admin')

@@ -202,7 +202,7 @@
         <div class="row justify-content-center mt-3">
             <div style="width: 450px; max-width: 100%;" class=" mx-3">
                 <div class="media bg-white p-4 shadow rounded">
-                    <img src="{{ asset('images/user.png') }}" class="mr-3" width="80">
+                    <img src="{{ $user->getAvatar() }}" class="mr-3 img-thumbnail rounded-circle" style="width: 100px; height: 100px;">
                     <div class="media-body mb-0">
                         <h5 class="mt-0 text-uppercase">{{ $user->identification() }}</h5>
                         <div>
