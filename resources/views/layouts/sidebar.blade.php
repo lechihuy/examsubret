@@ -2,10 +2,10 @@
     {{-- Profile --}}
     <div class="profile px-2 py-3">
         <div class="media">
-            <img src="{{ $user->getAvatar() }}" class="mr-3 rounded-circle" style="width: 50px; height: 50px;">
+            <img src="{{ current_user()->getAvatar() }}" class="mr-3 rounded-circle" style="width: 50px; height: 50px;">
 
             <div class="media-body">
-                <p class="text-white text-truncate mb-0">{{ auth()->user()->identification() }}</p>
+                <p class="text-white text-truncate mb-0">{{ current_user()->identification() }}</p>
                 @if (current_guard() == 'admin')
                     <span class="badge badge-primary">{{ App\Models\Admin::NAME }}</span>
                 @else
