@@ -20,6 +20,7 @@ class CreateAdminsTable extends Migration
             $table->string('fullname', 50);
             $table->string('phone_number', 11);
             $table->string('email');
+            $table->string('avatar')->nullable();
             $table->timestamp('last_change_password_at')->nullable();
             $table->timestamp('last_login_at')->nullable();
             $table->timestamps();

@@ -4,6 +4,7 @@ namespace App\Models\Traits;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\SubmitExamRequest;
+use Illuminate\Support\Facades\Storage;
 
 trait Common
 {
@@ -76,5 +77,10 @@ trait Common
     public function hasChangedPassword()
     {
         return (bool) $this->last_change_password_at;
+    }
+
+    public function getAvatar()
+    {
+        return $this->avatar ? Storage::url($this->avatar) : asset('images/user.png');
     }
 }

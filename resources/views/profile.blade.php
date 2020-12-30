@@ -7,6 +7,7 @@
 @endpush
 
 @push('scripts')
+    <script src="{{ asset('plugins/jqueryform/jquery.form.min.js') }}"></script>
     <script src="{{ asset('js/profile.js') }}"></script>
 @endpush
 
@@ -40,7 +41,7 @@
     {{-- /Alert --}}
 
     {{-- Form --}}
-    <form action="{{ route('profile.update') }}" method="POST" id="form-update-profile">
+    <form action="{{ route('profile.update') }}" method="POST" id="form-update-profile" enctype="multipart/form-data">
         <div class="row my-4">
             {{-- Left column --}}
             <div class="col-12 col-md-8 mb-3 mb-md-0">
@@ -96,6 +97,21 @@
             {{-- Right column --}}
             <div class="col-12 col-md-4 pl-3 pl-md-0">
                 <div class="card border shadow-sm rounded-0">
+                    <div class="card-header bg-white">
+                        <span class="font-weight-bold">Ảnh đại diện</span>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="d-flex align-items-start">
+                            <img src="{{ $user->getAvatar() }}" alt="" style="width: 100px; height: 100px;" class="rounded-circle img-thumbnail">
+                            <div class="ml-3">
+                                <input type="file" name="avatar" accept=".jpg,.png,.jpeg" class="w-100 overflow-hidden">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border shadow-sm rounded-0 mt-3">
                     <div class="card-header bg-white">
                         <span class="font-weight-bold">Lần đăng nhập gần đây nhất</span>
                     </div>

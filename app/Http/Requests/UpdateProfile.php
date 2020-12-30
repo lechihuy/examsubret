@@ -27,11 +27,6 @@ class UpdateProfile extends FormRequest
      */
     protected function prepareForValidation()
     {
-        if (auth('teacher')) {
-            $this->merge([
-                'jobs' => json_decode($this->jobs, true) ?? []
-            ]);
-        }
     }
 
     /**
@@ -45,9 +40,11 @@ class UpdateProfile extends FormRequest
         $table = auth('teacher') ? 'teachers' : 'admins';
         $guard = current_guard();
 
+
         $rules = [
             'fullname' => 'bail|required|string|min:2|max:50',
             'phone_number' => "bail|required|string|regex:/^[0-9]{10,11}$/|unique:{$table},phone_number,{$user}",
+            'avatar' => 'bail|sometimes|nullable|file|mimes:jpg,jpeg,png'
         ];
 
         if ($this->old_password || $this->new_password || $this->new_password_confirmation) {

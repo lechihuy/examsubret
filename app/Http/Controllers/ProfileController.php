@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateProfile;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Department;
 use App\Models\Subject;
@@ -40,7 +41,18 @@ class ProfileController extends Controller
         // Save common data
         $user = current_user();
         $user->fullname = $data['fullname'];
-        $user->phone_number = $data['phone_number'];   
+        $user->phone_number = $data['phone_number']; 
+
+        if (isset($data['avatar'])) {
+            $oldAvatar = $user->avatar;
+
+            if ($oldAvatar) {
+                Storage::disk('public')->delete($oldAvatar);
+            }
+
+            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+            $user->avatar = $avatarPath;
+        }
         
         // If the user change password, save new password and update last change password time
         if (isset($data['old_password'])) {

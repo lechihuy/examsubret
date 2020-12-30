@@ -44,7 +44,7 @@ return [
     'email' => ':Attribute không hợp lệ.',
     'ends_with' => 'The :attribute must end with one of the following: :values.',
     'exists' => 'The selected :attribute is invalid.',
-    'file' => 'The :attribute must be a file.',
+    'file' => ':Attribute phải là một file.',
     'filled' => 'The :attribute field must have a value.',
     'gt' => [
         'numeric' => 'The :attribute must be greater than :value.',
@@ -74,7 +74,7 @@ return [
     ],
     'lte' => [
         'numeric' => 'The :attribute must be less than or equal :value.',
-        'file' => 'The :attribute must be less than or equal :value kilobytes.',
+        'file' => ':Attribute phải có dung lượng ít hơn hoặc bằng :value kilobytes.',
         'string' => 'The :attribute must be less than or equal :value characters.',
         'array' => 'The :attribute must not have more than :value items.',
     ],
@@ -84,7 +84,7 @@ return [
         'string' => ':Attribute chỉ được dài tối đa :max ký tự.',
         'array' => 'The :attribute may not have more than :max items.',
     ],
-    'mimes' => 'The :attribute must be a file of type: :values.',
+    'mimes' => ':Attribute phải có các định dạng sau: :values.',
     'mimetypes' => 'The :attribute must be a file of type: :values.',
     'min' => [
         'numeric' => ':Attribute phải lớn hơn :min.',
@@ -178,7 +178,8 @@ return [
         'used_material_note' => 'liệt kê các tài liệu được phép sử dụng.',
         'has_answer' => 'đề thi có kèm đáp án',
         'has_point_ladder' => 'đề thi có kèm thang điểm',
-        'exam_types' => 'đề thi thuộc loại'
+        'exam_types' => 'đề thi thuộc loại',
+        'avatar' => 'ảnh đại diện'
     ],
 
 ];
